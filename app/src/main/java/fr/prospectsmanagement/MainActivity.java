@@ -2,6 +2,7 @@ package fr.prospectsmanagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import fr.prospectsmanagement.dataBase.DaoSQL;
 
 public class MainActivity extends AppCompatActivity {
     private DaoSQL dataBase;
@@ -10,11 +11,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBase = new DaoSQL(this);
-        setContentView(R.layout.activity_main);
 
         Entreprise e = new Entreprise("uneNom", 0);
         Prospect p = new Prospect("nom", "prenom", "tel", "mail", 1, e);
-        long a = dataBase.addProspectBdd(p);
-        System.out.println(a);
+        dataBase.getProspectBdd().addProspectBdd(p);
+
+        setContentView(R.layout.activity_main);
     }
 }
