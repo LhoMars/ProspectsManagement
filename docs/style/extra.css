@@ -1,0 +1,13 @@
+h1, h2{
+	text-align:center;
+}
+
+:is(h1, h2, h3, h4, h5, h6){
+	color: #ff7070;
+}
+
+[data-md-color-scheme="default"] .md-typeset table:not([class]) th{
+	color: white;
+	background-color: #656565;
+	border-bottom: .05rem solid var(--md-primary-fg-color);
+}
