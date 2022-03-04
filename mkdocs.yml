@@ -8,8 +8,6 @@ nav:
     - Home: index.md
     - List Pages:
         - pages/index.md
-        - page 1: page1.md
-        - page2.md
     - Help Page: help.md
 
 theme:
