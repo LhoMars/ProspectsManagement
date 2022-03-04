@@ -33,7 +33,7 @@
         android:id="@+id/btnLogin"
         android:text="Connexion"
         android:textColor="#1495d7"
-        android:background="@drawable/connexion_boutton"
+        android:background="#fff"
         android:layout_width="128dp"
         android:textStyle="bold"
         android:layout_height="wrap_content"/>
@@ -43,6 +43,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mot de passe oublié ?"
-        android:background=""
+        android:background="?android:borderlessButtonStyle"
         android:textAllCaps="false"/>
 </LinearLayout>
