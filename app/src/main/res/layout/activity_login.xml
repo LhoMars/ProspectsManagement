@@ -23,7 +23,7 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/Motdepasse"
+        android:id="@+id/MotDePasse"
         android:hint="Mot de passe"
         android:textSize="22sp"
         android:layout_width="match_parent"
@@ -32,25 +32,17 @@
     <Button
         android:id="@+id/btnLogin"
         android:text="Connexion"
+        android:textColor="#1495d7"
+        android:background="@drawable/connexion_boutton"
         android:layout_width="128dp"
-        android:layout_height="wrap_content" />
+        android:textStyle="bold"
+        android:layout_height="wrap_content"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/OublieMotDePasse"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vous n'avez pas de compte ?" />
-
-        <Button
-            android:id="@+id/btnInscription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Inscrivez vous !"
-            android:textAllCaps="false" />
-    </LinearLayout>
+        android:text="Mot de passe oublié ?"
+        android:background="?android:borderlessButtonStyle"
+        android:textAllCaps="false"/>
 </LinearLayout>
