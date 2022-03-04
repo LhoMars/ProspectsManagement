@@ -1,7 +1,7 @@
-site_name: Name
+site_name: Prospects Management
 site_author : Marcel Lhote
 site_description : description
-repo_url: https://lhomars.github.io/name/
+repo_url: https://github.com/LhoMars/ProspectsManagement
 edit_uri: 'edit/main/docs/'
 
 nav:

@@ -3,8 +3,7 @@ package fr.prospectsmanagement;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteStatement;
+import android.database.sqlite.SQLiteDatabase;
 import java.io.File;
 
 
