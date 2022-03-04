@@ -1,4 +1,4 @@
-package fr.prospectsmanagement;
+package fr.prospectsmanagement.dataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,12 +12,11 @@ public class DaoSQL extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "prospectmanagbd.db";
     private static final int DB_VERSION = 1;
-    private SQLiteDatabase bdd;
     private ProspectBDD prospectBdd;
 
     public DaoSQL(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        prospectBdd = new ProspectBDD();
+        prospectBdd = new ProspectBDD(this);
     }
 
     @Override
@@ -30,30 +29,8 @@ public class DaoSQL extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE " + prospectBdd.getTableName() + ";");
         onCreate(db);
     }
-    public void open(){
-        //on ouvre la BDD en écriture
-        bdd = this.getWritableDatabase();
-    }
-
-    public void close(){
-        //on ferme l'accès à la BDD
-        bdd.close();
-    }
-
-    public long addProspectBdd(Prospect p) {
-        open();
-        //Création d'un ContentValues (fonctionne comme une HashMap)
-		ContentValues values = new ContentValues();
-		//on lui ajoute une valeur associée à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
-		values.put(NOM_COL, p.getNom());
-		values.put(PRENOM_COL, p.getPrenom());
-        values.put(TEL_COL,p.getTel());
-        values.put(MAIL_COL, p.getMail());
-        values.put(NOTES_COL, p.getNotes());
-		//on insère l'objet dans la BDD via le ContentValues
-		return bdd.insert(TABLE_NAME, null, values);
-	}
 /*
+
     public Prospect getProspectBdd(String nom, String prenom) {
         Cursor c = database.query(true,
                 TABLE_NAME,                        // Nom de la table
@@ -86,4 +63,8 @@ public class DaoSQL extends SQLiteOpenHelper {
 
         //database.update(TABLE_NAME,values,NOM_COL + " = "+ user.getNom() + " AND " + PRENOM_COL + " = ",null,null,null);
     }*/
+
+    public ProspectBDD getProspectBdd() {
+        return prospectBdd;
+    }
 }
