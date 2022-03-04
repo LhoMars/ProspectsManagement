@@ -1,0 +1,65 @@
+site_name: Name
+site_author : Marcel Lhote
+site_description : description
+repo_url: https://lhomars.github.io/name/
+edit_uri: 'edit/main/docs/'
+
+nav:
+    - Home: index.md
+    - List Pages:
+        - pages/index.md
+        - page 1: page1.md
+        - page2.md
+    - Help Page: help.md
+
+theme:
+    name: material
+    logo: assets/logo.jpg
+    favicon: assets/logo.jpg
+    language: fr
+    features:
+        - navigation.top
+        - toc.integrate
+        - content.code.annotate
+        - header.autohide
+    palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: dracula
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+      primary: deep purple
+      accent: deep purple
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+extra_css: [style/extra.css]
+
+extra:
+    generator: false
+
+plugins:
+    - search
+    - mkdocs_pymdownx_material_extras
+
+markdown_extensions:
+    - pymdownx.highlight
+    - pymdownx.inlinehilite
+    - pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+    - pymdownx.snippets
+    - footnotes
+    - def_list
+    - pymdownx.critic
+    - pymdownx.caret
+    - pymdownx.keys
+    - pymdownx.mark
+    - pymdownx.tilde
+    - pymdownx.tasklist:
+        custom_checkbox: true
