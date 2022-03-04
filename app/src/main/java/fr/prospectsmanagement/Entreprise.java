@@ -8,4 +8,12 @@ public class Entreprise {
         this.nom = nom;
         this.siret = siret;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public int getSiret() {
+        return siret;
+    }
 }
