@@ -38,10 +38,11 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/MotDePasse"
+        android:id="@+id/editTextTextPassword"
         android:hint="Mot de passe"
         android:textSize="22sp"
         android:textColor="@color/white"
+        android:inputType="textPassword"
         android:layout_marginBottom="46dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
