@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
         Employee e = new Employee("user","password");
         database.getEmployeeBdd().addemployeeBdd(e);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         /* Selection des vues de l'activité */
         editIdentifiant = (EditText) findViewById(R.id.Identifiant);
