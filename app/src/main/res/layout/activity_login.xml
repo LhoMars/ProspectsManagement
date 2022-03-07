@@ -13,10 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="40sp"
-        android:textColor="@color/white"
         android:letterSpacing="0.07"
-        android:text="Prospects Management" />
+        android:text="Prospects"
+        android:textColor="@color/white"
+        android:textSize="40sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.07"
+        android:text="Management"
+        android:textColor="@color/white"
+        android:textSize="40sp" />
 
     <EditText
         android:id="@+id/Identifiant"
@@ -44,6 +53,7 @@
         android:text="Connexion"
         android:textColor="#1495d7"
         android:background="@color/white"
+        android:layout_marginBottom="26dp"
         android:textStyle="bold"/>
 
     <Button
@@ -52,5 +62,7 @@
         android:layout_height="wrap_content"
         android:text="Mot de passe oublié ?"
         android:background="?android:attr/selectableItemBackground"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:textColor="@color/white"/>
+
 </LinearLayout>
