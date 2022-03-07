@@ -16,7 +16,7 @@
         android:letterSpacing="0.07"
         android:text="Prospects"
         android:textColor="@color/white"
-        android:textSize="40sp" />
+        android:textSize="35dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:letterSpacing="0.07"
         android:text="Management"
         android:textColor="@color/white"
-        android:textSize="40sp" />
+        android:textSize="35dp" />
 
     <EditText
         android:id="@+id/Identifiant"
