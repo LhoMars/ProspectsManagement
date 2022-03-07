@@ -23,13 +23,16 @@ public class DaoSQL extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(prospectBdd.getCreateBdd() + employeeBdd.getCreateBdd());
+        System.out.println("Employe " + employeeBdd.getCreateBdd());
+        System.out.println("Prospect " + prospectBdd.getCreateBdd());
+        db.execSQL(employeeBdd.getCreateBdd());
+        db.execSQL(prospectBdd.getCreateBdd());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE " + prospectBdd.getTableName() + "; " +
-                "DROP TABLE " + employeeBdd.getTableName() + ";");
+        db.execSQL("DROP TABLE " + prospectBdd.getTableName());
+        db.execSQL("DROP TABLE " + employeeBdd.getTableName());
         onCreate(db);
     }
 

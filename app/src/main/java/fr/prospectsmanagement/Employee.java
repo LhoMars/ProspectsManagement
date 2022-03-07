@@ -15,4 +15,12 @@ public class Employee {
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "identifiant='" + identifiant + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

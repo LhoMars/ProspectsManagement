@@ -4,29 +4,41 @@ import android.database.sqlite.SQLiteDatabase;
 
 public abstract class ObjectBDD {
 
-    private static String TABLE_NAME;
-    private String CREATE_BDD;
+    private String name;
+    private String createSql;
     private DaoSQL maBaseSQLite;
     private SQLiteDatabase bdd;
 
     public ObjectBDD(DaoSQL maBaseSQLite, String name, String create) {
         this.maBaseSQLite = maBaseSQLite;
-        this.TABLE_NAME = name;
-        this.CREATE_BDD = create;
-        this.bdd = maBaseSQLite.getWritableDatabase();
+        this.name = name;
+        this.createSql = create;
     }
 
     public void open(){
-        bdd = maBaseSQLite.getWritableDatabase();
+        this.bdd = maBaseSQLite.getWritableDatabase();
     }
+
     public void close(){
-        bdd.close();
+        this.bdd.close();
     }
+
     public String getTableName(){
-        return TABLE_NAME;
+        return this.name;
     }
+
     public String getCreateBdd(){
-        return CREATE_BDD;
+        return this.createSql;
     }
-    public SQLiteDatabase getBdd(){return bdd;}
+
+    public SQLiteDatabase getBdd(){return this.bdd;}
+
+    @Override
+    public String toString() {
+        return "ObjectBDD{" +
+                "CREATE_BDD= '" + createSql + '\'' +
+                ", maBaseSQLite= " + maBaseSQLite +
+                ", bdd= " + bdd +
+                '}';
+    }
 }
