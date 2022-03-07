@@ -38,6 +38,7 @@
             android:layout_marginTop="68dp"
             android:layout_marginBottom="26dp"
             android:hint="Identifiant"
+            android:singleLine="true"
             android:textColor="@color/white"
             android:textSize="22sp" />
 
