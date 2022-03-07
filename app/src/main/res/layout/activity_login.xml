@@ -1,69 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
-    android:gravity="center"
-    android:padding="50dp"
-    android:orientation="vertical"
-    tools:context=".LoginActivity">
-
-    <TextView
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_bg"
         android:gravity="center"
-        android:letterSpacing="0.07"
-        android:text="Prospects"
-        android:textColor="@color/white"
-        android:textSize="35dp" />
+        android:orientation="vertical"
+        android:padding="50dp"
+        tools:context=".LoginActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:letterSpacing="0.07"
-        android:text="Management"
-        android:textColor="@color/white"
-        android:textSize="35dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:letterSpacing="0.07"
+            android:text="Prospects"
+            android:textColor="@color/white"
+            android:textSize="35dp" />
 
-    <EditText
-        android:id="@+id/Identifiant"
-        android:hint="Identifiant"
-        android:textSize="22sp"
-        android:textColor="@color/white"
-        android:layout_marginTop="68dp"
-        android:layout_marginBottom="26dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:letterSpacing="0.07"
+            android:text="Management"
+            android:textColor="@color/white"
+            android:textSize="35dp" />
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:hint="Mot de passe"
-        android:textSize="22sp"
-        android:textColor="@color/white"
-        android:inputType="textPassword"
-        android:layout_marginBottom="46dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/Identifiant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:layout_marginBottom="26dp"
+            android:hint="Identifiant"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_height="wrap_content"
-        android:layout_width="128dp"
-        android:text="Connexion"
-        android:textColor="#1495d7"
-        android:background="@color/white"
-        android:layout_marginBottom="26dp"
-        android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/MotDePasse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="46dp"
+            android:hint="Mot de passe"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
-    <Button
-        android:id="@+id/OublieMotDePasse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mot de passe oublié ?"
-        android:background="?android:attr/selectableItemBackground"
-        android:textAllCaps="false"
-        android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="26dp"
+            android:background="@color/white"
+            android:text="Connexion"
+            android:textColor="#1495d7"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/OublieMotDePasse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Mot de passe oublié ?"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
