@@ -2,6 +2,7 @@ package fr.prospectsmanagement;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,9 +21,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         database = new DaoSQL(this);
-        Employee e = new Employee("user","password");
-        database.getEmployeeBdd().addemployeeBdd(e);
 
+        if(database.getEmployeeBdd().getEmployeeWithIdentifiant("user") == null) {
+            Employee e = new Employee("user", "password");
+            database.getEmployeeBdd().addemployeeBdd(e);
+        }
         setContentView(R.layout.activity_login);
 
         /* Selection des vues de l'activité */
@@ -32,23 +35,35 @@ public class LoginActivity extends AppCompatActivity {
         btnForgetPassword = (Button) findViewById(R.id.OublieMotDePasse);
 
         /*Evenement sur le bouton login*/
-        btnLogin.setOnClickListener(event);
+        btnLogin.setOnClickListener(eventBtnLogin);
 
-        System.out.println(database.getEmployeeBdd().getEmployeeWithIdentifiant("user"));
     }
 
 
-    public View.OnClickListener event = new View.OnClickListener(){
+    public View.OnClickListener eventBtnLogin = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-            System.out.println("Bouton onclick");
+            AlertDialog.Builder boite = new AlertDialog.Builder(LoginActivity.this);
+            boite.setTitle("Information");
             if (editIdentifiant.getText().length() > 0 && editPassword.getText().length() > 0) {
                 Employee lEmploye = database.getEmployeeBdd().getEmployeeWithIdentifiant(editIdentifiant.getText().toString());
-                System.out.println(lEmploye);
+
+                if(lEmploye != null && lEmploye.checkPassword(editPassword.getText().toString())){
+                    Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
+                    menu.putExtra("employee", lEmploye);
+                    startActivity(menu);
+                }else{
+                    boite.setMessage("Le combo identifiant/mot de passe n'est pas valide");
+                    boite.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            editIdentifiant.requestFocus();
+                        }
+                    });
+                    boite.show();
+                }
             }else {
-                System.out.println("DIALOG");
-                AlertDialog.Builder boite = new AlertDialog.Builder(LoginActivity.this);
-                boite.setTitle("Information");
                 boite.setMessage("L'identifiant et/ou le mot de passe n'est pas saisie");
                 boite.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override

@@ -60,20 +60,25 @@ public class EmployeeBDD extends ObjectBDD {
     //Cette méthode permet de convertir un cursor en un livre
     private Employee cursorToEmployee(Cursor c) {
         //si aucun élément n'a été retourné dans la requête, on renvoie null
-        if (c.getCount() == 0)
+        if (c == null || c.getCount() == 0) {
+            System.out.println("pas d'employe");
             return null;
-
+        }
+        
         //Sinon on se place sur le premier élément
         c.moveToFirst();
-        System.out.println(c);
+
         //On créé un employee
-        Employee e = new Employee(c.getString(IDENTIFIANT_COL_NUM), c.getString(PASSWORD_COL_NUM));
+        Employee e = new Employee();
+        e.setIdentifiant(c.getString(0));
+        e.setPassword(c.getString(1));
+
         //On ferme le cursor
         c.close();
         close();
         //On retourne l'employee
         return e;
-        }
+    }
 }
 
 
