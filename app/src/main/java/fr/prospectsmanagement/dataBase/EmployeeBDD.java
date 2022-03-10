@@ -28,14 +28,12 @@ public class EmployeeBDD extends ObjectBDD {
 
     public long addemployeeBdd(Employee e) {
         open();
-        System.out.println("ADD " + getTableName());
         //Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
         //on lui ajoute une valeur associée à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
         values.put(IDENTIFIANT_COL, e.getIdentifiant());
         values.put(PASSWORD_COL, e.getPassword());
         //on insère l'objet dans la BDD via le ContentValues
-        System.out.println("ADD2 " + values);
         return getBdd().insert(getTableName(), null, values);
     }
     /*
@@ -55,8 +53,7 @@ public class EmployeeBDD extends ObjectBDD {
 
     public Employee getEmployeeWithIdentifiant(String identifiant) {
         open();
-        System.out.println(getTableName());
-        Cursor c = getBdd().query(getTableName(), new String[]{IDENTIFIANT_COL, PASSWORD_COL}, IDENTIFIANT_COL + " = \'" + identifiant+ "\'", null, null, null, null);
+        Cursor c = getBdd().query(getTableName(), new String[]{IDENTIFIANT_COL, PASSWORD_COL}, IDENTIFIANT_COL + " = '" + identifiant+ "'", null, null, null, null);
         return cursorToEmployee(c);
     }
 
@@ -68,6 +65,7 @@ public class EmployeeBDD extends ObjectBDD {
 
         //Sinon on se place sur le premier élément
         c.moveToFirst();
+        System.out.println(c);
         //On créé un employee
         Employee e = new Employee(c.getString(IDENTIFIANT_COL_NUM), c.getString(PASSWORD_COL_NUM));
         //On ferme le cursor

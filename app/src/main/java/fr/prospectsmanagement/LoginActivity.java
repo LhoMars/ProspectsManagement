@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         /*Evenement sur le bouton login*/
         btnLogin.setOnClickListener(event);
 
-        //System.out.println(database.getEmployeeBdd().getEmployeeWithIdentifiant("user"));
+        System.out.println(database.getEmployeeBdd().getEmployeeWithIdentifiant("user"));
     }
 
 
