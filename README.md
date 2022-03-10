@@ -1,2 +1,2 @@
 # Prospects Management
-l'ensemble de la documentation dissponibles sur [github-pages](https://lhomars.github.io/ProspectsManagement/)
+L'ensemble de la documentation est disponible sur [github-pages](https://lhomars.github.io/ProspectsManagement/)
