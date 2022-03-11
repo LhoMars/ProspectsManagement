@@ -1,4 +1,4 @@
-name: ci
+name: documentation
 on:
   push:
     branches:
@@ -12,5 +12,6 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-material
+      - run: pip install install matplotlib
       - run: pip install mkdocs_pymdownx_material_extras
       - run: mkdocs gh-deploy --force
