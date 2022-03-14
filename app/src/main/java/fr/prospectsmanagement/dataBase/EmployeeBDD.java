@@ -36,20 +36,6 @@ public class EmployeeBDD extends ObjectBDD {
         //on insère l'objet dans la BDD via le ContentValues
         return getBdd().insert(getTableName(), null, values);
     }
-    /*
-    public int updateLivre(int id, Livre livre){
-        //La mise à jour d'un livre dans la BDD fonctionne plus ou moins comme une insertion
-        //il faut simplement préciser quel livre on doit mettre à jour grâce à l'ID
-        ContentValues values = new ContentValues();
-        values.put(COL_ISBN, livre.getIsbn());
-        values.put(COL_TITRE, livre.getTitre());
-        return bdd.update(TABLE_LIVRES, values, COL_ID + " = " +id, null);
-    }
-
-    public int removeELivreWithID(int id){
-        //Suppression d'un livre de la BDD grâce à l'ID
-        return bdd.delete(TABLE_LIVRES, COL_ID + " = " +id, null);
-    }*/
 
     public Employee getEmployeeWithIdentifiant(String identifiant) {
         open();
