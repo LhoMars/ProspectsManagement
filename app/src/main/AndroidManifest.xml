@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ProspectsManagement">
+        android:theme="@style/Theme.ProspectsManagement"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -22,5 +23,5 @@
                 android:name=".MenuActivity"
                 android:exported="false" />
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
