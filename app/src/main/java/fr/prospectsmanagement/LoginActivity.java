@@ -22,10 +22,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         database = new DaoSQL(this);
 
-        if(database.getEmployeeBdd().getEmployeeWithIdentifiant("user") == null) {
-            Employee e = new Employee("user", "password");
-            database.getEmployeeBdd().addemployeeBdd(e);
-        }
         setContentView(R.layout.activity_login);
 
         /* Selection des vues de l'activité */

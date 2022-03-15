@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import fr.prospectsmanagement.Employee;
 import fr.prospectsmanagement.dataBase.ProspectBDD;
 
 
@@ -25,6 +26,9 @@ public class DaoSQL extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(employeeBdd.getCreateBdd());
         db.execSQL(prospectBdd.getCreateBdd());
+        Employee e = new Employee("user", "password");
+        employeeBdd.addemployeeBdd(e);
+
     }
 
     @Override
