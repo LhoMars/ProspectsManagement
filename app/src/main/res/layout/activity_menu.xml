@@ -3,17 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_general"
     android:padding="16dp"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:id="@+id/menuLayout"
+    android:background="@drawable/animated_back_regroup">
+    <!--android:background="@drawable/background_general"-->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/Filtre"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:id="@+id/Buttons"
+        android:layout_below="@+id/Filtre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp">
 
         <Button
             android:id="@+id/button2"
