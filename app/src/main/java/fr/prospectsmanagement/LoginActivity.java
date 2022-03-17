@@ -25,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
         database = new DaoSQL(this);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        ApiBdd z = new ApiBdd();
 
         if(database.getEmployeeBdd().getEmployeeWithIdentifiant("user") == null) {
             Employee e = new Employee("user", "password");
