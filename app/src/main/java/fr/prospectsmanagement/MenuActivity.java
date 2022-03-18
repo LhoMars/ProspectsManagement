@@ -23,10 +23,14 @@ public class MenuActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_menu);
 
-        RelativeLayout RelativeLayout = findViewById(R.id.menuLayout);
+
+
+        /* Animation du Background mise en coommentaire pour l'instant, couleurs à changer.*/
+
+        /*RelativeLayout RelativeLayout = findViewById(R.id.menuLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) RelativeLayout.getBackground();
         animationDrawable.setEnterFadeDuration(2500);
         animationDrawable.setExitFadeDuration(5000);
-        animationDrawable.start();
+        animationDrawable.start();*/
     }
 }

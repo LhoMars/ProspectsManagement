@@ -58,7 +58,7 @@
             android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="26dp"
-            android:background="@color/white"
+            android:background="@drawable/button_style1"
             android:text="Connexion"
             android:textColor="#1495d7"
             android:textStyle="bold" />

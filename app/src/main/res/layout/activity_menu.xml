@@ -6,15 +6,13 @@
     android:padding="16dp"
     tools:context=".LoginActivity"
     android:id="@+id/menuLayout"
-    android:background="@drawable/animated_back_regroup">
-    <!--android:background="@drawable/background_general"-->
+    android:background="@drawable/menu_background">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:id="@+id/Filtre"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
-    </LinearLayout>
+        android:layout_height="300dp"
+        android:orientation="horizontal" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -23,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp">
 
@@ -32,19 +29,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ajouter"
+            android:text="@string/ajouter"
             android:textColor="#125de3"
             android:textSize="16sp"
-            android:layout_marginRight="40dp"/>
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/button_style1"/>
 
         <Button
             android:id="@+id/button3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Rechercher"
+            android:text="@string/rechercher"
             android:textColor="#125de3"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:background="@drawable/button_style1"/>
 
     </LinearLayout>
 
@@ -53,11 +52,98 @@
         android:layout_below="@+id/Buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:background="@drawable/tableau_background">
 
-        <io.alterac.blurkit.BlurLayout
+        <!--<io.alterac.blurkit.BlurLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >-->
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="15dp"
+            android:paddingTop="20dp"
+            android:paddingRight="15dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/tableau_border_titles">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/nom"
+                    android:textColor="#125de3"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/prenom"
+                    android:textColor="#125de3"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="3"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/entreprise"
+                    android:textColor="#125de3"
+                    android:textSize="17sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/tableau_border_titles">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="ELIOTOUT"
+                    android:textColor="#125de3"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Lilian"
+                    android:textColor="#125de3"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="3"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Laffemas"
+                    android:textColor="#125de3"
+                    android:textSize="15sp" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <!--</io.alterac.blurkit.BlurLayout>-->
+
     </RelativeLayout>
 
 </RelativeLayout>
