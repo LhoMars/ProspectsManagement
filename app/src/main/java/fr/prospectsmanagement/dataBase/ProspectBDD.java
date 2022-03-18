@@ -3,6 +3,7 @@ package fr.prospectsmanagement.dataBase;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import fr.prospectsmanagement.Employee;
 import fr.prospectsmanagement.Prospect;
 
 public class ProspectBDD extends ObjectBDD {
@@ -40,6 +41,7 @@ public class ProspectBDD extends ObjectBDD {
                         NOTES_COL + " INTEGER DEFAULT 0); ");
     }
 
+
     public long addProspectBdd(Prospect p) {
         open();
         //Création d'un ContentValues (fonctionne comme une HashMap)
@@ -52,37 +54,37 @@ public class ProspectBDD extends ObjectBDD {
         values.put(NOTES_COL, p.getNotes());
         //on insère l'objet dans la BDD via le ContentValues
         return getBdd().insert(getTableName(), null, values);
-    }/*
+    }
 
     public Prospect getProspectWithNom(String nom) {
-        //Récupère dans un Cursor les valeurs correspondant à un livre contenu dans la BDD (ici on sélectionne le livre grâce à son titre)
-        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL}, NOM_COL + " LIKE \"" + nom + "\"", null, null, null, null);
+        open();
+        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL}, NOM_COL + " = '" + nom+ "'", null, null, null, null);
         return cursorToProspect(c);
     }
 
-    //Cette méthode permet de convertir un cursor en un livre
+    //Cette méthode permet de convertir un cursor en un prospect
     private Prospect cursorToProspect(Cursor c) {
         //si aucun élément n'a été retourné dans la requête, on renvoie null
-        if (c.getCount() == 0)
+        if (c == null || c.getCount() == 0) {
             return null;
+        }
 
         //Sinon on se place sur le premier élément
         c.moveToFirst();
-        // On créer une Entreprise
-        //c.getString(ENTREPRISE_COL_NUM)
-        //On créé un Prospect
-        //Prospect p = new Prospect(c.getString(NOM_COL_NUM), c.getString(PRENOM_COL_NUM), c.getString(TEL_COL_NUM), c.getString(MAIL_COL_NUM), c.getInt(NOTES_COL_NUM));
+
+        //On créé un employee
+        Prospect p = new Prospect();
+        p.setNom(c.getString(0));
+        p.setPrenom(c.getString(1));
+        p.setTel(c.getString(2));
+        p.setMail(c.getString(3));
+        p.setNotes(c.getInt(4));
+
         //On ferme le cursor
         c.close();
-
-        //On retourne le livre
+        close();
+        //On retourne le prospect
         return p;
     }
-
-    /*
-public int removeLivreWithID(int id){
-    //Suppression d'un livre de la BDD grâce à l'ID
-    return bdd.delete(TABLE_LIVRES, COL_ID + " = " +id, null);
-}*/
 
 }

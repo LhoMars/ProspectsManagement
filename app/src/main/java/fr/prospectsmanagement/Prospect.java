@@ -6,15 +6,17 @@ public class Prospect {
     private String tel;
     private String mail;
     private int notes;
-    private Entreprise lEntreprise;
 
-    public Prospect(String nom, String prenom, String tel, String mail, int notes, Entreprise lEntreprise) {
+    public Prospect(String nom, String prenom, String tel, String mail, int notes) {
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
         this.mail = mail;
         this.notes = notes;
-        this.lEntreprise = lEntreprise;
+    }
+
+    public Prospect() {
+        this("", "", "", "", 0);
     }
 
     public String getNom() {
@@ -37,7 +39,23 @@ public class Prospect {
         return notes;
     }
 
-    public Entreprise getlEntreprise() {
-        return lEntreprise;
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setNotes(int notes) {
+        this.notes = notes;
     }
 }
