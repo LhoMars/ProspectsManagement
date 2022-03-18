@@ -16,19 +16,8 @@ public class MenuActivity extends AppCompatActivity {
         dataBase = new DaoSQL(this);
 
         ApiBdd api = new ApiBdd();
-
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    String apiMsg = api.callWebService();
-                    System.out.println("MESSAGE BOX" + apiMsg);
-                    boiteMessage(apiMsg);
-                } catch (
-                        Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        String apiMsg = api.callWebService();
+        System.out.println("MESSAGE BOX : " + apiMsg);
 
         Entreprise e = new Entreprise("uneNom", 0);
         Prospect p = new Prospect("nom", "prenom", "tel", "mail", 1, e);
