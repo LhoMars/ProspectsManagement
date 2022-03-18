@@ -43,7 +43,7 @@ public class EmployeeBDD extends ObjectBDD {
         return cursorToEmployee(c);
     }
 
-    //Cette méthode permet de convertir un cursor en un livre
+    //Cette méthode permet de convertir un cursor en un employee
     private Employee cursorToEmployee(Cursor c) {
         //si aucun élément n'a été retourné dans la requête, on renvoie null
         if (c == null || c.getCount() == 0) {

@@ -16,12 +16,8 @@ public class MenuActivity extends AppCompatActivity {
         dataBase = new DaoSQL(this);
 
         ApiBdd api = new ApiBdd();
-        String apiMsg = api.callWebService();
-        System.out.println("MESSAGE BOX : " + apiMsg);
-
-        Entreprise e = new Entreprise("uneNom", 0);
-        Prospect p = new Prospect("nom", "prenom", "tel", "mail", 1, e);
-        dataBase.getProspectBdd().addProspectBdd(p);
+        boiteMessage(api.getResult());/*
+        dataBase.getProspectBdd().getProspectWithNom("testNom");*/
 
         setContentView(R.layout.activity_menu);
     }
