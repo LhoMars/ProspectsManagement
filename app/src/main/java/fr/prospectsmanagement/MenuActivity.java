@@ -1,5 +1,7 @@
 package fr.prospectsmanagement;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -7,6 +9,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
+import fr.prospectsmanagement.api.ApiBdd;
 import fr.prospectsmanagement.dataBase.DaoSQL;
 
 public class MenuActivity extends AppCompatActivity {
@@ -17,9 +20,9 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         dataBase = new DaoSQL(this);
 
-        Entreprise e = new Entreprise("uneNom", 0);
-        Prospect p = new Prospect("nom", "prenom", "tel", "mail", 1, e);
-        dataBase.getProspectBdd().addProspectBdd(p);
+        ApiBdd api = new ApiBdd();
+        boiteMessage(api.getResult());/*
+        dataBase.getProspectBdd().getProspectWithNom("testNom");*/
 
         setContentView(R.layout.activity_menu);
 
@@ -28,5 +31,18 @@ public class MenuActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(2500);
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
+    }
+
+    private void boiteMessage(String msg) {
+        AlertDialog.Builder boite = new AlertDialog.Builder(MenuActivity.this);
+        boite.setTitle("Information");
+        boite.setMessage(msg);
+        boite.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        boite.show();
     }
 }
