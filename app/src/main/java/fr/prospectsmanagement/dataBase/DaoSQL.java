@@ -26,9 +26,6 @@ public class DaoSQL extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(employeeBdd.getCreateBdd());
         db.execSQL(prospectBdd.getCreateBdd());
-        Employee e = new Employee("user", "password");
-        employeeBdd.addemployeeBdd(e);
-
     }
 
     @Override

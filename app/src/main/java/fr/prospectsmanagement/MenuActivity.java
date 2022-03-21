@@ -21,8 +21,7 @@ public class MenuActivity extends AppCompatActivity {
         dataBase = new DaoSQL(this);
 
         ApiBdd api = new ApiBdd();
-        boiteMessage(api.getResult());/*
-        dataBase.getProspectBdd().getProspectWithNom("testNom");*/
+        boiteMessage(api.getResult());
 
         setContentView(R.layout.activity_menu);
 
