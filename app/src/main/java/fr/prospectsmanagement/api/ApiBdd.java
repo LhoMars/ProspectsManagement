@@ -1,33 +1,20 @@
 package fr.prospectsmanagement.api;
 
-import android.provider.Settings;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.NoRouteToHostException;
 import java.net.URL;
 
 public class ApiBdd {
     final String ApiURL = "http://192.168.43.198/api/ProspectApi.php";
-    String result;
-    String data;
+    String resultApi;
+    String responseApi;
+    Boolean access;
 
     public ApiBdd() {
         callWebService("connexionBase");
-        try {
-            System.out.println("JSON AVANT : " + data);
-            JSONObject jsonObject = new JSONObject(data.substring(data.indexOf("{"), data.lastIndexOf("}") + 1));
-            String message = jsonObject.getString("status_message");
-            //jsonObject.getJSONObject("status_message");
-            System.out.println("JSON MESSAGE : " +message);
-            /*jsonObject = new JSONObject(newJSON.toString());
-            System.out.println(jsonObject.getString("rcv"));
-            System.out.println(jsonObject.getJSONArray("argv"));*/
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void callWebService(String q) {
@@ -35,21 +22,38 @@ public class ApiBdd {
             URL url = new URL(ApiURL + "?function=" + q);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
             String stringBuffer;
-            data = "";
+            responseApi = "";
             while ((stringBuffer = bufferedReader.readLine()) != null) {
-                data = String.format("%s%s", data, stringBuffer);
+                responseApi = String.format("%s%s", responseApi, stringBuffer);
             }
             bufferedReader.close();
-            result = "Récupération réussi ";
+
+            resultApi = "Récupération réussi ";
+            access = true;
         } catch (NoRouteToHostException e) {
-            result = "Aucune connexion au serveur";
+            resultApi = "Aucune connexion au serveur";
+            access = false;
         } catch (Exception e) {
-            result = "Erreur API";
+            resultApi = "Erreur API";
+            access = false;
             e.printStackTrace();
         }
     }
 
-    public String getResult() {
-        return result;
+    public JSONArray getJsonData() {
+        JSONArray data = new JSONArray();
+        if (access) {
+            try {
+                JSONObject jsonObject = new JSONObject(responseApi.substring(responseApi.indexOf("{"), responseApi.lastIndexOf("}") + 1));
+                data = jsonObject.getJSONArray("data");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return data;
+    }
+
+    public String getResultApi() {
+        return resultApi;
     }
 }
