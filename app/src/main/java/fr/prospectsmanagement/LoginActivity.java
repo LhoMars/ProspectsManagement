@@ -23,6 +23,21 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         database = new DaoSQL(this);
+
+        if(database.getEmployeeBdd().getEmployeeWithIdentifiant("user") == null){
+            Employee e = new Employee("user", "password");
+            database.getEmployeeBdd().addemployeeBdd(e);
+        }
+
+        if(database.getProspectBdd().getProspectWithNom("nom1") == null){
+            Prospect p = new Prospect("nom1","prenom1","0123456789","nom.nom@gmail.com",0);
+            Prospect p1 = new Prospect("nom2","prenom2","0123456789","nom.nom@gmail.com",0);
+            Prospect p2 = new Prospect("nom3","prenom3","0123456789","nom.nom@gmail.com",0);
+            database.getProspectBdd().addProspectBdd(p);
+            database.getProspectBdd().addProspectBdd(p1);
+            database.getProspectBdd().addProspectBdd(p2);
+        }
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
