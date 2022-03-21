@@ -31,10 +31,16 @@ public class MenuActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_menu);
 
+        /*Animation du Background mise en coommentaire pour l'instant, couleurs à changer.*/
 
+        RelativeLayout RelativeLayout = findViewById(R.id.menuLayout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) RelativeLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
 
         /* Sélection du bouton par son ID puis on ajoute son événement */
-        btnAjouter = (Button) findViewById(R.id.btnLogin);
+        btnAjouter = (Button) findViewById(R.id.btnAjouter);
         btnAjouter.setOnClickListener(eventBtnAjouter);
     }
         public View.OnClickListener eventBtnAjouter = new View.OnClickListener() {
@@ -45,14 +51,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         };
 
-
-        /* Animation du Background mise en coommentaire pour l'instant, couleurs à changer.*/
-
-        /*RelativeLayout RelativeLayout = findViewById(R.id.menuLayout);
-        AnimationDrawable animationDrawable = (AnimationDrawable) RelativeLayout.getBackground();
-        animationDrawable.setEnterFadeDuration(2500);
-        animationDrawable.setExitFadeDuration(5000);
-        animationDrawable.start();*/
 
     private void boiteMessage(String msg) {
         AlertDialog.Builder boite = new AlertDialog.Builder(MenuActivity.this);
