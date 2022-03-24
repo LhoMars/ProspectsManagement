@@ -58,4 +58,15 @@ public class Prospect {
     public void setNotes(int notes) {
         this.notes = notes;
     }
+
+    @Override
+    public String toString() {
+        return "Prospect{" +
+                "nom= " + nom +
+                ", prenom= " + prenom+
+                ", tel= " + tel +
+                ", mail= " + mail  +
+                ", notes= " + notes +
+                '}';
+    }
 }

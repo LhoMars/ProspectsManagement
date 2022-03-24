@@ -11,10 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import fr.prospectsmanagement.api.ApiBdd;
 import fr.prospectsmanagement.dataBase.DaoSQL;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MenuActivity extends AppCompatActivity {
     private DaoSQL dataBase;
@@ -26,7 +27,17 @@ public class MenuActivity extends AppCompatActivity {
         dataBase = new DaoSQL(this);
 
         ApiBdd api = new ApiBdd();
-        boiteMessage(api.getResult());
+
+        api.callWebService("getAllProspects");
+        boiteMessage(api.getResultApi());
+
+        JSONArray json = api.getJsonData();
+        updateBddProspects(json);
+
+
+        /*
+        JSONArray jsonProspects = api.createJsonProspects(lesProspects);
+        api.postJsonProspect("InsertProspect", jsonProspects.toString());*/
 
         setContentView(R.layout.activity_menu);
 
@@ -42,14 +53,36 @@ public class MenuActivity extends AppCompatActivity {
         btnAjouter = (Button) findViewById(R.id.btnAjouter);
         btnAjouter.setOnClickListener(eventBtnAjouter);
     }
-        public View.OnClickListener eventBtnAjouter = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent AjoutProspect = new Intent(MenuActivity.this, AjoutProspectActivity.class);
-                startActivity(AjoutProspect);
-            }
-        };
 
+    public View.OnClickListener eventBtnAjouter = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent AjoutProspect = new Intent(MenuActivity.this, AjoutProspectActivity.class);
+            startActivity(AjoutProspect);
+        }
+    };
+
+    private void updateBddProspects(JSONArray jsonData) {
+        try {
+            if (jsonData.length() != 0) {
+                for (int i = 0; i < jsonData.length(); i++) {
+                    JSONObject json = jsonData.getJSONObject(i);
+                    Prospect p = new Prospect();
+                    p.setPrenom(json.getString("prenomprospect"));
+                    p.setNom(json.getString("nomprospect"));
+                    p.setTel(json.getString("telprospect"));
+                    p.setMail(json.getString("mailprospect"));
+                    p.setNotes((json.getInt("noteprospect")));
+
+                    if(dataBase.getProspectBdd().getProspectWithNom(p.getNom())== null){
+                        dataBase.getProspectBdd().addProspectBdd(p);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private void boiteMessage(String msg) {
         AlertDialog.Builder boite = new AlertDialog.Builder(MenuActivity.this);
