@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import fr.prospectsmanagement.Employee;
 import fr.prospectsmanagement.Prospect;
 
+import java.util.ArrayList;
+
 public class ProspectBDD extends ObjectBDD {
 
     private static final String ID_COL = "id";
@@ -58,19 +60,45 @@ public class ProspectBDD extends ObjectBDD {
 
     public Prospect getProspectWithNom(String nom) {
         open();
-        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL}, NOM_COL + " = '" + nom+ "'", null, null, null, null);
-        return cursorToProspect(c);
+        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL}, NOM_COL + " = '" + nom + "'", null, null, null, null);
+
+        if (c == null || c.getCount() == 0 || c.getCount() > 1) {
+            return null;
+        }
+
+        c.moveToFirst();
+        Prospect leProspect = cursorToProspect(c);
+        c.close();
+        close();
+
+        return leProspect;
+    }
+
+    public ArrayList<Prospect> getAllProspects() {
+        open();
+        ArrayList<Prospect> lesProspects = new ArrayList();
+        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL}, null, null, null, null, null);
+
+        if (c == null || c.getCount() == 0) {
+            return null;
+        }
+
+        c.moveToFirst();
+
+        for (int i = 0; i < c.getCount(); i++) {
+            lesProspects.add(cursorToProspect(c));
+            c.moveToNext();
+        }
+
+        c.close();
+        close();
+        return lesProspects;
     }
 
     //Cette méthode permet de convertir un cursor en un prospect
     private Prospect cursorToProspect(Cursor c) {
         //si aucun élément n'a été retourné dans la requête, on renvoie null
-        if (c == null || c.getCount() == 0) {
-            return null;
-        }
 
-        //Sinon on se place sur le premier élément
-        c.moveToFirst();
 
         //On créé un employee
         Prospect p = new Prospect();
@@ -80,9 +108,6 @@ public class ProspectBDD extends ObjectBDD {
         p.setMail(c.getString(3));
         p.setNotes(c.getInt(4));
 
-        //On ferme le cursor
-        c.close();
-        close();
         //On retourne le prospect
         return p;
     }

@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.NoRouteToHostException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class ApiBdd {
     final String ApiURL = "http://192.168.43.198/api/ProspectApi.php";
@@ -76,20 +77,20 @@ public class ApiBdd {
         }
         return data;
     }
-    public JSONArray createJsonProspects(Prospect[] lesProspects) {
+    public JSONArray createJsonProspects(ArrayList<Prospect> lesProspects) {
         //Creating a JSONObject object
         JSONArray jsonArray = new JSONArray();
 
         try{
-            for(int i =0; i<lesProspects.length; i++) {
+            for(Prospect prospect : lesProspects) {
                 JSONObject jsonObject = new JSONObject();
                 //Inserting key-value pairs into the json object
                 jsonObject.put("id", "default");
-                jsonObject.put("nom", lesProspects[i].getNom());
-                jsonObject.put("prenom", lesProspects[i].getPrenom());
-                jsonObject.put("mail", lesProspects[i].getMail());
-                jsonObject.put("tel", lesProspects[i].getTel());
-                jsonObject.put("note", lesProspects[i].getNotes());
+                jsonObject.put("nom", prospect.getNom());
+                jsonObject.put("prenom", prospect.getPrenom());
+                jsonObject.put("mail", prospect.getMail());
+                jsonObject.put("tel", prospect.getTel());
+                jsonObject.put("note", prospect.getNotes());
 
                 jsonArray.put(jsonObject);
             }

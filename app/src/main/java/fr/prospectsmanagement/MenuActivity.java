@@ -17,6 +17,8 @@ import fr.prospectsmanagement.dataBase.DaoSQL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class MenuActivity extends AppCompatActivity {
     private DaoSQL dataBase;
     public Button btnAjouter = null;
@@ -35,9 +37,9 @@ public class MenuActivity extends AppCompatActivity {
         updateBddProspects(json);
 
 
-        /*
+        ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
         JSONArray jsonProspects = api.createJsonProspects(lesProspects);
-        api.postJsonProspect("InsertProspect", jsonProspects.toString());*/
+        api.postJsonProspect("InsertProspect", jsonProspects.toString());
 
         setContentView(R.layout.activity_menu);
 
