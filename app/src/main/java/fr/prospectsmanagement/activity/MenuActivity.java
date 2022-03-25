@@ -38,7 +38,6 @@ public class MenuActivity extends AppCompatActivity {
         JSONArray json = api.getJsonData();
         updateBddProspects(json);
 
-
         ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
         JSONArray jsonProspects = api.createJsonProspects(lesProspects);
         api.postJsonProspect("InsertProspect", jsonProspects.toString());

@@ -35,9 +35,9 @@ public class LoginActivity extends AppCompatActivity {
 
         /* Créer des prospects de test */
         if (database.getProspectBdd().getProspectWithNom("nom1") == null) {
-            Prospect p = new Prospect("nom1", "prenom1", "0123456789", "nom.nom@gmail.com", 0);
-            Prospect p1 = new Prospect("nom2", "prenom2", "0123456789", "nom.nom@gmail.com", 0);
-            Prospect p2 = new Prospect("nom3", "prenom3", "0123456789", "nom.nom@gmail.com", 0);
+            Prospect p = new Prospect("nom1", "prenom1", "0123456789", "nom.nom@gmail.com", 0, 1, "entrepirse");
+            Prospect p1 = new Prospect("nom2", "prenom2", "0123456789", "nom.nom@gmail.com", 0, 1, "entrepirse");
+            Prospect p2 = new Prospect("nom3", "prenom3", "0123456789", "nom.nom@gmail.com", 0, 1, "entrepirse");
             database.getProspectBdd().addProspectBdd(p);
             database.getProspectBdd().addProspectBdd(p1);
             database.getProspectBdd().addProspectBdd(p2);

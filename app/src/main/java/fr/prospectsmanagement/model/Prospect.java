@@ -12,16 +12,18 @@ public class Prospect {
     private int siret;
     private String raisonSocial;
 
-    public Prospect(String nom, String prenom, String tel, String mail, int notes) {
+    public Prospect(String nom, String prenom, String tel, String mail, int notes, int siret, String raisonSocial) {
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
         this.mail = mail;
         this.notes = notes;
+        this.siret = siret;
+        this.raisonSocial = raisonSocial;
     }
 
     public Prospect() {
-        this("", "", "", "", 0);
+        this("", "", "", "", 0, 0, "");
     }
 
     public String getNom() {
