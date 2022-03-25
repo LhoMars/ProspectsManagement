@@ -1,12 +1,8 @@
 package fr.prospectsmanagement.dataBase;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import fr.prospectsmanagement.Employee;
-import fr.prospectsmanagement.dataBase.ProspectBDD;
 
 /**
  * La classe DAO permet la lecture/écriture de la base de données

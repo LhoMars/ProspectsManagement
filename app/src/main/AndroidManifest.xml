@@ -11,7 +11,7 @@
         android:theme="@style/Theme.ProspectsManagement"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MenuActivity"
+            android:name=".activity.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".AjoutProspectActivity"
+            android:name=".activity.AjoutProspectActivity"
             android:exported="false" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

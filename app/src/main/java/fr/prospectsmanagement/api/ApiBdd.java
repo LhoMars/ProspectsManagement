@@ -1,8 +1,7 @@
 package fr.prospectsmanagement.api;
 
-import fr.prospectsmanagement.Prospect;
+import fr.prospectsmanagement.model.Prospect;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -118,6 +117,8 @@ public class ApiBdd {
                 jsonObject.put("mail", prospect.getMail());
                 jsonObject.put("tel", prospect.getTel());
                 jsonObject.put("note", prospect.getNotes());
+                jsonObject.put("siret", prospect.getSiret());
+                jsonObject.put("raisonsocial", prospect.getRaisonSocial());
 
                 jsonArray.put(jsonObject);
             }

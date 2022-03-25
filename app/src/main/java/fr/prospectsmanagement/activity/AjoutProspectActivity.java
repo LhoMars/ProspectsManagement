@@ -1,8 +1,9 @@
-package fr.prospectsmanagement;
+package fr.prospectsmanagement.activity;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import fr.prospectsmanagement.R;
 import fr.prospectsmanagement.dataBase.DaoSQL;
 
 

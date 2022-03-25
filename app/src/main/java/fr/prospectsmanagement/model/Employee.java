@@ -1,4 +1,4 @@
-package fr.prospectsmanagement;
+package fr.prospectsmanagement.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

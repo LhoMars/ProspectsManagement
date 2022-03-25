@@ -2,7 +2,7 @@ package fr.prospectsmanagement.dataBase;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import fr.prospectsmanagement.Employee;
+import fr.prospectsmanagement.model.Employee;
 
 /**
  * Cette classe permet d'accéder à la table employee de la bdd

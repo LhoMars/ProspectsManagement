@@ -1,4 +1,4 @@
-package fr.prospectsmanagement;
+package fr.prospectsmanagement.model;
 
 /**
  * Définit un prospect
@@ -9,6 +9,8 @@ public class Prospect {
     private String tel;
     private String mail;
     private int notes;
+    private int siret;
+    private String raisonSocial;
 
     public Prospect(String nom, String prenom, String tel, String mail, int notes) {
         this.nom = nom;
@@ -42,6 +44,14 @@ public class Prospect {
         return notes;
     }
 
+    public int getSiret() {
+        return siret;
+    }
+
+    public String getRaisonSocial() {
+        return raisonSocial;
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -60,6 +70,14 @@ public class Prospect {
 
     public void setNotes(int notes) {
         this.notes = notes;
+    }
+
+    public void setSiret(int siret) {
+        this.siret = siret;
+    }
+
+    public void setRaisonSocial(String raisonSocial) {
+        this.raisonSocial = raisonSocial;
     }
 
     @Override

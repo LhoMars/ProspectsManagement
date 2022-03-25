@@ -1,4 +1,4 @@
-package fr.prospectsmanagement;
+package fr.prospectsmanagement.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
 
+import fr.prospectsmanagement.model.Prospect;
+import fr.prospectsmanagement.R;
 import fr.prospectsmanagement.api.ApiBdd;
 import fr.prospectsmanagement.dataBase.DaoSQL;
 import org.json.JSONArray;
@@ -70,11 +72,13 @@ public class MenuActivity extends AppCompatActivity {
                 for (int i = 0; i < jsonData.length(); i++) {
                     JSONObject json = jsonData.getJSONObject(i);
                     Prospect p = new Prospect();
-                    p.setPrenom(json.getString("prenomprospect"));
-                    p.setNom(json.getString("nomprospect"));
-                    p.setTel(json.getString("telprospect"));
-                    p.setMail(json.getString("mailprospect"));
-                    p.setNotes((json.getInt("noteprospect")));
+                    p.setPrenom(json.getString("prenom"));
+                    p.setNom(json.getString("nom"));
+                    p.setTel(json.getString("tel"));
+                    p.setMail(json.getString("mail"));
+                    p.setNotes((json.getInt("note")));
+                    p.setSiret((json.getInt("siret")));
+                    p.setRaisonSocial((json.getString("raisonsocial")));
 
                     if (dataBase.getProspectBdd().getProspectWithNom(p.getNom()) == null) {
                         dataBase.getProspectBdd().addProspectBdd(p);

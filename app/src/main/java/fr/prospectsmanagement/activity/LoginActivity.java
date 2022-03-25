@@ -1,4 +1,4 @@
-package fr.prospectsmanagement;
+package fr.prospectsmanagement.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import fr.prospectsmanagement.api.ApiBdd;
+import fr.prospectsmanagement.model.Employee;
+import fr.prospectsmanagement.model.Prospect;
+import fr.prospectsmanagement.R;
 import fr.prospectsmanagement.dataBase.DaoSQL;
 
 public class LoginActivity extends AppCompatActivity {

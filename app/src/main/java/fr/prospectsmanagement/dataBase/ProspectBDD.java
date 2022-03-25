@@ -2,9 +2,7 @@ package fr.prospectsmanagement.dataBase;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import fr.prospectsmanagement.Employee;
-import fr.prospectsmanagement.Prospect;
+import fr.prospectsmanagement.model.Prospect;
 
 import java.util.ArrayList;
 
@@ -25,6 +23,10 @@ public class ProspectBDD extends ObjectBDD {
 
     private static final String NOTES_COL = "notes";
 
+    private static final String SIRET_COL = "siret";
+
+    private static final String RAISON_SOCIAL_COL = "raisonsocial";
+
     public ProspectBDD(DaoSQL maBaseSQLite) {
         super(maBaseSQLite, "prospect",
                 "CREATE TABLE prospect (" +
@@ -33,7 +35,9 @@ public class ProspectBDD extends ObjectBDD {
                         PRENOM_COL + " TEXT, " +
                         TEL_COL + " TEXT, " +
                         MAIL_COL + " TEXT, " +
-                        NOTES_COL + " INTEGER DEFAULT 0); ");
+                        NOTES_COL + " INTEGER DEFAULT 0, " +
+                        SIRET_COL + " INTEGER, " +
+                        RAISON_SOCIAL_COL + " TEXT); ");
     }
 
 
@@ -53,6 +57,8 @@ public class ProspectBDD extends ObjectBDD {
         values.put(TEL_COL, p.getTel());
         values.put(MAIL_COL, p.getMail());
         values.put(NOTES_COL, p.getNotes());
+        values.put(SIRET_COL, p.getSiret());
+        values.put(RAISON_SOCIAL_COL, p.getRaisonSocial());
         //on insère l'objet dans la BDD via le ContentValues
         return getBdd().insert(getTableName(), null, values);
     }
@@ -65,7 +71,7 @@ public class ProspectBDD extends ObjectBDD {
      */
     public Prospect getProspectWithNom(String nom) {
         open();
-        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL}, NOM_COL + " = '" + nom + "'", null, null, null, null);
+        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL, RAISON_SOCIAL_COL}, NOM_COL + " = '" + nom + "'", null, null, null, null);
 
         if (c == null || c.getCount() == 0 || c.getCount() > 1) {
             return null;
@@ -87,7 +93,7 @@ public class ProspectBDD extends ObjectBDD {
     public ArrayList<Prospect> getAllProspects() {
         open();
         ArrayList<Prospect> lesProspects = new ArrayList();
-        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL}, null, null, null, null, null);
+        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL, RAISON_SOCIAL_COL}, null, null, null, null, null);
 
         if (c == null || c.getCount() == 0) {
             return null;
@@ -121,6 +127,8 @@ public class ProspectBDD extends ObjectBDD {
         p.setTel(c.getString(2));
         p.setMail(c.getString(3));
         p.setNotes(c.getInt(4));
+        p.setSiret(c.getInt(5));
+        p.setRaisonSocial(c.getString(6));
 
         //On retourne le prospect
         return p;
