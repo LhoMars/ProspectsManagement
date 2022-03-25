@@ -14,26 +14,16 @@ import java.util.ArrayList;
 public class ProspectBDD extends ObjectBDD {
 
     private static final String ID_COL = "id";
-    private static final int ID_COL_NUM = 0;
 
     private static final String NOM_COL = "nom";
-    private static final int NOM_COL_NUM = 1;
 
     private static final String PRENOM_COL = "prenom";
-    private static final int PRENOM_COL_NUM = 2;
 
     private static final String TEL_COL = "tel";
-    private static final int TEL_COL_NUM = 3;
 
     private static final String MAIL_COL = "mail";
-    private static final int MAIL_COL_NUM = 4;
 
     private static final String NOTES_COL = "notes";
-    private static final int NOTES_COL_NUM = 5;
-
-    private static final String ENTREPRISE_COL = "entreprise";
-    private static final int ENTREPRISE_COL_NUM = 6;
-
 
     public ProspectBDD(DaoSQL maBaseSQLite) {
         super(maBaseSQLite, "prospect",
