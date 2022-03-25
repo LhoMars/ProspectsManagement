@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import fr.prospectsmanagement.Employee;
 
+/**
+ * Cette classe permet d'accéder à la table employee de la bdd
+ */
 public class EmployeeBDD extends ObjectBDD {
 
     private static final String ID_COL = "id";
@@ -24,6 +27,12 @@ public class EmployeeBDD extends ObjectBDD {
                         PASSWORD_COL + " TEXT); ");
     }
 
+    /**
+     * Ajoute un employe à la bdd
+     *
+     * @param e Employee : l'employee à ajouter
+     * @return long : l'id
+     */
     public long addemployeeBdd(Employee e) {
         open();
         //Création d'un ContentValues (fonctionne comme une HashMap)
@@ -35,30 +44,35 @@ public class EmployeeBDD extends ObjectBDD {
         return getBdd().insert(getTableName(), null, values);
     }
 
+    /**
+     * Récupère l'employee avec son nom
+     *
+     * @param identifiant String : le nom de l'employe
+     * @return Employee ou null
+     */
     public Employee getEmployeeWithIdentifiant(String identifiant) {
         open();
-        Cursor c = getBdd().query(getTableName(), new String[]{IDENTIFIANT_COL, PASSWORD_COL}, IDENTIFIANT_COL + " = '" + identifiant+ "'", null, null, null, null);
-        return cursorToEmployee(c);
+        Cursor c = getBdd().query(getTableName(), new String[]{IDENTIFIANT_COL, PASSWORD_COL}, IDENTIFIANT_COL + " = '" + identifiant + "'", null, null, null, null);
+        if (c == null || c.getCount() == 0 || c.getCount() > 1) {
+            return null;
+        }
+
+        c.moveToFirst();
+        Employee lEmploye = cursorToEmployee(c);
+        c.close();
+        close();
+        return lEmploye;
     }
 
     //Cette méthode permet de convertir un cursor en un employee
     private Employee cursorToEmployee(Cursor c) {
-        //si aucun élément n'a été retourné dans la requête, on renvoie null
-        if (c == null || c.getCount() == 0) {
-            return null;
-        }
-        
-        //Sinon on se place sur le premier élément
-        c.moveToFirst();
+        /* On créé un employee
+        et on donne ses paramètres */
 
-        //On créé un employee
         Employee e = new Employee();
         e.setIdentifiant(c.getString(0));
         e.setPassword(c.getString(1));
 
-        //On ferme le cursor
-        c.close();
-        close();
         //On retourne l'employee
         return e;
     }

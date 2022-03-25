@@ -24,15 +24,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         database = new DaoSQL(this);
 
-        if(database.getEmployeeBdd().getEmployeeWithIdentifiant("user") == null){
+        /* Jeux de test pour la bdd
+        Créer un employer pour se connecter */
+        if (database.getEmployeeBdd().getEmployeeWithIdentifiant("user") == null) {
             Employee e = new Employee("user", "password");
             database.getEmployeeBdd().addemployeeBdd(e);
         }
 
-        if(database.getProspectBdd().getProspectWithNom("nom1") == null){
-            Prospect p = new Prospect("nom1","prenom1","0123456789","nom.nom@gmail.com",0);
-            Prospect p1 = new Prospect("nom2","prenom2","0123456789","nom.nom@gmail.com",0);
-            Prospect p2 = new Prospect("nom3","prenom3","0123456789","nom.nom@gmail.com",0);
+        /* Créer des prospects de test */
+        if (database.getProspectBdd().getProspectWithNom("nom1") == null) {
+            Prospect p = new Prospect("nom1", "prenom1", "0123456789", "nom.nom@gmail.com", 0);
+            Prospect p1 = new Prospect("nom2", "prenom2", "0123456789", "nom.nom@gmail.com", 0);
+            Prospect p2 = new Prospect("nom3", "prenom3", "0123456789", "nom.nom@gmail.com", 0);
             database.getProspectBdd().addProspectBdd(p);
             database.getProspectBdd().addProspectBdd(p1);
             database.getProspectBdd().addProspectBdd(p2);
@@ -55,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public View.OnClickListener eventBtnLogin = new View.OnClickListener(){
+    public View.OnClickListener eventBtnLogin = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             AlertDialog.Builder boite = new AlertDialog.Builder(LoginActivity.this);
@@ -63,11 +66,11 @@ public class LoginActivity extends AppCompatActivity {
             if (editIdentifiant.getText().length() > 0 && editPassword.getText().length() > 0) {
                 Employee lEmploye = database.getEmployeeBdd().getEmployeeWithIdentifiant(editIdentifiant.getText().toString());
 
-                if(lEmploye != null && lEmploye.checkPassword(editPassword.getText().toString())){
+                if (lEmploye != null && lEmploye.checkPassword(editPassword.getText().toString())) {
                     Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
                     menu.putExtra("employee", lEmploye);
                     startActivity(menu);
-                }else{
+                } else {
                     boite.setMessage("Le combo identifiant/mot de passe n'est pas valide");
                     boite.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -78,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                     });
                     boite.show();
                 }
-            }else {
+            } else {
                 boite.setMessage("L'identifiant et/ou le mot de passe n'est pas saisie");
                 boite.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override

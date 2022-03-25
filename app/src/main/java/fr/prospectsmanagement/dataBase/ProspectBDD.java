@@ -8,6 +8,9 @@ import fr.prospectsmanagement.Prospect;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet d'accéder à la table prospect de la bdd
+ */
 public class ProspectBDD extends ObjectBDD {
 
     private static final String ID_COL = "id";
@@ -119,10 +122,9 @@ public class ProspectBDD extends ObjectBDD {
      * @return Prospect : le prospect spécifique
      */
     private Prospect cursorToProspect(Cursor c) {
-        //si aucun élément n'a été retourné dans la requête, on renvoie null
+        /* On créé un prospect
+        et on donne ses paramètres */
 
-
-        //On créé un employee
         Prospect p = new Prospect();
         p.setNom(c.getString(0));
         p.setPrenom(c.getString(1));

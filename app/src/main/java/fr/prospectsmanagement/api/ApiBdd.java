@@ -11,6 +11,10 @@ import java.net.NoRouteToHostException;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Cette classe fournit toutes les méthodes
+ * pour effectuer des requêtes au serveur API
+ */
 public class ApiBdd {
     final String ApiURL = "http://192.168.43.198/api/ProspectApi.php";
     String resultApi;

@@ -4,6 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import org.mindrot.jbcrypt.BCrypt;
 
+/**
+ * La classe Employee implement Parcelable
+ * ce qui lui permet la navigabilité
+ * entre les différentes activité
+ */
 public class Employee implements Parcelable {
     private String identifiant;
     private String password;
@@ -12,17 +17,20 @@ public class Employee implements Parcelable {
         this.identifiant = identifiant;
         this.password = hashPassword(password);
     }
-    public Employee(){
-        this("","");
+
+    public Employee() {
+        this("", "");
     }
 
     protected Employee(Parcel in) {
         identifiant = in.readString();
         password = in.readString();
     }
+
     public boolean checkPassword(String mdp) {
         return BCrypt.checkpw(mdp, this.password);
     }
+
     public String hashPassword(String p) {
         return BCrypt.hashpw(p, BCrypt.gensalt(12));
     }
@@ -39,27 +47,6 @@ public class Employee implements Parcelable {
         }
     };
 
-    public String getIdentifiant() {
-        return identifiant;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setIdentifiant(String identifiant) {
-        this.identifiant = identifiant;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "identifiant='" + identifiant + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -70,5 +57,29 @@ public class Employee implements Parcelable {
         dest.writeString(identifiant);
         dest.writeString(password);
 
+    }
+
+    public String getIdentifiant() {
+        return identifiant;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setIdentifiant(String identifiant) {
+        this.identifiant = identifiant;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "identifiant='" + identifiant + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

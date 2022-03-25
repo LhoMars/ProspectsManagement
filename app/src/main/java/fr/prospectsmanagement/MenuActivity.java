@@ -76,7 +76,7 @@ public class MenuActivity extends AppCompatActivity {
                     p.setMail(json.getString("mailprospect"));
                     p.setNotes((json.getInt("noteprospect")));
 
-                    if(dataBase.getProspectBdd().getProspectWithNom(p.getNom())== null){
+                    if (dataBase.getProspectBdd().getProspectWithNom(p.getNom()) == null) {
                         dataBase.getProspectBdd().addProspectBdd(p);
                     }
                 }

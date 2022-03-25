@@ -2,6 +2,10 @@ package fr.prospectsmanagement.dataBase;
 
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * Cette classe fournit les attributs et méthodes
+ * pour toutes les tables de la bdd
+ */
 public abstract class ObjectBDD {
 
     private String name;
@@ -15,23 +19,31 @@ public abstract class ObjectBDD {
         this.createSql = create;
     }
 
-    public void open(){
+    /**
+     * Ouvre la bdd en écriture
+     */
+    public void open() {
         this.bdd = maBaseSQLite.getWritableDatabase();
     }
 
-    public void close(){
+    /**
+     * Ferme la bdd
+     */
+    public void close() {
         this.bdd.close();
     }
 
-    public String getTableName(){
+    public String getTableName() {
         return this.name;
     }
 
-    public String getCreateBdd(){
+    public String getCreateBdd() {
         return this.createSql;
     }
 
-    public SQLiteDatabase getBdd(){return this.bdd;}
+    public SQLiteDatabase getBdd() {
+        return this.bdd;
+    }
 
     @Override
     public String toString() {

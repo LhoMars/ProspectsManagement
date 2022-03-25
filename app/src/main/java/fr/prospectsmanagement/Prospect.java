@@ -1,5 +1,8 @@
 package fr.prospectsmanagement;
 
+/**
+ * Définit un prospect
+ */
 public class Prospect {
     private String nom;
     private String prenom;
@@ -63,9 +66,9 @@ public class Prospect {
     public String toString() {
         return "Prospect{" +
                 "nom= " + nom +
-                ", prenom= " + prenom+
+                ", prenom= " + prenom +
                 ", tel= " + tel +
-                ", mail= " + mail  +
+                ", mail= " + mail +
                 ", notes= " + notes +
                 '}';
     }

@@ -8,7 +8,10 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import fr.prospectsmanagement.Employee;
 import fr.prospectsmanagement.dataBase.ProspectBDD;
 
-
+/**
+ * La classe DAO permet la lecture/écriture de la base de données
+ * et de sa configuration en case de création ou mise à jour
+ */
 public class DaoSQL extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "prospectmanagbd.db";
