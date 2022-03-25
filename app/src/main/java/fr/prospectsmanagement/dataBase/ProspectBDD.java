@@ -44,6 +44,12 @@ public class ProspectBDD extends ObjectBDD {
     }
 
 
+    /**
+     * Ajoute un prospect à la bdd
+     *
+     * @param p Prospect : le prospect à ajouter
+     * @return long : l'id
+     */
     public long addProspectBdd(Prospect p) {
         open();
         //Création d'un ContentValues (fonctionne comme une HashMap)
@@ -58,6 +64,12 @@ public class ProspectBDD extends ObjectBDD {
         return getBdd().insert(getTableName(), null, values);
     }
 
+    /**
+     * Récupère le prospect avec son nom
+     *
+     * @param nom String : le nom du prospect
+     * @return Prospect ou null : si il n'existe aucun prospect ou plus 1 le résultat est null
+     */
     public Prospect getProspectWithNom(String nom) {
         open();
         Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL}, NOM_COL + " = '" + nom + "'", null, null, null, null);
@@ -74,6 +86,11 @@ public class ProspectBDD extends ObjectBDD {
         return leProspect;
     }
 
+    /**
+     * Récupère tout les prospects de la bdd
+     *
+     * @return ArrayList : l'ensemble des prospects
+     */
     public ArrayList<Prospect> getAllProspects() {
         open();
         ArrayList<Prospect> lesProspects = new ArrayList();
@@ -95,7 +112,12 @@ public class ProspectBDD extends ObjectBDD {
         return lesProspects;
     }
 
-    //Cette méthode permet de convertir un cursor en un prospect
+    /**
+     * Cette méthode permet de convertir un cursor en un prospect
+     *
+     * @param c Cursor : le cuseur du résultat de la bdd
+     * @return Prospect : le prospect spécifique
+     */
     private Prospect cursorToProspect(Cursor c) {
         //si aucun élément n'a été retourné dans la requête, on renvoie null
 
@@ -111,6 +133,4 @@ public class ProspectBDD extends ObjectBDD {
         //On retourne le prospect
         return p;
     }
-
-
 }

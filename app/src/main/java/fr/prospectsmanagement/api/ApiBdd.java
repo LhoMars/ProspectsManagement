@@ -20,6 +20,11 @@ public class ApiBdd {
         callWebService("connexionBase");
     }
 
+    /**
+     * Appel un service de l'api
+     *
+     * @param q String : service à appeler
+     */
     public void callWebService(String q) {
         try {
             URL url = new URL(ApiURL + "?function=" + q);
@@ -40,7 +45,13 @@ public class ApiBdd {
         }
     }
 
-    public void postJsonProspect(String q, String data){
+    /**
+     * Envoi
+     *
+     * @param q    String : service api à envoyer
+     * @param data String : la liste des Prospects au format Json string
+     */
+    public void postJsonProspect(String q, String data) {
         OutputStream out = null;
 
         try {
@@ -56,7 +67,7 @@ public class ApiBdd {
             writer.close();
             out.close();
 
-            if(urlConnection.getResponseCode() == 200)resultApi = "Récupération réussi";
+            if (urlConnection.getResponseCode() == 200) resultApi = "Récupération réussi";
             urlConnection.disconnect();
         } catch (NoRouteToHostException e) {
             resultApi = "Aucune connexion au serveur";
@@ -66,6 +77,11 @@ public class ApiBdd {
         }
     }
 
+    /**
+     * Récupère les données de la réponse de l'api
+     *
+     * @return JSONArray : les données récupérées
+     */
     public JSONArray getJsonData() {
         JSONArray data = new JSONArray();
         try {
@@ -77,12 +93,19 @@ public class ApiBdd {
         }
         return data;
     }
+
+    /**
+     * Format une liste de prospect en json
+     *
+     * @param lesProspects ArrayList : la liste de prospects
+     * @return JsonArray : les prospects au format json
+     */
     public JSONArray createJsonProspects(ArrayList<Prospect> lesProspects) {
         //Creating a JSONObject object
         JSONArray jsonArray = new JSONArray();
 
-        try{
-            for(Prospect prospect : lesProspects) {
+        try {
+            for (Prospect prospect : lesProspects) {
                 JSONObject jsonObject = new JSONObject();
                 //Inserting key-value pairs into the json object
                 jsonObject.put("id", "default");
