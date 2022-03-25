@@ -52,10 +52,6 @@ public class MenuActivity extends AppCompatActivity {
         JSONArray json = api.getJsonData();
         updateBddProspects(json);
 
-<<<<<<< Updated upstream:app/src/main/java/fr/prospectsmanagement/activity/MenuActivity.java
-=======
-        /* Envoie prospect */
->>>>>>> Stashed changes:app/src/main/java/fr/prospectsmanagement/MenuActivity.java
         ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
         JSONArray jsonProspects = api.createJsonProspects(lesProspects);
         api.postJsonProspect("InsertProspect", jsonProspects.toString());
