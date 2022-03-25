@@ -67,7 +67,7 @@ public class ProspectBDD extends ObjectBDD {
      * Récupère le prospect avec son nom
      *
      * @param nom String : le nom du prospect
-     * @return Prospect ou null : si il n'existe aucun prospect ou plus 1 le résultat est null
+     * @return Prospect ou null : si il n'existe aucun prospect ou plus que 1 le résultat est null
      */
     public Prospect getProspectWithNom(String nom) {
         open();

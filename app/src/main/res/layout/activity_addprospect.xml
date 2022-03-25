@@ -1,8 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/menuLayout"
-    android:background="@drawable/menu_background">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/addprospect_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="50dp"
+        tools:context=".LoginActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="18dp">
+
+            <EditText
+                android:id="@+id/Siret"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/background_light"
+                android:hint="Siret"
+                android:textColorHint="#fff" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" />
+
+            <Button
+                android:id="@+id/btnRechercher2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:text="Rechercher"
+                android:background="@drawable/button_style1"
+                android:textColor="#1495d7" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="18dp">
+
+            <EditText
+                android:id="@+id/Nom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/background_light"
+                android:hint="Nom"
+                android:textColorHint="#fff"/>
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" />
+
+            <EditText
+                android:id="@+id/Prenom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/background_light"
+                android:hint="Prénom"
+                android:textColorHint="#fff" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/Telephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:backgroundTint="@android:color/background_light"
+            android:hint="Téléphone"
+            android:textColorHint="#fff"
+            android:inputType="phone"/>
+
+        <EditText
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:backgroundTint="@android:color/background_light"
+            android:hint="Email"
+            android:textColorHint="#fff" />
+
+        <EditText
+            android:id="@+id/Notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
+            android:backgroundTint="@android:color/background_light"
+            android:hint="Notes"
+            android:textColorHint="#fff" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:id="@+id/btnEnregistrer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style1"
+                android:text="Enregistrer"
+                android:layout_weight="1"
+                android:textColor="#1495d7" />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" />
+
+            <Button
+                android:id="@+id/btnAnnuler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style1"
+                android:text="Annuler"
+                android:layout_weight="1"
+                android:textColor="#1495d7" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
