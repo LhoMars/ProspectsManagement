@@ -127,7 +127,7 @@ public class ProspectBDD extends ObjectBDD {
         p.setTel(c.getString(2));
         p.setMail(c.getString(3));
         p.setNotes(c.getInt(4));
-        p.setSiret(c.getInt(5));
+        p.setSiret(c.getLong(5));
         p.setRaisonSocial(c.getString(6));
 
         //On retourne le prospect

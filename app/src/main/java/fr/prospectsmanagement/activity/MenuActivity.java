@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
 
+import fr.prospectsmanagement.api.ApiGouv;
 import fr.prospectsmanagement.model.Prospect;
 import fr.prospectsmanagement.R;
 import fr.prospectsmanagement.api.ApiBdd;
@@ -105,7 +106,7 @@ public class MenuActivity extends AppCompatActivity {
                     p.setTel(json.getString("tel"));
                     p.setMail(json.getString("mail"));
                     p.setNotes((json.getInt("note")));
-                    p.setSiret((json.getInt("siret")));
+                    p.setSiret((json.getLong("siret")));
                     p.setRaisonSocial((json.getString("raisonsocial")));
 
                     if (dataBase.getProspectBdd().getProspectWithNom(p.getNom()) == null) {
