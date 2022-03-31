@@ -1,5 +1,6 @@
 package fr.prospectsmanagement.api;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -15,7 +16,7 @@ public class ApiGouv {
     public ApiGouv(){
     }
 
-    public int getSiretWithName(String nom){
+    public long getSiretWithName(String nom){
         try {
             URL url = new URL(apiURL+nom);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -35,15 +36,24 @@ public class ApiGouv {
         }
         return siretWithJson(responseApi);
     }
-    private int siretWithJson(String json){
-        int res = 0;
+    private long siretWithJson(String json){
+        long res = 0;
         try {
             JSONObject reader = new JSONObject(json);
-            JSONObject etablissement = reader.getJSONObject("etablissement");
-            res = etablissement.getInt("l1_normalisee");
+            //JSONObject etablissement = reader.getJSONObject("etablissement");
+            JSONArray etablissements = reader.getJSONArray("etablissement");
+            System.out.println("array : " + etablissements);
+
+            JSONObject etablissement = (JSONObject) etablissements.get(0);
+            System.out.println("JSON eta : " + etablissement);
+
+            res = etablissement.getLong("siret");
+            System.out.println("JSON GOUV : " + res);
         }catch(Exception e){
+            System.out.println("Erreur Json Gouv");
             e.printStackTrace();
         }
+
         return res;
     }
 }

@@ -20,6 +20,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import fr.prospectsmanagement.api.ApiGouv;
 import fr.prospectsmanagement.model.Prospect;
 import fr.prospectsmanagement.R;
 import fr.prospectsmanagement.api.ApiBdd;
@@ -37,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
 
     TableLayout tableLayout;
     TableRow newTR;
-    TextView newTxtNom,newTxtPrenom,newTxtEntreprise;
+    TextView newTxtNom, newTxtPrenom, newTxtEntreprise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class MenuActivity extends AppCompatActivity {
         btnAjouter.setOnClickListener(eventBtnAjouter);
 
         /* TABLE */
-        tableLayout = (TableLayout)findViewById(R.id.tableLayoutProspects);
+        tableLayout = (TableLayout) findViewById(R.id.tableLayoutProspects);
         tableauVueProspects();
     }
 
@@ -120,7 +121,7 @@ public class MenuActivity extends AppCompatActivity {
         boite.show();
     }
 
-    private void tableauVueProspects(){
+    private void tableauVueProspects() {
         newTR = new TableRow(MenuActivity.this);
         newTxtNom = new TextView(MenuActivity.this);
         newTxtPrenom = new TextView(MenuActivity.this);
@@ -128,7 +129,7 @@ public class MenuActivity extends AppCompatActivity {
 
         ArrayList<Prospect> allProspects = dataBase.getProspectBdd().getAllProspects();
 
-        for(int i = 0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
 
             dataBase.getProspectBdd().getProspectWithNom("nom1");
 
