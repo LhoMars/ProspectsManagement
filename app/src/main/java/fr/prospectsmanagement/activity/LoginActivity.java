@@ -35,12 +35,25 @@ public class LoginActivity extends AppCompatActivity {
 
         /* Créer des prospects de test */
         if (database.getProspectBdd().getProspectWithNom("nom1") == null) {
-            Prospect p = new Prospect("nom1", "prenom1", "0123456789", "nom.nom@gmail.com", 0, 1, "entrepirse");
+            /*Prospect p = new Prospect("nom1", "prenom1", "0123456789", "nom.nom@gmail.com", 0, 1, "entrepirse");
             Prospect p1 = new Prospect("nom2", "prenom2", "0123456789", "nom.nom@gmail.com", 0, 1, "entrepirse");
             Prospect p2 = new Prospect("nom3", "prenom3", "0123456789", "nom.nom@gmail.com", 0, 1, "entrepirse");
             database.getProspectBdd().addProspectBdd(p);
             database.getProspectBdd().addProspectBdd(p1);
+            database.getProspectBdd().addProspectBdd(p2);*/
+
+            Prospect p = new Prospect("nom1", "prenom1", "0123456789", "nom.un.nom@gmail.com", 0, 1, "entreprise1");
+            Prospect p1 = new Prospect("nom2", "prenom2", "0223456789", "nom.deux.nom@gmail.com", 0, 1, "entreprise2");
+            Prospect p2 = new Prospect("nom3", "prenom3", "0323456789", "nom.trois.nom@gmail.com", 0, 1, "entreprise3");
+            Prospect p3 = new Prospect("nom4", "prenom4", "0423456789", "nom.quatre.nom@gmail.com", 0, 1, "entreprise4");
+            Prospect p4 = new Prospect("nom5", "prenom5", "0523456789", "nom.cinq.nom@gmail.com", 0, 1, "entreprise5");
+            Prospect p5 = new Prospect("nom6", "prenom6", "0623456789", "nom.six.nom@gmail.com", 0, 1, "entreprise6");
+            database.getProspectBdd().addProspectBdd(p);
+            database.getProspectBdd().addProspectBdd(p1);
             database.getProspectBdd().addProspectBdd(p2);
+            database.getProspectBdd().addProspectBdd(p3);
+            database.getProspectBdd().addProspectBdd(p4);
+            database.getProspectBdd().addProspectBdd(p5);
         }
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
