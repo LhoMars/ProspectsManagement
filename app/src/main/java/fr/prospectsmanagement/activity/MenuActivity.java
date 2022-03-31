@@ -95,7 +95,7 @@ public class MenuActivity extends AppCompatActivity {
                     p.setTel(json.getString("tel"));
                     p.setMail(json.getString("mail"));
                     p.setNotes((json.getInt("note")));
-                    p.setSiret((json.getInt("siret")));
+                    p.setSiret((json.getLong("siret")));
                     p.setRaisonSocial((json.getString("raisonsocial")));
 
                     if (dataBase.getProspectBdd().getProspectWithNom(p.getNom()) == null) {

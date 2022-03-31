@@ -9,10 +9,10 @@ public class Prospect {
     private String tel;
     private String mail;
     private int notes;
-    private int siret;
+    private long siret;
     private String raisonSocial;
 
-    public Prospect(String nom, String prenom, String tel, String mail, int notes, int siret, String raisonSocial) {
+    public Prospect(String nom, String prenom, String tel, String mail, int notes, long siret, String raisonSocial) {
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
@@ -46,7 +46,7 @@ public class Prospect {
         return notes;
     }
 
-    public int getSiret() {
+    public long getSiret() {
         return siret;
     }
 
@@ -74,7 +74,7 @@ public class Prospect {
         this.notes = notes;
     }
 
-    public void setSiret(int siret) {
+    public void setSiret(Long siret) {
         this.siret = siret;
     }
 
