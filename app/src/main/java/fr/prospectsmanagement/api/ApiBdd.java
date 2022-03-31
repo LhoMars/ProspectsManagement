@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * pour effectuer des requêtes au serveur API
  */
 public class ApiBdd {
-    final String ApiURL = "http://192.168.43.198/api/ProspectApi.php";
+    final String apiURL = "http://192.168.43.198/api/ProspectApi.php";
     String resultApi;
     String responseApi;
 
@@ -30,7 +30,7 @@ public class ApiBdd {
      */
     public void callWebService(String q) {
         try {
-            URL url = new URL(ApiURL + "?function=" + q);
+            URL url = new URL(apiURL + "?function=" + q);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
             String stringBuffer;
             responseApi = "";
@@ -58,7 +58,7 @@ public class ApiBdd {
         OutputStream out = null;
 
         try {
-            URL url = new URL(ApiURL + "?function=" + q);
+            URL url = new URL(apiURL + "?function=" + q);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
