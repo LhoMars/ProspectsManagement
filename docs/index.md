@@ -32,3 +32,8 @@ rencontre -- <<extend>> --> ajoutepr
 rencontre -- <<extend>> --> sync
 serveurBdd <--> sync
 ```
+
+Lors d'une rencontre avec un prospect, le commercial doit se connecter pour accéder à son application.  
+Ensuite, il pourra enregistrer l'enregistrer et synchroniser ses données avec le serveur. 
+
+Dans le cas où le prospect existerait déjà, le serveur ne le rajoutera pas.
