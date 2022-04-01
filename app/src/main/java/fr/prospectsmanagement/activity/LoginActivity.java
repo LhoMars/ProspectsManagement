@@ -16,10 +16,9 @@ import fr.prospectsmanagement.dataBase.DaoSQL;
 
 public class LoginActivity extends AppCompatActivity {
     private DaoSQL database;
-    public EditText editIdentifiant = null;
-    public EditText editPassword = null;
-    public Button btnLogin = null;
-    public Button btnForgetPassword = null;
+    private EditText editIdentifiant = null;
+    private EditText editPassword = null;
+    private Button btnLogin = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +32,6 @@ public class LoginActivity extends AppCompatActivity {
             database.getEmployeeBdd().addemployeeBdd(e);
         }
 
-        /* Créer des prospects de test */
-        if (database.getProspectBdd().getProspectWithNom("nom1") == null) {
-
-            Prospect p = new Prospect("DUJARDIN", "Jean", "0134809035", "jean.dujardin@gmail.com", 0, 71108630600026L, "Hollywood");
-            Prospect p1 = new Prospect("MATHY", "Mimie", "0865858955", "mimie.mathy@gmail.com", 0, 71108630600026L, "Hollywood");
-            Prospect p2 = new Prospect("CASSEL", "Vincent", "0323456789", "vincent.cassel@gmail.com", 0, 71108630600026L, "Hollywood");
-            Prospect p3 = new Prospect("DEPARDIEU", "Gérard", "0423456789", "gerard.depardieu@gmail.com", 0, 71108630600026L, "Hollywood");
-            Prospect p4 = new Prospect("DELON", "Alain", "0523456789", "alain.delon@gmail.com", 0, 71108630600026L, "Hollywood");
-            Prospect p5 = new Prospect("BELMONDO", "Jean-Paul", "0623456789", "jeanPaul.belmondo@gmail.com", 0, 71108630600026L, "Hollywood");
-            database.getProspectBdd().addProspectBdd(p);
-            database.getProspectBdd().addProspectBdd(p1);
-            database.getProspectBdd().addProspectBdd(p2);
-            database.getProspectBdd().addProspectBdd(p3);
-            database.getProspectBdd().addProspectBdd(p4);
-            database.getProspectBdd().addProspectBdd(p5);
-        }
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -59,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         editIdentifiant = (EditText) findViewById(R.id.Identifiant);
         editPassword = (EditText) findViewById(R.id.MotDePasse);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnForgetPassword = (Button) findViewById(R.id.OublieMotDePasse);
 
         /*Evenement sur le bouton login*/
         btnLogin.setOnClickListener(eventBtnLogin);

@@ -2,6 +2,7 @@ package fr.prospectsmanagement.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -68,6 +70,8 @@ public class MenuActivity extends AppCompatActivity {
     public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            loading.startLoadingDialog();
+
             ApiBdd api = new ApiBdd();
             api.callWebService("getAllProspects");
             JSONArray json = api.getJsonData();
@@ -77,6 +81,7 @@ public class MenuActivity extends AppCompatActivity {
             JSONArray jsonProspects = api.createJsonProspects(lesProspects);
             api.postJsonProspect("InsertProspect", jsonProspects.toString());
 
+            loading.dismissDialog();
             boiteMessage(api.getResultApi());
         }
     };

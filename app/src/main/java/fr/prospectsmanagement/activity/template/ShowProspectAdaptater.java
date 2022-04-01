@@ -46,10 +46,14 @@ public class ShowProspectAdaptater extends RecyclerView.Adapter<ShowProspectAdap
 
     @Override
     public int getItemCount() {
-        if (prospectList.size()<=5){
-            return prospectList.size();
+        if(prospectList != null){
+            if (prospectList.size()<=5){
+                return prospectList.size();
+            }else{
+                return 5;
+            }
         }else{
-            return 5;
+            return 0;
         }
     }
 

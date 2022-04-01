@@ -93,7 +93,8 @@ public class ProspectBDD extends ObjectBDD {
     public ArrayList<Prospect> getAllProspects() {
         open();
         ArrayList<Prospect> lesProspects = new ArrayList();
-        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL, RAISON_SOCIAL_COL}, null, null, null, null, null);
+        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL,
+                RAISON_SOCIAL_COL}, null, null, "nom, prenom", null, null);
 
         if (c == null || c.getCount() == 0) {
             return null;

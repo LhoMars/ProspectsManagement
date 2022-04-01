@@ -62,14 +62,5 @@
             android:textColor="#1495d7"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/OublieMotDePasse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="Mot de passe oublié ?"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
-
     </LinearLayout>
 </RelativeLayout>

@@ -20,7 +20,7 @@ public class LoadingDialog {
 
         LayoutInflater inflater = activity.getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.loading_layout, null));
-        builder.setCancelable(true);
+        builder.setCancelable(false);
 
         dialog = builder.create();
         dialog.show();

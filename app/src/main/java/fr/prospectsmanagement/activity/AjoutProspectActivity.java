@@ -20,10 +20,11 @@ import fr.prospectsmanagement.model.Prospect;
 
 public class AjoutProspectActivity extends AppCompatActivity {
     private DaoSQL dataBase;
-    public Button btnAnnuler = null;
-    public Button btnRechercherEntreprise = null;
-    public EditText raisonSociale = null;
-    public EditText siretText = null;
+    private Button btnAnnuler = null;
+    private Button btnRechercherEntreprise = null;
+    private Button btnEnregistrer = null;
+    private EditText raisonSociale = null;
+    private EditText siretText = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,24 +34,19 @@ public class AjoutProspectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_addprospect);
 
         /* Selection des vues de l'activité */
-        raisonSociale = (EditText) findViewById(R.id.raisonSociale);
+        raisonSociale = (EditText) findViewById(R.id.RaisonSociale);
         siretText = (EditText) findViewById(R.id.Siret);
 
         /* Sélection du bouton par son ID puis on ajoute son événement */
-        btnAnnuler = (Button) findViewById(R.id.btnAnnuler);
-        btnAnnuler.setOnClickListener(eventBtnAnnuler);
-
         btnRechercherEntreprise = (Button) findViewById(R.id.btnRechercherEntreprise);
         btnRechercherEntreprise.setOnClickListener(eventBtnRechercherEntreprise);
-    }
 
-    public View.OnClickListener eventBtnAnnuler = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent AjoutProspect = new Intent(AjoutProspectActivity.this, MenuActivity.class);
-            startActivity(AjoutProspect);
-        }
-    };
+        btnEnregistrer = (Button) findViewById(R.id.btnEnregistrer);
+        btnEnregistrer.setOnClickListener(eventBtnEnregistrer);
+
+        btnAnnuler = (Button) findViewById(R.id.btnAnnuler);
+        btnAnnuler.setOnClickListener(eventBtnAnnuler);
+    }
 
     public View.OnClickListener eventBtnRechercherEntreprise = new View.OnClickListener() {
         @Override
@@ -65,6 +61,37 @@ public class AjoutProspectActivity extends AppCompatActivity {
             }catch(Exception e){
                 e.printStackTrace();
             }
+        }
+    };
+
+    public View.OnClickListener eventBtnEnregistrer = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            EditText nomProspect = (EditText) findViewById(R.id.Nom);
+            EditText prenomProspect = (EditText) findViewById(R.id.Prenom);
+            EditText telProspect = (EditText) findViewById(R.id.Telephone);
+            EditText mailProspect = (EditText) findViewById(R.id.Email);
+            EditText notesProspect = (EditText) findViewById(R.id.Notes);
+            EditText siretProspect = (EditText) findViewById(R.id.Siret);
+            EditText raisonSocialeProspect = (EditText) findViewById(R.id.RaisonSociale);
+
+            Prospect newProspect = new Prospect(nomProspect.getText().toString(), prenomProspect.getText().toString(),
+                    telProspect.getText().toString(), mailProspect.getText().toString(),
+                    Integer.parseInt(notesProspect.getText().toString()),
+                    Long.parseLong(siretProspect.getText().toString()), raisonSocialeProspect.getText().toString());
+
+            dataBase.getProspectBdd().addProspectBdd(newProspect);
+
+            Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
+            startActivity(retourMenu);
+        }
+    };
+
+    public View.OnClickListener eventBtnAnnuler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
+            startActivity(retourMenu);
         }
     };
 }
