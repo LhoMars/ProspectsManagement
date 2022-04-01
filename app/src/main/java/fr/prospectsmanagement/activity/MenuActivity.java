@@ -14,12 +14,12 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
 
-import fr.prospectsmanagement.api.ApiGouv;
+import fr.prospectsmanagement.activity.template.LoadingDialog;
 import fr.prospectsmanagement.model.Prospect;
 import fr.prospectsmanagement.R;
 import fr.prospectsmanagement.api.ApiBdd;
 import fr.prospectsmanagement.dataBase.DaoSQL;
-import fr.prospectsmanagement.model.ShowProspectAdaptater;
+import fr.prospectsmanagement.activity.template.ShowProspectAdaptater;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
     private DaoSQL dataBase;
+    private LoadingDialog loading;
     private Button btnAjouter = null;
     private Button btnRechercher = null;
     private Button btnSynchroniser = null;
@@ -39,12 +40,13 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBase = new DaoSQL(this);
+        loading = new LoadingDialog(this);
 
         setContentView(R.layout.activity_menu);
 
         RelativeLayout RelativeLayout = findViewById(R.id.menuLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) RelativeLayout.getBackground();
-        animationDrawable.setEnterFadeDuration(2200);
+        animationDrawable.setEnterFadeDuration(1500);
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
 
@@ -68,6 +70,8 @@ public class MenuActivity extends AppCompatActivity {
         public void onClick(View v) {
             ApiBdd api = new ApiBdd();
 
+            loading.startLoadingDialog();
+
             try{
                 api.callWebService("getAllProspects");
                 JSONArray json = api.getJsonData();
@@ -80,6 +84,7 @@ public class MenuActivity extends AppCompatActivity {
             }catch (Exception e){
                 e.printStackTrace();
             }finally {
+                loading.dismissDialog();
                 boiteMessage(api.getResultApi());
             }
         }

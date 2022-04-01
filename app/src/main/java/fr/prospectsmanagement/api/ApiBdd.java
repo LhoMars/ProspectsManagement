@@ -20,7 +20,6 @@ public class ApiBdd {
     String responseApi;
 
     public ApiBdd() {
-        callWebService("connexionBase");
     }
 
     /**

@@ -1,4 +1,4 @@
-package fr.prospectsmanagement.model;
+package fr.prospectsmanagement.activity.template;
 
 
 import android.content.Context;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import fr.prospectsmanagement.R;
+import fr.prospectsmanagement.model.Prospect;
 
 public class ShowProspectAdaptater extends RecyclerView.Adapter<ShowProspectAdaptater.ViewHolder> {
 
