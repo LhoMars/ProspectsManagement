@@ -86,7 +86,7 @@ public class MenuActivity extends AppCompatActivity {
             JSONArray json = api.getJsonData();
             updateBddProspects(json);
 
-            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
+            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspect(null, null, null);//getAllProspects();
             JSONArray jsonProspects = api.createJsonProspects(lesProspects);
             api.postJsonProspect("InsertProspect", jsonProspects.toString());
 
@@ -162,7 +162,7 @@ public class MenuActivity extends AppCompatActivity {
     private void setRecyclerView() {
         recycler_view.setHasFixedSize(true);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        model = new ShowProspectAdaptater(this, dataBase.getProspectBdd().getAllProspects());
+        model = new ShowProspectAdaptater(this, dataBase.getProspectBdd().getProspect(null,null,null));
         recycler_view.setAdapter(model);
     }
 }

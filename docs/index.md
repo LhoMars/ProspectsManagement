@@ -1,5 +1,26 @@
 # Prospects Management
 
+## PAGE DE SERVICE
+
+**^^Mises à jour^^**
+
+|Version|Date       |Auteur         |Description du changement                                          |
+|-------|-----------|---------------|-------------------------------------------------------------------|
+| 1.0.0 |01-04-2022 |Marcel Lhote   |création                                                           |
+|||||
+
+**^^Diffusion^^**
+
+|Version |Date       |Nom          |Rôle|
+|--------|-----------|-------------|----|
+|1.0.0   |03-04-2022 |Marcel Lhote |SLAM|
+|||||
+
+**^^Plan de classement :^^** SLAM4 ; Java ; Android ;  
+**^^Niveau de confidentialité :^^** confidentiel
+
+---
+
 ## Introduction
 
 L'application à pour objectif d'ajouter des prospects. Lors de rencontres dans des salons ou autres vous serez amener à
@@ -14,6 +35,7 @@ L'utilisateur peut Synchroniser avec le serveur lorsque ce dernier est accessibl
 ![Architecture](./assets/architectureBdd.png)
 
 ### Cas d'utilisation
+
 Ce diagramme présente les actuels fonctionnalité pur l'application
 
 ```mermaid
@@ -34,6 +56,6 @@ serveurBdd <--> sync
 ```
 
 Lors d'une rencontre avec un prospect, le commercial doit se connecter pour accéder à son application.  
-Ensuite, il pourra enregistrer l'enregistrer et synchroniser ses données avec le serveur. 
+Ensuite, il pourra enregistrer l'enregistrer et synchroniser ses données avec le serveur.
 
 Dans le cas où le prospect existerait déjà, le serveur ne le rajoutera pas.

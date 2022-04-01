@@ -69,7 +69,7 @@ public class ProspectBDD extends ObjectBDD {
      * @param nom          String ou null : le nom du prospect
      * @param prenom       String ou null : le prenom du prospect
      * @param raisonSocial String ou null : la raison social de l'entreprise
-     * @return Prospect ou null : s'il n'existe aucun prospect ou plus de 1  le résultat est null
+     * @return ArrayLsit<Prospect> ou null : s'il n'existe aucun prospect ou plus de 1 le résultat est null
      */
     public ArrayList<Prospect> getProspect(String nom, String prenom, String raisonSocial) {
         open();
@@ -116,33 +116,6 @@ public class ProspectBDD extends ObjectBDD {
         c.close();
         close();
 
-        return lesProspects;
-    }
-
-    /**
-     * Récupère tous les prospects de la bdd
-     *
-     * @return ArrayList : l'ensemble des prospects
-     */
-    public ArrayList<Prospect> getAllProspects() {
-        open();
-        ArrayList<Prospect> lesProspects = new ArrayList();
-        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL,
-                RAISON_SOCIAL_COL}, null, null, "nom, prenom", null, null);
-
-        if (c == null || c.getCount() == 0) {
-            return null;
-        }
-
-        c.moveToFirst();
-
-        for (int i = 0; i < c.getCount(); i++) {
-            lesProspects.add(cursorToProspect(c));
-            c.moveToNext();
-        }
-
-        c.close();
-        close();
         return lesProspects;
     }
 
