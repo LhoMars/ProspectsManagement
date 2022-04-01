@@ -78,6 +78,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
 
             EditText telProspectTxt = (EditText) findViewById(R.id.Telephone);
             String telProspect = telProspectTxt.getText().toString();
+            Integer telProspectInt = Integer.parseInt(telProspect);
 
             EditText mailProspectTxt = (EditText) findViewById(R.id.Email);
             String mailProspect = mailProspectTxt.getText().toString();
@@ -92,29 +93,25 @@ public class AjoutProspectActivity extends AppCompatActivity {
             String raisonSocialeProspect = raisonSocialeProspectTxt.getText().toString();
 
             String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-            String phoneNumberPattern = "^(?:(?:\\+|00)33[\\s.-]{0,3}(?:\\(0\\)[\\s.-]{0,3})?|0)[1-9](?:(?:[\\s.-]?\\d{2}){4}|\\d{2}(?:[\\s.-]?\\d{3}){2})$\n";
+            /*String phoneNumberPattern = "/^(\\+33|0033|0)(6|7)[0-9]{8}$/g";*/
 
             if(nomProspectTxt.length()!=0 && prenomProspectTxt.length()!=0 && siretProspectTxt.length()!=0
                     && raisonSocialeProspectTxt.length()!=0 && mailProspectTxt.length()!=0){
                 if(mailProspect.matches(emailPattern)){
-                    if(telProspect.matches(phoneNumberPattern) || telProspectTxt.length()==0){
-                        if(noteProspectTxt.length()==0){
-                            noteProspect = "0";
-                        }
-                        if(telProspectTxt.length()==0){
-                            telProspect = "0";
-                        }
-                        Prospect newProspect = new Prospect(nomProspect, prenomProspect, telProspect, mailProspect,
-                                Integer.parseInt(noteProspect), Long.parseLong(siretProspect), raisonSocialeProspect);
+                    Prospect newProspect = new Prospect(nomProspect, prenomProspect, telProspect, mailProspect,
+                            Integer.parseInt(noteProspect), Long.parseLong(siretProspect), raisonSocialeProspect);
 
-                        dataBase.getProspectBdd().addProspectBdd(newProspect);
+                    dataBase.getProspectBdd().addProspectBdd(newProspect);
 
-                        Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
-                        startActivity(retourMenu);
+                    Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
+                    startActivity(retourMenu);
+                }
+                    /*if(telProspect.matches(phoneNumberPattern)){
+                        
                     }else{
                         boiteMessage("Le numéro de téléphone n'est pas correct");
-                    }
-                }else{
+                    }*/
+                else{
                     boiteMessage("L'e-mail n'est pas valable");
                 }
             }else{

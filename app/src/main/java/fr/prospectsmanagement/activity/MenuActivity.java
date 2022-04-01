@@ -37,6 +37,10 @@ public class MenuActivity extends AppCompatActivity {
     private Button btnRechercherVisibility = null;
     private Button btnRechercher = null;
     private Button btnSynchroniser = null;
+    private Button btnClearFiltres = null;
+    private EditText nomFiltre = null;
+    private EditText prenomFiltre = null;
+    private EditText entrepriseFiltre = null;
 
     RecyclerView recycler_view;
     ShowProspectAdaptater model;
@@ -66,15 +70,23 @@ public class MenuActivity extends AppCompatActivity {
         btnRechercher = (Button) findViewById(R.id.btnRechercher);
         btnRechercher.setOnClickListener(eventBtnRechercher);
 
+        btnClearFiltres = (Button) findViewById(R.id.btnClearFiltres);
+        btnClearFiltres.setOnClickListener(eventBtnClearFiltres);
+
         btnSynchroniser = (Button) findViewById(R.id.btnSynchroniser);
         btnSynchroniser.setOnClickListener(eventBtnSynchroniser);
 
+        /* Lien entre les éléments de l'xml et les variables créées aux début */
         filtresLayout = findViewById(R.id.filtresLayout);
+
+        nomFiltre = findViewById(R.id.nomFiltre);
+        prenomFiltre = findViewById(R.id.prenomFiltre);
+        entrepriseFiltre = findViewById(R.id.entrepriseFiltre);
 
 
         /* TABLE */
         recycler_view = findViewById(R.id.recycler_view);
-        setRecyclerView(dataBase.getProspectBdd().getAllProspects());
+        setRecyclerView(dataBase.getProspectBdd().getProspect(null,null,null));
     }
 
     public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
@@ -93,7 +105,7 @@ public class MenuActivity extends AppCompatActivity {
 
             loading.dismissDialog();
             boiteMessage(api.getResultApi());
-            setRecyclerView(dataBase.getProspectBdd().getAllProspects());
+            setRecyclerView(dataBase.getProspectBdd().getProspect(null,null,null));
         }
     };
 
@@ -119,15 +131,19 @@ public class MenuActivity extends AppCompatActivity {
     public View.OnClickListener eventBtnRechercher = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            EditText nomFiltre = (EditText) findViewById(R.id.nomFiltre);
-            EditText prenomFiltre = (EditText) findViewById(R.id.prenomFiltre);
-            EditText entrepriseFiltre = (EditText) findViewById(R.id.entrepriseFiltre);
 
             ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspect(nomFiltre.getText().toString(),
                     prenomFiltre.getText().toString(),
                     entrepriseFiltre.getText().toString());
 
             setRecyclerView(lesProspects);
+        }
+    };
+
+    public View.OnClickListener eventBtnClearFiltres = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
         }
     };
 
