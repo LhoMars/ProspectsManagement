@@ -66,8 +66,8 @@ public class ProspectBDD extends ObjectBDD {
     /**
      * Récupère un tableau de prospects
      *
-     * @param nom String ou null : le nom du prospect
-     * @param prenom String ou null : le prenom du prospect
+     * @param nom          String ou null : le nom du prospect
+     * @param prenom       String ou null : le prenom du prospect
      * @param raisonSocial String ou null : la raison social de l'entreprise
      * @return Prospect ou null : s'il n'existe aucun prospect ou plus de 1  le résultat est null
      */
@@ -75,8 +75,8 @@ public class ProspectBDD extends ObjectBDD {
         open();
 
         String[] params = new String[(nom != null ? 1 : 0) +
-                (prenom  != null ? 1 : 0) +
-                (raisonSocial  != null ? 1 : 0)];
+                (prenom != null ? 1 : 0) +
+                (raisonSocial != null ? 1 : 0)];
         int paramIndex = 0;
         String where = "";
         if (nom != null) {
@@ -106,8 +106,8 @@ public class ProspectBDD extends ObjectBDD {
         ArrayList<Prospect> lesProspects = new ArrayList<>();
         lesProspects.add(leProspect);
 
-        if(c.getCount()> 1){
-            for(int i =1; i<c.getCount(); i++){
+        if (c.getCount() > 1) {
+            for (int i = 1; i < c.getCount(); i++) {
                 c.moveToNext();
                 lesProspects.add(cursorToProspect(c));
             }
