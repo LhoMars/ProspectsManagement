@@ -64,29 +64,63 @@ public class ProspectBDD extends ObjectBDD {
     }
 
     /**
-     * Récupère le prospect avec son nom
+     * Récupère un tableau de prospects
      *
-     * @param nom String : le nom du prospect
-     * @return Prospect ou null : si il n'existe aucun prospect ou plus que 1 le résultat est null
+     * @param nom String ou null : le nom du prospect
+     * @param prenom String ou null : le prenom du prospect
+     * @param raisonSocial String ou null : la raison social de l'entreprise
+     * @return Prospect ou null : s'il n'existe aucun prospect ou plus de 1  le résultat est null
      */
-    public Prospect getProspectWithNom(String nom) {
+    public ArrayList<Prospect> getProspect(String nom, String prenom, String raisonSocial) {
         open();
-        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL, RAISON_SOCIAL_COL}, NOM_COL + " = '" + nom + "'", null, null, null, null);
 
-        if (c == null || c.getCount() == 0 || c.getCount() > 1) {
+        String[] params = new String[(nom != null ? 1 : 0) +
+                (prenom  != null ? 1 : 0) +
+                (raisonSocial  != null ? 1 : 0)];
+        int paramIndex = 0;
+        String where = "";
+        if (nom != null) {
+            where = NOM_COL + " LIKE ?";
+            params[paramIndex++] = nom + "%";
+        }
+        if (prenom != null) {
+            if (!where.equals(""))
+                where = where + " AND ";
+            where = where + PRENOM_COL + " LIKE ?";
+            params[paramIndex++] = prenom + "%";
+        }
+        if (raisonSocial != null) {
+            if (!where.equals(""))
+                where = where + " AND ";
+            where = where + RAISON_SOCIAL_COL + " LIKE ?";
+            params[paramIndex++] = raisonSocial + "%";
+        }
+        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL, RAISON_SOCIAL_COL}, where, params, null, null, null);
+
+        if (c == null || c.getCount() == 0) {
             return null;
         }
 
         c.moveToFirst();
         Prospect leProspect = cursorToProspect(c);
+        ArrayList<Prospect> lesProspects = new ArrayList<>();
+        lesProspects.add(leProspect);
+
+        if(c.getCount()> 1){
+            for(int i =1; i<c.getCount(); i++){
+                c.moveToNext();
+                lesProspects.add(cursorToProspect(c));
+            }
+        }
+
         c.close();
         close();
 
-        return leProspect;
+        return lesProspects;
     }
 
     /**
-     * Récupère tout les prospects de la bdd
+     * Récupère tous les prospects de la bdd
      *
      * @return ArrayList : l'ensemble des prospects
      */

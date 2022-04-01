@@ -136,7 +136,7 @@ public class MenuActivity extends AppCompatActivity {
                     p.setSiret((json.getLong("siret")));
                     p.setRaisonSocial((json.getString("raisonsocial")));
 
-                    if (dataBase.getProspectBdd().getProspectWithNom(p.getNom()) == null) {
+                    if (dataBase.getProspectBdd().getProspect(p.getNom(),p.getPrenom(), p.getRaisonSocial()) == null) {
                         dataBase.getProspectBdd().addProspectBdd(p);
                     }
                 }
