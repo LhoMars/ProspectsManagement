@@ -8,7 +8,7 @@ nav:
     - Accueil: index.md
     - Application Android :
         - javaAndroid/index.md
-        - menuActivity.md
+        - javaAndroid/menuActivity.md
     - API :
         - API/index.md
 
