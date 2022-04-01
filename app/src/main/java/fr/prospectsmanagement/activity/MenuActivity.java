@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.os.Handler;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
@@ -32,11 +33,13 @@ public class MenuActivity extends AppCompatActivity {
     private DaoSQL dataBase;
     private LoadingDialog loading;
     private Button btnAjouter = null;
+    private Button btnRechercherVisibility = null;
     private Button btnRechercher = null;
     private Button btnSynchroniser = null;
 
     RecyclerView recycler_view;
     ShowProspectAdaptater model;
+    ViewGroup filtresLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +59,17 @@ public class MenuActivity extends AppCompatActivity {
         btnAjouter = (Button) findViewById(R.id.btnAjouter);
         btnAjouter.setOnClickListener(eventBtnAjouter);
 
+        btnRechercherVisibility = (Button) findViewById(R.id.btnRechercherVisibility);
+        btnRechercherVisibility.setOnClickListener(eventBtnRechercherVisibility);
+
         btnRechercher = (Button) findViewById(R.id.btnRechercher);
         btnRechercher.setOnClickListener(eventBtnRechercher);
 
         btnSynchroniser = (Button) findViewById(R.id.btnSynchroniser);
         btnSynchroniser.setOnClickListener(eventBtnSynchroniser);
+
+        filtresLayout = findViewById(R.id.filtresLayout);
+
 
         /* TABLE */
         recycler_view = findViewById(R.id.recycler_view);
@@ -83,6 +92,7 @@ public class MenuActivity extends AppCompatActivity {
 
             loading.dismissDialog();
             boiteMessage(api.getResultApi());
+            setRecyclerView();
         }
     };
 
@@ -91,6 +101,17 @@ public class MenuActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent AjoutProspect = new Intent(MenuActivity.this, AjoutProspectActivity.class);
             startActivity(AjoutProspect);
+        }
+    };
+
+    public View.OnClickListener eventBtnRechercherVisibility = new View.OnClickListener() {
+        boolean visible;
+
+        @Override
+        public void onClick(View v) {
+            TransitionManager.beginDelayedTransition(filtresLayout);
+            visible = !visible;
+            filtresLayout.setVisibility(visible ? View.VISIBLE: View.GONE);
         }
     };
 
