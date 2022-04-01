@@ -6,8 +6,10 @@ edit_uri: 'edit/main/docs/'
 
 nav:
     - Home: index.md
-    - List Pages:
-        - pages/index.md
+    - Application Android :
+        - javaAndroid/index.md
+    - API :
+        - api/index.md
     - Help Page: help.md
 
 theme:
