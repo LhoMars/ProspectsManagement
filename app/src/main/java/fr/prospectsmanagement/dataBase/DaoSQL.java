@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DaoSQL extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "prospectmanagbd.db";
-    private static final int DB_VERSION = 3;
+    private static final int DB_VERSION = 5;
     private ProspectBDD prospectBdd;
     private EmployeeBDD employeeBdd;
 

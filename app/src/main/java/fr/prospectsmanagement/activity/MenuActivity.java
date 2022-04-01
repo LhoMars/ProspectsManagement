@@ -68,15 +68,20 @@ public class MenuActivity extends AppCompatActivity {
         public void onClick(View v) {
             ApiBdd api = new ApiBdd();
 
-            api.callWebService("getAllProspects");
-            JSONArray json = api.getJsonData();
-            updateBddProspects(json);
+            try{
+                api.callWebService("getAllProspects");
+                JSONArray json = api.getJsonData();
+                updateBddProspects(json);
 
-            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
-            JSONArray jsonProspects = api.createJsonProspects(lesProspects);
-            api.postJsonProspect("InsertProspect", jsonProspects.toString());
+                ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
+                JSONArray jsonProspects = api.createJsonProspects(lesProspects);
+                api.postJsonProspect("InsertProspect", jsonProspects.toString());
 
-            boiteMessage(api.getResultApi());
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                boiteMessage(api.getResultApi());
+            }
         }
     };
 
@@ -138,14 +143,4 @@ public class MenuActivity extends AppCompatActivity {
         model = new ShowProspectAdaptater(this,dataBase.getProspectBdd().getAllProspects());
         recycler_view.setAdapter(model);
     }
-
-    /*private List<Prospect> getList(){
-        List<Prospect> prospectList = new ArrayList<>();
-        prospectList.add(new Prospect("nom1", "prenom1", "0123456789", "nom.un.nom@gmail.com", 0, 1, "entreprise1"));
-        prospectList.add(new Prospect("nom2", "prenom2", "0223456789", "nom.un.nom@gmail.com", 0, 2, "entreprise2"));
-        prospectList.add(new Prospect("nom3", "prenom3", "0323456789", "nom.un.nom@gmail.com", 0, 3, "entreprise3"));
-        prospectList.add(new Prospect("nom4", "prenom4", "0423456789", "nom.un.nom@gmail.com", 0, 4, "entreprise4"));
-        prospectList.add(new Prospect("nom5", "prenom5", "0523456789", "nom.un.nom@gmail.com", 0, 5, "entreprise5"));
-        return prospectList;
-    }*/
 }
