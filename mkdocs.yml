@@ -9,13 +9,10 @@ nav:
     - Application Android :
         - javaAndroid/index.md
     - API :
-        - api/index.md
-    - Help Page: help.md
+        - API/index.md
 
 theme:
     name: material
-    logo: assets/logo.jpg
-    favicon: assets/logo.jpg
     language: fr
     features:
         - navigation.top
