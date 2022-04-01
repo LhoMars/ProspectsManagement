@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -115,7 +114,7 @@ public class MenuActivity extends AppCompatActivity {
                     p.setSiret((json.getLong("siret")));
                     p.setRaisonSocial((json.getString("raisonsocial")));
 
-                    if (dataBase.getProspectBdd().getProspectWithNom(p.getNom()) == null) {
+                    if (dataBase.getProspectBdd().getProspect(p.getNom(),p.getPrenom(), p.getRaisonSocial()) == null) {
                         dataBase.getProspectBdd().addProspectBdd(p);
                     }
                 }
