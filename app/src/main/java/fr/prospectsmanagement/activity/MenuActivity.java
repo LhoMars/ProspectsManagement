@@ -14,6 +14,7 @@ import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
 
@@ -73,7 +74,7 @@ public class MenuActivity extends AppCompatActivity {
 
         /* TABLE */
         recycler_view = findViewById(R.id.recycler_view);
-        setRecyclerView();
+        setRecyclerView(dataBase.getProspectBdd().getAllProspects());
     }
 
     public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
@@ -92,7 +93,7 @@ public class MenuActivity extends AppCompatActivity {
 
             loading.dismissDialog();
             boiteMessage(api.getResultApi());
-            setRecyclerView();
+            setRecyclerView(dataBase.getProspectBdd().getAllProspects());
         }
     };
 
@@ -118,7 +119,15 @@ public class MenuActivity extends AppCompatActivity {
     public View.OnClickListener eventBtnRechercher = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            EditText nomFiltre = (EditText) findViewById(R.id.nomFiltre);
+            EditText prenomFiltre = (EditText) findViewById(R.id.prenomFiltre);
+            EditText entrepriseFiltre = (EditText) findViewById(R.id.entrepriseFiltre);
 
+            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspect(nomFiltre.getText().toString(),
+                    prenomFiltre.getText().toString(),
+                    entrepriseFiltre.getText().toString());
+
+            setRecyclerView(lesProspects);
         }
     };
 
@@ -159,10 +168,10 @@ public class MenuActivity extends AppCompatActivity {
         boite.show();
     }
 
-    private void setRecyclerView() {
+    private void setRecyclerView(ArrayList<Prospect> lesProspects) {
         recycler_view.setHasFixedSize(true);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        model = new ShowProspectAdaptater(this, dataBase.getProspectBdd().getProspect(null,null,null));
+        model = new ShowProspectAdaptater(this, lesProspects);
         recycler_view.setAdapter(model);
     }
 }

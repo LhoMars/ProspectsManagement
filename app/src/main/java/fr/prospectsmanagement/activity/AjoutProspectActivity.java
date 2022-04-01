@@ -1,7 +1,10 @@
 package fr.prospectsmanagement.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,23 +70,63 @@ public class AjoutProspectActivity extends AppCompatActivity {
     public View.OnClickListener eventBtnEnregistrer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            EditText nomProspect = (EditText) findViewById(R.id.Nom);
-            EditText prenomProspect = (EditText) findViewById(R.id.Prenom);
-            EditText telProspect = (EditText) findViewById(R.id.Telephone);
-            EditText mailProspect = (EditText) findViewById(R.id.Email);
-            EditText notesProspect = (EditText) findViewById(R.id.Notes);
-            EditText siretProspect = (EditText) findViewById(R.id.Siret);
-            EditText raisonSocialeProspect = (EditText) findViewById(R.id.RaisonSociale);
+            EditText nomProspectTxt = (EditText) findViewById(R.id.Nom);
+            String nomProspect = nomProspectTxt.getText().toString();
 
-            Prospect newProspect = new Prospect(nomProspect.getText().toString(), prenomProspect.getText().toString(),
-                    telProspect.getText().toString(), mailProspect.getText().toString(),
-                    Integer.parseInt(notesProspect.getText().toString()),
-                    Long.parseLong(siretProspect.getText().toString()), raisonSocialeProspect.getText().toString());
+            EditText prenomProspectTxt = (EditText) findViewById(R.id.Prenom);
+            String prenomProspect = prenomProspectTxt.getText().toString();
 
-            dataBase.getProspectBdd().addProspectBdd(newProspect);
+            EditText telProspectTxt = (EditText) findViewById(R.id.Telephone);
+            String telProspect = telProspectTxt.getText().toString();
 
-            Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
-            startActivity(retourMenu);
+            EditText mailProspectTxt = (EditText) findViewById(R.id.Email);
+            String mailProspect = mailProspectTxt.getText().toString();
+
+            EditText noteProspectTxt = (EditText) findViewById(R.id.Notes);
+            String noteProspect = noteProspectTxt.getText().toString();
+
+            EditText siretProspectTxt = (EditText) findViewById(R.id.Siret);
+            String siretProspect = siretProspectTxt.getText().toString();
+
+            EditText raisonSocialeProspectTxt = (EditText) findViewById(R.id.RaisonSociale);
+            String raisonSocialeProspect = raisonSocialeProspectTxt.getText().toString();
+
+            String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+            String phoneNumberPattern = "^(?:(?:\\+|00)33[\\s.-]{0,3}(?:\\(0\\)[\\s.-]{0,3})?|0)[1-9](?:(?:[\\s.-]?\\d{2}){4}|\\d{2}(?:[\\s.-]?\\d{3}){2})$\n";
+
+            if(nomProspectTxt.length()!=0 && prenomProspectTxt.length()!=0 && siretProspectTxt.length()!=0
+                    && raisonSocialeProspectTxt.length()!=0 && mailProspectTxt.length()!=0){
+                if(mailProspect.matches(emailPattern)){
+                    if(telProspect.matches(phoneNumberPattern) || telProspectTxt.length()==0){
+                        if(noteProspectTxt.length()==0){
+                            noteProspect = "0";
+                        }
+                        if(telProspectTxt.length()==0){
+                            telProspect = "0";
+                        }
+                        Prospect newProspect = new Prospect(nomProspect, prenomProspect, telProspect, mailProspect,
+                                Integer.parseInt(noteProspect), Long.parseLong(siretProspect), raisonSocialeProspect);
+
+                        dataBase.getProspectBdd().addProspectBdd(newProspect);
+
+                        Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
+                        startActivity(retourMenu);
+                    }else{
+                        boiteMessage("Le numéro de téléphone n'est pas correct");
+                    }
+                }else{
+                    boiteMessage("L'e-mail n'est pas valable");
+                }
+            }else{
+                boiteMessage("Un ou plusieurs champs requis sont manquants !\n" +
+                        "\n" +
+                        "Sont obligatoires : \n" +
+                        "La Raison Sociale de l'entreprise\n" +
+                        "Le Siret\n" +
+                        "Le Nom\n" +
+                        "Le Prénom\n" +
+                        "Le Mail");
+            }
         }
     };
 
@@ -94,4 +137,17 @@ public class AjoutProspectActivity extends AppCompatActivity {
             startActivity(retourMenu);
         }
     };
+
+    private void boiteMessage(String msg) {
+        AlertDialog.Builder boite = new AlertDialog.Builder(AjoutProspectActivity.this);
+        boite.setTitle("Information");
+        boite.setMessage(msg);
+        boite.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        boite.show();
+    }
 }
