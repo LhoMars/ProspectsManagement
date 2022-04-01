@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     tools:context=".activity.LoginActivity"
     android:id="@+id/menuLayout"
@@ -12,8 +13,18 @@
         android:id="@+id/Filtre"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:orientation="horizontal" >
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/btnSynchroniser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:text="Synchroniser"
+            android:textColor="#125de3"
+            android:textSize="16sp"
+            android:background="@drawable/button_style1"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
@@ -67,7 +78,8 @@
             android:layout_height="match_parent"
             android:paddingLeft="15dp"
             android:paddingTop="20dp"
-            android:paddingRight="15dp">
+            android:paddingRight="15dp"
+            android:stretchColumns="1,2,3">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -82,77 +94,37 @@
                     android:gravity="center"
                     android:text="@string/nom"
                     android:textColor="#125de3"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1"
+                    android:layout_column="1"
+                    android:layout_weight="1.2"
                     android:gravity="center"
                     android:text="@string/prenom"
                     android:textColor="#125de3"
                     android:textSize="17sp" />
 
                 <TextView
+                    android:text="@string/entreprise"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_column="3"
-                    android:layout_weight="1.3"
+                    android:layout_column="1"
+                    android:layout_weight="1.4"
                     android:gravity="center"
-                    android:text="@string/entreprise"
                     android:textColor="#125de3"
                     android:textSize="17sp" />
 
             </TableRow>
 
-
-            <TableRow
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/tableau_border_titles">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_column="1"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="ELIOTOUT"
-                    android:textColor="#125de3"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Lilian"
-                    android:textColor="#125de3"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="3"
-                    android:layout_weight="1.3"
-                    android:gravity="center"
-                    android:text="Laffemas"
-                    android:textColor="#125de3"
-                    android:textSize="15sp" />
-
-            </TableRow>
-
-            <TableRow>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </TableRow>
+                android:scrollbars="vertical"/>
 
         </TableLayout>
-
-        <!--</io.alterac.blurkit.BlurLayout>-->
 
     </RelativeLayout>
 

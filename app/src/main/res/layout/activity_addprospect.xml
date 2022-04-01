@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/addprospect_background"
-        android:gravity="center"
         android:orientation="vertical"
         android:padding="50dp"
         tools:context=".LoginActivity">
@@ -17,33 +16,37 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="18dp">
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical">
 
             <EditText
-                android:id="@+id/Siret"
+                android:id="@+id/raisonSociale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginBottom="12dp"
                 android:backgroundTint="@android:color/background_light"
-                android:hint="Siret"
+                android:hint="Raison Sociale"
                 android:textColorHint="#fff" />
 
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
-
             <Button
-                android:id="@+id/btnRechercher2"
+                android:id="@+id/btnRechercherEntreprise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2"
-                android:text="Rechercher"
                 android:background="@drawable/button_style1"
+                android:text="Rechercher"
                 android:textColor="#1495d7" />
 
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/Siret"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:backgroundTint="@android:color/background_light"
+            android:hint="Siret"
+            android:inputType="phone"
+            android:textColorHint="#fff" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +61,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/background_light"
                 android:hint="Nom"
-                android:textColorHint="#fff"/>
+                android:textColorHint="#fff" />
 
             <Space
                 android:layout_width="10dp"
@@ -82,8 +85,8 @@
             android:layout_marginBottom="18dp"
             android:backgroundTint="@android:color/background_light"
             android:hint="Téléphone"
-            android:textColorHint="#fff"
-            android:inputType="phone"/>
+            android:inputType="phone"
+            android:textColorHint="#fff" />
 
         <EditText
             android:id="@+id/Email"
@@ -113,9 +116,9 @@
                 android:id="@+id/btnEnregistrer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/button_style1"
                 android:text="Enregistrer"
-                android:layout_weight="1"
                 android:textColor="#1495d7" />
 
             <Space
@@ -127,9 +130,9 @@
                 android:id="@+id/btnAnnuler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/button_style1"
                 android:text="Annuler"
-                android:layout_weight="1"
                 android:textColor="#1495d7" />
 
         </LinearLayout>

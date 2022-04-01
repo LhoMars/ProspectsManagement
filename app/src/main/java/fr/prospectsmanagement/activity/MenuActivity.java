@@ -3,29 +3,23 @@ package fr.prospectsmanagement.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import fr.prospectsmanagement.api.ApiGouv;
 import fr.prospectsmanagement.model.Prospect;
 import fr.prospectsmanagement.R;
 import fr.prospectsmanagement.api.ApiBdd;
 import fr.prospectsmanagement.dataBase.DaoSQL;
-import fr.prospectsmanagement.dataBase.ProspectBDD;
+import fr.prospectsmanagement.model.ShowProspectAdaptater;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,32 +28,19 @@ import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
     private DaoSQL dataBase;
-    public Button btnAjouter = null;
+    private Button btnAjouter = null;
+    private Button btnRechercher = null;
+    private Button btnSynchroniser = null;
 
-    TableLayout tableLayout;
-    TableRow newTR;
-    TextView newTxtNom, newTxtPrenom, newTxtEntreprise;
+    RecyclerView recycler_view;
+    ShowProspectAdaptater model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBase = new DaoSQL(this);
 
-        ApiBdd api = new ApiBdd();
-        boiteMessage(api.getResultApi());
-
-        /* A utiliser charger */
-        api.callWebService("getAllProspects");
-        JSONArray json = api.getJsonData();
-        updateBddProspects(json);
-
-        ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
-        JSONArray jsonProspects = api.createJsonProspects(lesProspects);
-        api.postJsonProspect("InsertProspect", jsonProspects.toString());
-
         setContentView(R.layout.activity_menu);
-
-        /*Animation du Background mise en coommentaire pour l'instant, couleurs à changer.*/
 
         RelativeLayout RelativeLayout = findViewById(R.id.menuLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) RelativeLayout.getBackground();
@@ -67,20 +48,55 @@ public class MenuActivity extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
 
-        /* Sélection du bouton par son ID puis on ajoute son événement */
+        /* Sélection des bouton par leur ID puis on les lies à des événements qui vont être appelés quand on clique. */
         btnAjouter = (Button) findViewById(R.id.btnAjouter);
         btnAjouter.setOnClickListener(eventBtnAjouter);
 
+        btnRechercher = (Button) findViewById(R.id.btnRechercher);
+        btnRechercher.setOnClickListener(eventBtnRechercher);
+
+        btnSynchroniser = (Button) findViewById(R.id.btnSynchroniser);
+        btnSynchroniser.setOnClickListener(eventBtnSynchroniser);
+
         /* TABLE */
-        tableLayout = (TableLayout) findViewById(R.id.tableLayoutProspects);
-        tableauVueProspects();
+        recycler_view = findViewById(R.id.recycler_view);
+        setRecyclerView();
     }
+
+    public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ApiBdd api = new ApiBdd();
+
+            try{
+                api.callWebService("getAllProspects");
+                JSONArray json = api.getJsonData();
+                updateBddProspects(json);
+
+                ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
+                JSONArray jsonProspects = api.createJsonProspects(lesProspects);
+                api.postJsonProspect("InsertProspect", jsonProspects.toString());
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                boiteMessage(api.getResultApi());
+            }
+        }
+    };
 
     public View.OnClickListener eventBtnAjouter = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent AjoutProspect = new Intent(MenuActivity.this, AjoutProspectActivity.class);
             startActivity(AjoutProspect);
+        }
+    };
+
+    public View.OnClickListener eventBtnRechercher = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
         }
     };
 
@@ -121,27 +137,10 @@ public class MenuActivity extends AppCompatActivity {
         boite.show();
     }
 
-    private void tableauVueProspects() {
-        newTR = new TableRow(MenuActivity.this);
-        newTxtNom = new TextView(MenuActivity.this);
-        newTxtPrenom = new TextView(MenuActivity.this);
-        newTxtEntreprise = new TextView(MenuActivity.this);
-
-        ArrayList<Prospect> allProspects = dataBase.getProspectBdd().getAllProspects();
-
-        for (int i = 0; i < 5; i++) {
-
-            dataBase.getProspectBdd().getProspectWithNom("nom1");
-
-            newTxtNom.setText("test1");
-            newTxtPrenom.setText("test2");
-            newTxtEntreprise.setText("test3");
-        }
-
-        newTR.addView(newTxtNom);
-        newTR.addView(newTxtPrenom);
-        newTR.addView(newTxtEntreprise);
-
-        tableLayout.addView(newTR);
+    private void setRecyclerView(){
+        recycler_view.setHasFixedSize(true);
+        recycler_view.setLayoutManager(new LinearLayoutManager(this));
+        model = new ShowProspectAdaptater(this,dataBase.getProspectBdd().getAllProspects());
+        recycler_view.setAdapter(model);
     }
 }
