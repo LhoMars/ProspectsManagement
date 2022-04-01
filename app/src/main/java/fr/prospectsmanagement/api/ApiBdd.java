@@ -20,7 +20,6 @@ public class ApiBdd {
     String responseApi;
 
     public ApiBdd() {
-        callWebService("connexionBase");
     }
 
     /**
@@ -49,7 +48,7 @@ public class ApiBdd {
     }
 
     /**
-     * Envoi
+     * Envoi des données à l'api
      *
      * @param q    String : service api à envoyer
      * @param data String : la liste des Prospects au format Json string

@@ -67,21 +67,15 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             ApiBdd api = new ApiBdd();
+            api.callWebService("getAllProspects");
+            JSONArray json = api.getJsonData();
+            updateBddProspects(json);
 
-            try{
-                api.callWebService("getAllProspects");
-                JSONArray json = api.getJsonData();
-                updateBddProspects(json);
+            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
+            JSONArray jsonProspects = api.createJsonProspects(lesProspects);
+            api.postJsonProspect("InsertProspect", jsonProspects.toString());
 
-                ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getAllProspects();
-                JSONArray jsonProspects = api.createJsonProspects(lesProspects);
-                api.postJsonProspect("InsertProspect", jsonProspects.toString());
-
-            }catch (Exception e){
-                e.printStackTrace();
-            }finally {
-                boiteMessage(api.getResultApi());
-            }
+            boiteMessage(api.getResultApi());
         }
     };
 
@@ -137,10 +131,10 @@ public class MenuActivity extends AppCompatActivity {
         boite.show();
     }
 
-    private void setRecyclerView(){
+    private void setRecyclerView() {
         recycler_view.setHasFixedSize(true);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        model = new ShowProspectAdaptater(this,dataBase.getProspectBdd().getAllProspects());
+        model = new ShowProspectAdaptater(this, dataBase.getProspectBdd().getAllProspects());
         recycler_view.setAdapter(model);
     }
 }
