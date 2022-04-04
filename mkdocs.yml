@@ -9,6 +9,7 @@ nav:
     - Application Android :
         - javaAndroid/index.md
         - javaAndroid/menuActivity.md
+        - javaAndroid/ajoutProspect.md
     - API :
         - API/index.md
 

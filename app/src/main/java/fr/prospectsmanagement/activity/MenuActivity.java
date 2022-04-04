@@ -147,6 +147,10 @@ public class MenuActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Met à jour la base de données de la table prospect
+     * @param jsonData JSONArray : tableau de prospect au format json
+     */
     private void updateBddProspects(JSONArray jsonData) {
         try {
             if (jsonData.length() != 0) {
@@ -171,6 +175,10 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Envoi une popup à l'utilisateur
+     * @param msg : le message à afficher
+     */
     private void boiteMessage(String msg) {
         AlertDialog.Builder boite = new AlertDialog.Builder(MenuActivity.this);
         boite.setTitle("Information");
