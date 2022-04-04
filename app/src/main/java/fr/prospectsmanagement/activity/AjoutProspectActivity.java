@@ -56,14 +56,11 @@ public class AjoutProspectActivity extends AppCompatActivity {
         public void onClick(View v) {
             ApiGouv apiGouv = new ApiGouv();
 
-            try{
-                long siret = apiGouv.getSiretWithName(raisonSociale.getText().toString());
-                String siretString = Long.toString(siret);
-                siretText.setText(siretString, TextView.BufferType.EDITABLE);
+            long siret = apiGouv.getSiretWithName(raisonSociale.getText().toString());
+            String siretString = Long.toString(siret);
+            siretText.setText(siretString, TextView.BufferType.EDITABLE);
 
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+            boiteMessage(apiGouv.getResultApi());
         }
     };
 
@@ -95,9 +92,9 @@ public class AjoutProspectActivity extends AppCompatActivity {
             String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
             /*String phoneNumberPattern = "/^(\\+33|0033|0)(6|7)[0-9]{8}$/g";*/
 
-            if(nomProspectTxt.length()!=0 && prenomProspectTxt.length()!=0 && siretProspectTxt.length()!=0
-                    && raisonSocialeProspectTxt.length()!=0 && mailProspectTxt.length()!=0){
-                if(mailProspect.matches(emailPattern)){
+            if (nomProspectTxt.length() != 0 && prenomProspectTxt.length() != 0 && siretProspectTxt.length() != 0
+                    && raisonSocialeProspectTxt.length() != 0 && mailProspectTxt.length() != 0) {
+                if (mailProspect.matches(emailPattern)) {
                     Prospect newProspect = new Prospect(nomProspect, prenomProspect, telProspect, mailProspect,
                             Integer.parseInt(noteProspect), Long.parseLong(siretProspect), raisonSocialeProspect);
 
@@ -111,10 +108,10 @@ public class AjoutProspectActivity extends AppCompatActivity {
                     }else{
                         boiteMessage("Le numéro de téléphone n'est pas correct");
                     }*/
-                else{
+                else {
                     boiteMessage("L'e-mail n'est pas valable");
                 }
-            }else{
+            } else {
                 boiteMessage("Un ou plusieurs champs requis sont manquants !\n" +
                         "\n" +
                         "Sont obligatoires : \n" +

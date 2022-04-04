@@ -32,7 +32,7 @@ public class ApiGouv {
             }
             bufferedReader.close();
 
-            resultApi = "Récupération réussi ";
+            resultApi = "Récupération siret";
         } catch (NoRouteToHostException e) {
             resultApi = "Aucune connexion au serveur";
         } catch (Exception e) {
@@ -55,5 +55,9 @@ public class ApiGouv {
             e.printStackTrace();
         }
         return res;
+    }
+
+    public String getResultApi() {
+        return resultApi;
     }
 }

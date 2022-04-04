@@ -10,6 +10,7 @@ nav:
         - javaAndroid/index.md
         - javaAndroid/menuActivity.md
         - javaAndroid/ajoutProspect.md
+        - javaAndroid/DaoSQL.md
     - API :
         - API/index.md
 
