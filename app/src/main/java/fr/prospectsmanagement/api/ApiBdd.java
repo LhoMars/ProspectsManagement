@@ -96,7 +96,7 @@ public class ApiBdd {
     }
 
     /**
-     * Format une liste de prospect en json
+     * Formate une liste de prospect en json
      *
      * @param lesProspects ArrayList : la liste de prospects
      * @return JsonArray : les prospects au format json

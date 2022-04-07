@@ -50,4 +50,40 @@ public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
     };
 ```
 
+Pour obtenir le bon format des données en json et mettre à jour le fichier SQLite la méthode `updateBddProspects` décompose l'objet et insert en bdd les prospects.  
+Pour créer le format de données à envoyer on utilise la méthode `createJsonProspects(ArrayList<Prospect> lesProspects)`.
+
+```java
+/**
+     * Formate une liste de prospect en json
+     *
+     * @param lesProspects ArrayList : la liste de prospects
+     * @return JsonArray : les prospects au format json
+     */
+    public JSONArray createJsonProspects(ArrayList<Prospect> lesProspects) {
+        //Creating a JSONObject object
+        JSONArray jsonArray = new JSONArray();
+
+        try {
+            for (Prospect prospect : lesProspects) {
+                JSONObject jsonObject = new JSONObject();
+                //Inserting key-value pairs into the json object
+                jsonObject.put("id", "default");
+                jsonObject.put("nom", prospect.getNom());
+                jsonObject.put("prenom", prospect.getPrenom());
+                jsonObject.put("mail", prospect.getMail());
+                jsonObject.put("tel", prospect.getTel());
+                jsonObject.put("note", prospect.getNotes());
+                jsonObject.put("siret", prospect.getSiret());
+                jsonObject.put("raisonsocial", prospect.getRaisonSocial());
+
+                jsonArray.put(jsonObject);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonArray;
+    }
+```
+
 Le bouton `Ajouter` change l'activité vers `AjoutProspectActivity`

@@ -101,7 +101,7 @@ public class MenuActivity extends AppCompatActivity {
 
             ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspect(null, null, null);//getAllProspects();
             JSONArray jsonProspects = api.createJsonProspects(lesProspects);
-            api.postJsonProspect("InsertProspect", jsonProspects.toString());
+            api.postJsonProspect("insertProspect", jsonProspects.toString());
 
             loading.dismissDialog();
             boiteMessage(api.getResultApi());
