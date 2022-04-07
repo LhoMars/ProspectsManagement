@@ -11,20 +11,20 @@ sequenceDiagram
 actor Commercial
 
   Commercial ->>+ Activity Menu: bouton synchroniser  
-  Activity Menu ->> APIBdd: callWebService(getAllProspects)  
-  APIBdd -->> Activity Menu: JSONArray json
+  Activity Menu ->>+ APIBdd: callWebService(getAllProspects)  
+  APIBdd -->>- Activity Menu: JSONArray json
   loop updateBddProspects(json)
-      Activity Menu -) Prospect: create with json data
-      Prospect -->> Activity Menu: object
-      Activity Menu ->> DAO: add Prospect
-      DAO -->> Activity Menu: resultat insertion
+      Activity Menu -)+ Prospect: create with json data
+      Prospect -->>- Activity Menu: object
+      Activity Menu ->>+ DAO: add Prospect
+      DAO -->>- Activity Menu: resultat insertion
   end
-  Activity Menu ->> DAO: getProspect
-  DAO -->> Activity Menu: ArrayList<Prospect>
-  Activity Menu ->> APIBdd: createJsonProspects(lesProspects)
-  APIBdd -->> Activity Menu: JSONArray jsonProspects
+  Activity Menu ->>+ DAO: getProspect
+  DAO -->>- Activity Menu: ArrayList<Prospect>
+  Activity Menu ->>+ APIBdd: createJsonProspects(lesProspects)
+  APIBdd -->>- Activity Menu: JSONArray jsonProspects
   Activity Menu ->> APIBdd: postJsonProspect("InsertProspect", jsonProspects)  
-  Activity Menu -->> Commercial: boiteMessage(resultApi)
+  Activity Menu -->>- Commercial: boiteMessage(resultApi)
 ```
 
 L'évènement du bouton est déclaré dans `eventBtnSynchroniser`

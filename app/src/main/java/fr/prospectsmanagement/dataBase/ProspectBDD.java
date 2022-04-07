@@ -69,7 +69,7 @@ public class ProspectBDD extends ObjectBDD {
      * @param nom          String ou null : le nom du prospect
      * @param prenom       String ou null : le prenom du prospect
      * @param raisonSocial String ou null : la raison social de l'entreprise
-     * @return ArrayLsit<Prospect> ou null : s'il n'existe aucun prospect ou plus de 1 le résultat est null
+     * @return ArrayLsit<Prospect> ou null : la liste des prorpects correspondant aux critère ou null s'il n'existe aucun prospect correspondant
      */
     public ArrayList<Prospect> getProspect(String nom, String prenom, String raisonSocial) {
         open();

@@ -52,8 +52,17 @@ public class EmployeeBDD extends ObjectBDD {
      */
     public Employee getEmployeeWithIdentifiant(String identifiant) {
         open();
-        Cursor c = getBdd().query(getTableName(), new String[]{IDENTIFIANT_COL, PASSWORD_COL}, IDENTIFIANT_COL + " = '" + identifiant + "'", null, null, null, null);
-        if (c == null || c.getCount() == 0 || c.getCount() > 1) {
+
+        String[] params = new String[(identifiant != null ? 1 : 0)];
+        int paramIndex = 0;
+        String where = "";
+        if (identifiant != null) {
+            where = IDENTIFIANT_COL + " = ?";
+            params[paramIndex++] = identifiant;
+        }
+
+        Cursor c = getBdd().query(getTableName(), new String[]{IDENTIFIANT_COL, PASSWORD_COL}, where, params, null, null, null);
+        if (c == null || c.getCount() == 0) {
             return null;
         }
 
