@@ -9,12 +9,12 @@ sequenceDiagram
 actor Commercial
 
   Commercial ->>+ Activity Login: saisit de l'identifiant / mot de passe  
-  Activity Login ->> DAO: getEmployeeWithIdentifiant(lIdentifiant)  
-  DAO -) Employee: create new Employee(identifiant, motDePasse)  
-  Employee -->> DAO: lEmployee
-  DAO -->> Activity Login: lEmploye
-  Activity Login ->> Employee: checkPassword(motDePasse)
-  Employee -->> Activity Login: true
+  Activity Login ->>+ DAO: getEmployeeWithIdentifiant(lIdentifiant)  
+  DAO -)+ Employee: create new Employee(identifiant, motDePasse)  
+  Employee -->>- DAO: lEmployee
+  DAO -->>- Activity Login: lEmploye
+  Activity Login ->>+ Employee: checkPassword(motDePasse)
+  Employee -->>- Activity Login: true
   Activity Login ->> Activity Login : new Intent
   Activity Login -->>- Commercial: startActivity(MenuActivity)
 ```
@@ -58,10 +58,10 @@ L'activité récupère les informations saisies et vérifie l'identité de la pe
 Si aucune erreur n'est detectée on passe à l'activité menu.
 
 ```java
-if(editIdentifiant.getText().length()>0&&editPassword.getText().length()>0){
-        Employee lEmploye=database.getEmployeeBdd().getEmployeeWithIdentifiant(editIdentifiant.getText().toString());
+if (editIdentifiant.getText().length() > 0 && editPassword.getText().length() > 0) {
+        Employee lEmploye = database.getEmployeeBdd().getEmployeeWithIdentifiant(editIdentifiant.getText().toString());
 
-        if(lEmploye!=null&&lEmploye.checkPassword(editPassword.getText().toString())){
+        if (lEmploye != null && lEmploye.checkPassword(editPassword.getText().toString())) {
         Intent menu=new Intent(LoginActivity.this,MenuActivity.class);
         menu.putExtra("employee",lEmploye);
         startActivity(menu);

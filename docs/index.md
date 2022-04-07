@@ -43,6 +43,7 @@ graph TB
 rencontre(rencontre un prospect)
 identifie(s'identifie)
 ajoutepr(ajoute un prospect)
+recherchepr(recherche un prospect)
 sync(syncroniser les données)
 serveurBdd[(Serveur distant)]
 
@@ -51,6 +52,7 @@ Commercial:::user --> rencontre
     
 identifie -- <<include>> --> rencontre
 rencontre -- <<extend>> --> ajoutepr
+rencontre -- <<extend>> --> recherchepr
 rencontre -- <<extend>> --> sync
 serveurBdd <--> sync
 ```
