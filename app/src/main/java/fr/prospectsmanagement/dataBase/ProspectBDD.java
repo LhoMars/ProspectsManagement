@@ -27,6 +27,8 @@ public class ProspectBDD extends ObjectBDD {
 
     private static final String RAISON_SOCIAL_COL = "raisonsocial";
 
+    private static final String IS_UPDATE_COL = "isupdate";
+
     public ProspectBDD(DaoSQL maBaseSQLite) {
         super(maBaseSQLite, "prospect",
                 "CREATE TABLE prospect (" +
@@ -37,7 +39,8 @@ public class ProspectBDD extends ObjectBDD {
                         MAIL_COL + " TEXT, " +
                         NOTES_COL + " INTEGER DEFAULT 0, " +
                         SIRET_COL + " INTEGER, " +
-                        RAISON_SOCIAL_COL + " TEXT); ");
+                        RAISON_SOCIAL_COL + " TEXT, " +
+                        IS_UPDATE_COL + " BOOLEAN DEFAULT FALSE); ");
     }
 
 
@@ -47,7 +50,7 @@ public class ProspectBDD extends ObjectBDD {
      * @param p Prospect : le prospect à ajouter
      * @return long : l'id
      */
-    public long addProspectBdd(Prospect p) {
+    public long add(Prospect p) {
         open();
         //Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
@@ -59,6 +62,7 @@ public class ProspectBDD extends ObjectBDD {
         values.put(NOTES_COL, p.getNotes());
         values.put(SIRET_COL, p.getSiret());
         values.put(RAISON_SOCIAL_COL, p.getRaisonSocial());
+        values.put(IS_UPDATE_COL, p.getIsUpdate());
         //on insère l'objet dans la BDD via le ContentValues
         return getBdd().insert(getTableName(), null, values);
     }
@@ -69,9 +73,10 @@ public class ProspectBDD extends ObjectBDD {
      * @param nom          String ou null : le nom du prospect
      * @param prenom       String ou null : le prenom du prospect
      * @param raisonSocial String ou null : la raison social de l'entreprise
-     * @return ArrayLsit<Prospect> ou null : la liste des prorpects correspondant aux critère ou null s'il n'existe aucun prospect correspondant
+     * @param isUpdate     boolean : true si on veux tous les prospects correspondant aux autres critères ou false si on souhaite que les prospects non synchroniser avec le serveur
+     * @return ArrayLsit<Prospect> ou null : la liste des prorpects correspondant aux critères ou null s'il n'existe aucun prospect correspondant
      */
-    public ArrayList<Prospect> getProspect(String nom, String prenom, String raisonSocial) {
+    public ArrayList<Prospect> getProspects(String nom, String prenom, String raisonSocial, boolean isUpdate) {
         open();
 
         String[] params = new String[(nom != null ? 1 : 0) +
@@ -95,7 +100,12 @@ public class ProspectBDD extends ObjectBDD {
             where = where + RAISON_SOCIAL_COL + " LIKE ?";
             params[paramIndex++] = raisonSocial + "%";
         }
-        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL, RAISON_SOCIAL_COL}, where, params, null, null, null);
+        if (!isUpdate) {
+            if (!where.equals(""))
+                where = where + " AND ";
+            where = where + IS_UPDATE_COL + " = 0";
+        }
+        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL, RAISON_SOCIAL_COL, IS_UPDATE_COL}, where, params, null, null, null);
 
         if (c == null || c.getCount() == 0) {
             return null;
@@ -119,6 +129,24 @@ public class ProspectBDD extends ObjectBDD {
         return lesProspects;
     }
 
+    public void update(Prospect p) {
+        if (getProspects(p.getNom(), p.getPrenom(), p.getRaisonSocial(), true).size() == 1) {
+            open();
+            ContentValues values = new ContentValues();
+            values.put(IS_UPDATE_COL, p.getIsUpdate());
+            values.put(TEL_COL, p.getTel());
+            values.put(MAIL_COL, p.getMail());
+            values.put(NOTES_COL, p.getNotes());
+
+            getBdd().update(getTableName(), values,
+                    NOM_COL + " = ? AND " +
+                            PRENOM_COL + " = ? AND " +
+                            RAISON_SOCIAL_COL + " = ?",
+                    new String[]{p.getNom(), p.getPrenom(), p.getRaisonSocial()});
+            close();
+        }
+    }
+
     /**
      * Cette méthode permet de convertir un cursor en un prospect
      *
@@ -137,6 +165,7 @@ public class ProspectBDD extends ObjectBDD {
         p.setNotes(c.getInt(4));
         p.setSiret(c.getLong(5));
         p.setRaisonSocial(c.getString(6));
+        p.setIsUpdate(c.getInt(7) > 0);
 
         //On retourne le prospect
         return p;

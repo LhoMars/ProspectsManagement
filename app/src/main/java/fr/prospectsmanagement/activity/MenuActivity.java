@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
 
 import fr.prospectsmanagement.activity.template.LoadingDialog;
+import fr.prospectsmanagement.model.Employee;
 import fr.prospectsmanagement.model.Prospect;
 import fr.prospectsmanagement.R;
 import fr.prospectsmanagement.api.ApiBdd;
@@ -28,10 +29,14 @@ import fr.prospectsmanagement.activity.template.ShowProspectAdaptater;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class MenuActivity extends AppCompatActivity {
     private DaoSQL dataBase;
+    private Employee lEmployee;
     private LoadingDialog loading;
     private Button btnAjouter = null;
     private Button btnRechercherVisibility = null;
@@ -51,6 +56,9 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         dataBase = new DaoSQL(this);
         loading = new LoadingDialog(this);
+
+        Intent i = getIntent();
+        this.lEmployee = i.getParcelableExtra("employee");
 
         setContentView(R.layout.activity_menu);
 
@@ -86,7 +94,7 @@ public class MenuActivity extends AppCompatActivity {
 
         /* TABLE */
         recycler_view = findViewById(R.id.recycler_view);
-        setRecyclerView(dataBase.getProspectBdd().getProspect(null,null,null));
+        setRecyclerView(dataBase.getProspectBdd().getProspects(null,null,null, true));
     }
 
     public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
@@ -94,26 +102,37 @@ public class MenuActivity extends AppCompatActivity {
         public void onClick(View v) {
             loading.startLoadingDialog();
 
+            SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date date = new Date();
+            String dateMiseAjour = formatter.format(date);
+
             ApiBdd api = new ApiBdd();
-            api.callWebService("getAllProspects");
+            api.callWebService("getAllProspects.php?date="+lEmployee.getDateMiseAjour().replace(":","!"));
             JSONArray json = api.getJsonData();
             updateBddProspects(json);
 
-            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspect(null, null, null);//getAllProspects();
-            JSONArray jsonProspects = api.createJsonProspects(lesProspects);
-            api.postJsonProspect("insertProspect", jsonProspects.toString());
+            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null, null, null, false);//getAllProspects();
+
+            if(lesProspects != null){
+                JSONArray jsonProspects = api.createJsonProspects(lesProspects);
+                api.postJsonProspect("insertProspect.php?date="+lEmployee.getDateMiseAjour().replace(":","!"), jsonProspects.toString());
+            }
+            lEmployee.setDateMiseAjour(dateMiseAjour);
+            dataBase.getEmployeeBdd().update(lEmployee);
 
             loading.dismissDialog();
-            boiteMessage(api.getResultApi());
-            setRecyclerView(dataBase.getProspectBdd().getProspect(null,null,null));
+            boiteMessage(api.getResult());
+            setRecyclerView(dataBase.getProspectBdd().getProspects(null,null,null, true));
         }
     };
 
     public View.OnClickListener eventBtnAjouter = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent AjoutProspect = new Intent(MenuActivity.this, AjoutProspectActivity.class);
-            startActivity(AjoutProspect);
+            Intent ajoutProspect = new Intent(MenuActivity.this, AjoutProspectActivity.class);
+            ajoutProspect.putExtra("employee", lEmployee);
+            startActivity(ajoutProspect);
         }
     };
 
@@ -132,9 +151,10 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspect(nomFiltre.getText().toString(),
+            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(nomFiltre.getText().toString(),
                     prenomFiltre.getText().toString(),
-                    entrepriseFiltre.getText().toString());
+                    entrepriseFiltre.getText().toString(),
+                    true);
 
             setRecyclerView(lesProspects);
         }
@@ -164,9 +184,12 @@ public class MenuActivity extends AppCompatActivity {
                     p.setNotes((json.getInt("note")));
                     p.setSiret((json.getLong("siret")));
                     p.setRaisonSocial((json.getString("raisonsocial")));
+                    p.setIsUpdate(true);
 
-                    if (dataBase.getProspectBdd().getProspect(p.getNom(), p.getPrenom(), p.getRaisonSocial()) == null) {
-                        dataBase.getProspectBdd().addProspectBdd(p);
+                    if (dataBase.getProspectBdd().getProspects(p.getNom(), p.getPrenom(), p.getRaisonSocial(),true) == null) {
+                        dataBase.getProspectBdd().add(p);
+                    }else{
+                        dataBase.getProspectBdd().update(p);
                     }
                 }
             }

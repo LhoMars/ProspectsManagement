@@ -10,21 +10,20 @@ import fr.prospectsmanagement.model.Employee;
 public class EmployeeBDD extends ObjectBDD {
 
     private static final String ID_COL = "id";
-    private static final int ID_COL_NUM = 0;
 
     private static final String IDENTIFIANT_COL = "identifiant";
-    private static final int IDENTIFIANT_COL_NUM = 1;
 
     private static final String PASSWORD_COL = "password";
-    private static final int PASSWORD_COL_NUM = 2;
 
+    private static final String DATE_COL = "dateMiseAjour";
 
     public EmployeeBDD(DaoSQL maBaseSQLite) {
         super(maBaseSQLite, "employee",
                 "CREATE TABLE employee (" +
                         ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         IDENTIFIANT_COL + " TEXT, " +
-                        PASSWORD_COL + " TEXT); ");
+                        PASSWORD_COL + " TEXT, " +
+                        DATE_COL + " timestamp);");
     }
 
     /**
@@ -33,15 +32,24 @@ public class EmployeeBDD extends ObjectBDD {
      * @param e Employee : l'employee à ajouter
      * @return long : l'id
      */
-    public long addemployeeBdd(Employee e) {
+    public long add(Employee e) {
         open();
         //Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
         //on lui ajoute une valeur associée à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
         values.put(IDENTIFIANT_COL, e.getIdentifiant());
         values.put(PASSWORD_COL, e.getPassword());
+        values.put(DATE_COL, e.getDateMiseAjour());
         //on insère l'objet dans la BDD via le ContentValues
         return getBdd().insert(getTableName(), null, values);
+    }
+
+    public void update(Employee e) {
+        open();
+        ContentValues values = new ContentValues();
+        values.put(DATE_COL, e.getDateMiseAjour());
+        getBdd().update(getTableName(), values, IDENTIFIANT_COL + " = ?", new String[]{e.getIdentifiant()});
+        close();
     }
 
     /**
@@ -53,15 +61,8 @@ public class EmployeeBDD extends ObjectBDD {
     public Employee getEmployeeWithIdentifiant(String identifiant) {
         open();
 
-        String[] params = new String[(identifiant != null ? 1 : 0)];
-        int paramIndex = 0;
-        String where = "";
-        if (identifiant != null) {
-            where = IDENTIFIANT_COL + " = ?";
-            params[paramIndex++] = identifiant;
-        }
-
-        Cursor c = getBdd().query(getTableName(), new String[]{IDENTIFIANT_COL, PASSWORD_COL}, where, params, null, null, null);
+        Cursor c = getBdd().query(getTableName(), new String[]{IDENTIFIANT_COL, PASSWORD_COL, DATE_COL},
+                IDENTIFIANT_COL + " = ?", new String[]{identifiant}, null, null, null);
         if (c == null || c.getCount() == 0) {
             return null;
         }
@@ -81,6 +82,7 @@ public class EmployeeBDD extends ObjectBDD {
         Employee e = new Employee();
         e.setIdentifiant(c.getString(0));
         e.setPassword(c.getString(1));
+        e.setDateMiseAjour(c.getString(2));
 
         //On retourne l'employee
         return e;

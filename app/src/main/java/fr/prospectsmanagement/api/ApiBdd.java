@@ -14,9 +14,9 @@ import java.util.ArrayList;
  * pour effectuer des requêtes au serveur API
  */
 public class ApiBdd {
-    final String apiURL = "http://192.168.43.198/api/";
-    String resultApi;
-    String responseApi;
+    final String url = "http://192.168.43.198/api/";
+    String result;
+    String response;
 
     public ApiBdd() {
     }
@@ -28,20 +28,20 @@ public class ApiBdd {
      */
     public void callWebService(String q) {
         try {
-            URL url = new URL(apiURL + q+".php");
+            URL url = new URL(this.url + q);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
             String stringBuffer;
-            responseApi = "";
+            response = "";
             while ((stringBuffer = bufferedReader.readLine()) != null) {
-                responseApi = String.format("%s%s", responseApi, stringBuffer);
+                response = String.format("%s%s", response, stringBuffer);
             }
             bufferedReader.close();
 
-            resultApi = "Récupération réussi ";
+            result = "Récupération réussi ";
         } catch (NoRouteToHostException e) {
-            resultApi = "Aucune connexion au serveur";
+            result = "Aucune connexion au serveur";
         } catch (Exception e) {
-            resultApi = "Erreur API";
+            result = "Erreur API";
             e.printStackTrace();
         }
     }
@@ -56,7 +56,7 @@ public class ApiBdd {
         OutputStream out = null;
 
         try {
-            URL url = new URL(apiURL + q+ ".php");
+            URL url = new URL(this.url + q);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
@@ -68,12 +68,12 @@ public class ApiBdd {
             writer.close();
             out.close();
 
-            if (urlConnection.getResponseCode() == 200) resultApi = "Récupération réussi";
+            if (urlConnection.getResponseCode() == 200) result = "Récupération réussi";
             urlConnection.disconnect();
         } catch (NoRouteToHostException e) {
-            resultApi = "Aucune connexion au serveur";
+            result = "Aucune connexion au serveur";
         } catch (Exception e) {
-            resultApi = "Erreur API";
+            result = "Erreur API";
             e.printStackTrace();
         }
     }
@@ -86,11 +86,10 @@ public class ApiBdd {
     public JSONArray getJsonData() {
         JSONArray data = new JSONArray();
         try {
-            JSONObject jsonObject = new JSONObject(responseApi.substring(responseApi.indexOf("{"), responseApi.lastIndexOf("}") + 1));
+            JSONObject jsonObject = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
             data = jsonObject.getJSONArray("data");
         } catch (Exception e) {
             e.printStackTrace();
-
         }
         return data;
     }
@@ -126,7 +125,7 @@ public class ApiBdd {
         return jsonArray;
     }
 
-    public String getResultApi() {
-        return resultApi;
+    public String getResult() {
+        return result;
     }
 }

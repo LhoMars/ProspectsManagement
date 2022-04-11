@@ -11,8 +11,9 @@ public class Prospect {
     private int notes;
     private long siret;
     private String raisonSocial;
+    private boolean isUpdate;
 
-    public Prospect(String nom, String prenom, String tel, String mail, int notes, long siret, String raisonSocial) {
+    public Prospect(String nom, String prenom, String tel, String mail, int notes, long siret, String raisonSocial,boolean isUpdate) {
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
@@ -20,10 +21,11 @@ public class Prospect {
         this.notes = notes;
         this.siret = siret;
         this.raisonSocial = raisonSocial;
+        this.isUpdate = isUpdate;
     }
 
     public Prospect() {
-        this("", "", "", "", 0, 0, "");
+        this("", "", "", "", 0, 0, "", false);
     }
 
     public String getNom() {
@@ -54,6 +56,10 @@ public class Prospect {
         return raisonSocial;
     }
 
+    public boolean getIsUpdate() {
+        return isUpdate;
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -74,12 +80,16 @@ public class Prospect {
         this.notes = notes;
     }
 
-    public void setSiret(Long siret) {
+    public void setSiret(long siret) {
         this.siret = siret;
     }
 
     public void setRaisonSocial(String raisonSocial) {
         this.raisonSocial = raisonSocial;
+    }
+
+    public void setIsUpdate(boolean isUpdate) {
+        this.isUpdate = isUpdate;
     }
 
     @Override

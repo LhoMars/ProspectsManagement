@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,17 +11,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
 import fr.prospectsmanagement.R;
-import fr.prospectsmanagement.api.ApiBdd;
 import fr.prospectsmanagement.api.ApiGouv;
 import fr.prospectsmanagement.dataBase.DaoSQL;
+import fr.prospectsmanagement.model.Employee;
 import fr.prospectsmanagement.model.Prospect;
 
 
 public class AjoutProspectActivity extends AppCompatActivity {
     private DaoSQL dataBase;
+    private Employee lEmployee;
     private Button btnAnnuler = null;
     private Button btnRechercherEntreprise = null;
     private Button btnEnregistrer = null;
@@ -33,6 +31,9 @@ public class AjoutProspectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBase = new DaoSQL(this);
+
+        Intent i = getIntent();
+        this.lEmployee = i.getParcelableExtra("employee");
 
         setContentView(R.layout.activity_addprospect);
 
@@ -96,11 +97,12 @@ public class AjoutProspectActivity extends AppCompatActivity {
                     && raisonSocialeProspectTxt.length() != 0 && mailProspectTxt.length() != 0) {
                 if (mailProspect.matches(emailPattern)) {
                     Prospect newProspect = new Prospect(nomProspect, prenomProspect, telProspect, mailProspect,
-                            Integer.parseInt(noteProspect), Long.parseLong(siretProspect), raisonSocialeProspect);
+                            Integer.parseInt(noteProspect), Long.parseLong(siretProspect), raisonSocialeProspect, false);
 
-                    dataBase.getProspectBdd().addProspectBdd(newProspect);
+                    dataBase.getProspectBdd().add(newProspect);
 
                     Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
+                    retourMenu.putExtra("employee", lEmployee);
                     startActivity(retourMenu);
                 }
                     /*if(telProspect.matches(phoneNumberPattern)){
@@ -128,6 +130,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
+            retourMenu.putExtra("employee", lEmployee);
             startActivity(retourMenu);
         }
     };

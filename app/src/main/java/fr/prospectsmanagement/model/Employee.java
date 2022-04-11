@@ -7,24 +7,27 @@ import org.mindrot.jbcrypt.BCrypt;
 /**
  * La classe Employee implement Parcelable
  * ce qui lui permet la navigabilité
- * entre les différentes activité
+ * entre les différentes activités
  */
 public class Employee implements Parcelable {
     private String identifiant;
     private String password;
+    private String dateMiseAjour;
 
-    public Employee(String identifiant, String password) {
+    public Employee(String identifiant, String password, String dateMiseAjour) {
         this.identifiant = identifiant;
         this.password = hashPassword(password);
+        this.dateMiseAjour = dateMiseAjour;
     }
 
     public Employee() {
-        this("", "");
+        this("", "", "");
     }
 
     protected Employee(Parcel in) {
         identifiant = in.readString();
         password = in.readString();
+        dateMiseAjour = in.readString();
     }
 
     public boolean checkPassword(String mdp) {
@@ -56,7 +59,7 @@ public class Employee implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(identifiant);
         dest.writeString(password);
-
+        dest.writeString(dateMiseAjour);
     }
 
     public String getIdentifiant() {
@@ -67,6 +70,10 @@ public class Employee implements Parcelable {
         return password;
     }
 
+    public String getDateMiseAjour() {
+        return dateMiseAjour;
+    }
+
     public void setIdentifiant(String identifiant) {
         this.identifiant = identifiant;
     }
@@ -75,11 +82,16 @@ public class Employee implements Parcelable {
         this.password = password;
     }
 
+    public void setDateMiseAjour(String dateMiseAjour) {
+        this.dateMiseAjour = dateMiseAjour;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "identifiant='" + identifiant + '\'' +
                 ", password='" + password + '\'' +
+                ", dateMiseAjour='" + dateMiseAjour + '\'' +
                 '}';
     }
 }

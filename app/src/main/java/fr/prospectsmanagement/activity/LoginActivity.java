@@ -10,7 +10,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import fr.prospectsmanagement.model.Employee;
-import fr.prospectsmanagement.model.Prospect;
 import fr.prospectsmanagement.R;
 import fr.prospectsmanagement.dataBase.DaoSQL;
 
@@ -28,8 +27,8 @@ public class LoginActivity extends AppCompatActivity {
         /* Jeux de test pour la bdd
         Créer un employer pour se connecter */
         if (database.getEmployeeBdd().getEmployeeWithIdentifiant("user") == null) {
-            Employee e = new Employee("user", "password");
-            database.getEmployeeBdd().addemployeeBdd(e);
+            Employee e = new Employee("user", "password", "2022-04-08 00:00:00");
+            database.getEmployeeBdd().add(e);
         }
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
