@@ -3,6 +3,7 @@ package fr.prospectsmanagement.api;
 import fr.prospectsmanagement.model.Prospect;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.NoRouteToHostException;
@@ -29,7 +30,11 @@ public class ApiBdd {
     public void callWebService(String q) {
         try {
             URL url = new URL(this.url + q);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String stringBuffer;
             response = "";
             while ((stringBuffer = bufferedReader.readLine()) != null) {
@@ -37,7 +42,8 @@ public class ApiBdd {
             }
             bufferedReader.close();
 
-            result = "Récupération réussi ";
+            result = (urlConnection.getResponseCode() == 200) ? "Récupération réussi" : "Erreur API";
+            urlConnection.disconnect();
         } catch (NoRouteToHostException e) {
             result = "Aucune connexion au serveur";
         } catch (Exception e) {
@@ -68,7 +74,7 @@ public class ApiBdd {
             writer.close();
             out.close();
 
-            if (urlConnection.getResponseCode() == 200) result = "Récupération réussi";
+            result = (urlConnection.getResponseCode() == 200) ? "Récupération réussi" : "Erreur API";
             urlConnection.disconnect();
         } catch (NoRouteToHostException e) {
             result = "Aucune connexion au serveur";

@@ -90,13 +90,15 @@ Le format des données reçu est sous ce format :
 ```
 
 ### POST : envoyer les prospects
-Toujours au format json, les données peuvent être récupérées pour alimenter la bdd mySql
-
+Toujours au format json, les données peuvent être récupérées pour alimenter la bdd mySql;  
+La sélection se fait par rapport à la précédente date de synchronisation
 ```php
 <?php
 header('Content-type: application/json; charset=utf-8');
+
+$date = (isset($_GET['date']))? $_GET['date']: null;
 $dataPost = file_get_contents('php://input');
-setProspects($dataPost);
+setProspects($dataPost, $date);
 ?>
 ```
 
@@ -109,7 +111,7 @@ La fonction `setProspects` parcourt les données et vérifie s'il le prospect es
  * @param $json : un json contenant les prospects
  * @return void
  */
-function SetProspects($json)
+function setProspects($json, $date)
 {
     $res = json_decode($json);
 
@@ -118,7 +120,7 @@ function SetProspects($json)
     foreach ($res as $prospect) {
         $nb = nbProspect($prospect->{'nom'}, $prospect->{'prenom'}, $prospect->{'raisonsocial'});
         if ($nb == 0) {
-            insertprospect($prospect->{'id'}, $prospect->{'nom'}, $prospect->{'prenom'}, $prospect->{'tel'}, $prospect->{'mail'}, $prospect->{'note'}, $prospect->{'siret'}, $prospect->{'raisonsocial'});
+            insertprospect($prospect->{'id'}, $prospect->{'nom'}, $prospect->{'prenom'}, $prospect->{'tel'}, $prospect->{'mail'}, $prospect->{'note'}, $prospect->{'siret'}, $prospect->{'raisonsocial'}, $date);
         }
     }
 }

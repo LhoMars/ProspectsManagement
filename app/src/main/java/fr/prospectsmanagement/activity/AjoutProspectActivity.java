@@ -61,7 +61,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
             String siretString = Long.toString(siret);
             siretText.setText(siretString, TextView.BufferType.EDITABLE);
 
-            boiteMessage(apiGouv.getResultApi());
+            boiteMessage(apiGouv.getResult());
         }
     };
 

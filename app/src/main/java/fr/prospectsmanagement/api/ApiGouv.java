@@ -5,41 +5,48 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.NoRouteToHostException;
 import java.net.URL;
 
 public class ApiGouv {
-    public String apiURL = "https://entreprise.data.gouv.fr/api/sirene/v1/full_text/";
-    String resultApi;
-    String responseApi;
+    public String url = "https://entreprise.data.gouv.fr/api/sirene/v1/full_text/";
+    String result;
+    String response;
 
     public ApiGouv() {
     }
 
     /**
      * Récupère le siret d'une entreprise avec son nom
+     *
      * @param nom String : la dénomination de l'entreprise
      * @return long : le siret de l'entreprise
      */
     public long getSiretWithName(String nom) {
         try {
-            URL url = new URL(apiURL + nom);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
+            URL url = new URL(this.url + nom);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String stringBuffer;
-            responseApi = "";
+            response = "";
             while ((stringBuffer = bufferedReader.readLine()) != null) {
-                responseApi = String.format("%s%s", responseApi, stringBuffer);
+                response = String.format("%s%s", response, stringBuffer);
             }
             bufferedReader.close();
 
-            resultApi = "Récupération siret";
+            result = (urlConnection.getResponseCode() == 200) ? "Récupération siret réussi" : "Erreur API";
+            urlConnection.disconnect();
         } catch (NoRouteToHostException e) {
-            resultApi = "Aucune connexion au serveur";
+            result = "Aucune connexion au serveur";
         } catch (Exception e) {
-            resultApi = "Erreur API";
+            result = "Erreur API";
             e.printStackTrace();
         }
-        return siretWithJson(responseApi);
+        return siretWithJson(response);
     }
 
     private long siretWithJson(String json) {
@@ -57,7 +64,7 @@ public class ApiGouv {
         return res;
     }
 
-    public String getResultApi() {
-        return resultApi;
+    public String getResult() {
+        return result;
     }
 }

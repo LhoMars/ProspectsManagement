@@ -27,25 +27,38 @@ actor Commercial
   Activity Menu -->>- Commercial: boiteMessage(resultApi)
 ```
 
-L'évènement du bouton est déclaré dans `eventBtnSynchroniser`
+L'évènement du bouton est déclaré dans `eventBtnSynchroniser`.  
+La date de mise à jour permet de récupérer les prospects créer à une date ultérieure à celle de la mise à jour et donc limiter le nombres d'informations transmis en bande passante.  
+Pour le POST : application envoie seulement les prospects pour lesquelles la valeur `isupdate` de la colonne est à false, il s'agit d'une valeur boolean pour savoir s'il le prospect est déjà synchronisé avec le serveur externe.  
+
 ```java
 public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            loading.startLoadingDialog();
+        loading.startLoadingDialog();
 
-            ApiBdd api = new ApiBdd();
-            api.callWebService("getAllProspects");
-            JSONArray json = api.getJsonData();
-            updateBddProspects(json);
+        SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = new Date();
+        String dateMiseAjour = formatter.format(date);
 
-            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspect(null, null, null);//getAllProspects();
-            JSONArray jsonProspects = api.createJsonProspects(lesProspects);
-            api.postJsonProspect("InsertProspect", jsonProspects.toString());
+        ApiBdd api = new ApiBdd();
+        api.callWebService("getAllProspects.php?date="+lEmployee.getDateMiseAjour().replace(":","!"));
+        JSONArray json = api.getJsonData();
+        updateBddProspects(json);
 
-            loading.dismissDialog();
-            boiteMessage(api.getResultApi());
-            setRecyclerView(dataBase.getProspectBdd().getProspect(null,null,null));
+        ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null, null, null, false);//getAllProspects();
+
+        if(lesProspects != null){
+        JSONArray jsonProspects = api.createJsonProspects(lesProspects);
+        api.postJsonProspect("insertProspect.php?date="+lEmployee.getDateMiseAjour().replace(":","!"), jsonProspects.toString());
+        }
+        lEmployee.setDateMiseAjour(dateMiseAjour);
+        dataBase.getEmployeeBdd().update(lEmployee);
+
+        loading.dismissDialog();
+        boiteMessage(api.getResult());
+        setRecyclerView(dataBase.getProspectBdd().getProspects(null,null,null, true));
         }
     };
 ```
