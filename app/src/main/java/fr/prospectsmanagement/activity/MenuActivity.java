@@ -112,7 +112,7 @@ public class MenuActivity extends AppCompatActivity {
             JSONArray json = api.getJsonData();
             updateBddProspects(json);
 
-            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null, null, null, false);//getAllProspects();
+            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null, null, null, false);
 
             if(lesProspects != null){
                 JSONArray jsonProspects = api.createJsonProspects(lesProspects);
