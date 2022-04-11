@@ -24,8 +24,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
+                android:singleLine="true"
                 android:backgroundTint="@android:color/background_light"
                 android:hint="Raison Sociale"
+                android:maxLength="50"
                 android:textColorHint="#fff" />
 
             <Button
@@ -39,12 +41,13 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/Siret"
+            android:id="@+id/Siren"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
             android:backgroundTint="@android:color/background_light"
-            android:hint="Siret"
+            android:hint="Siren"
+            android:singleLine="true"
             android:inputType="phone"
             android:textColorHint="#fff" />
 
@@ -61,6 +64,8 @@
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/background_light"
                 android:hint="Nom"
+                android:maxLength="30"
+                android:singleLine="true"
                 android:textColorHint="#fff" />
 
             <Space
@@ -75,6 +80,8 @@
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/background_light"
                 android:hint="Prénom"
+                android:maxLength="25"
+                android:singleLine="true"
                 android:textColorHint="#fff" />
         </LinearLayout>
 
@@ -85,7 +92,7 @@
             android:layout_marginBottom="18dp"
             android:backgroundTint="@android:color/background_light"
             android:hint="Téléphone (facultatif)"
-            android:inputType="phone"
+            android:singleLine="true"
             android:textColorHint="#fff" />
 
         <EditText
@@ -95,6 +102,7 @@
             android:layout_marginBottom="18dp"
             android:backgroundTint="@android:color/background_light"
             android:hint="Email"
+            android:maxLength="320"
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textColorHint="#fff" />
@@ -106,6 +114,8 @@
             android:layout_marginBottom="17dp"
             android:backgroundTint="@android:color/background_light"
             android:hint="Notes (facultatif)"
+            android:singleLine="true"
+            android:maxLength="2"
             android:textColorHint="#fff" />
 
         <LinearLayout

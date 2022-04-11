@@ -39,7 +39,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
 
         /* Selection des vues de l'activité */
         raisonSociale = (EditText) findViewById(R.id.RaisonSociale);
-        siretText = (EditText) findViewById(R.id.Siret);
+        siretText = (EditText) findViewById(R.id.Siren);
 
         /* Sélection du bouton par son ID puis on ajoute son événement */
         btnRechercherEntreprise = (Button) findViewById(R.id.btnRechercherEntreprise);
@@ -68,6 +68,10 @@ public class AjoutProspectActivity extends AppCompatActivity {
     public View.OnClickListener eventBtnEnregistrer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            /* Récupération de ce qu'a écrit l'utilisateur dans les EditText
+            puis on les transforment en chaine de caractère qu'on stockent dans de nouvelles variables*/
+
             EditText nomProspectTxt = (EditText) findViewById(R.id.Nom);
             String nomProspect = nomProspectTxt.getText().toString();
 
@@ -76,7 +80,6 @@ public class AjoutProspectActivity extends AppCompatActivity {
 
             EditText telProspectTxt = (EditText) findViewById(R.id.Telephone);
             String telProspect = telProspectTxt.getText().toString();
-            Integer telProspectInt = Integer.parseInt(telProspect);
 
             EditText mailProspectTxt = (EditText) findViewById(R.id.Email);
             String mailProspect = mailProspectTxt.getText().toString();
@@ -84,33 +87,64 @@ public class AjoutProspectActivity extends AppCompatActivity {
             EditText noteProspectTxt = (EditText) findViewById(R.id.Notes);
             String noteProspect = noteProspectTxt.getText().toString();
 
-            EditText siretProspectTxt = (EditText) findViewById(R.id.Siret);
-            String siretProspect = siretProspectTxt.getText().toString();
+            EditText sirenProspectTxt = (EditText) findViewById(R.id.Siren);
+            String sirenProspect = sirenProspectTxt.getText().toString();
 
             EditText raisonSocialeProspectTxt = (EditText) findViewById(R.id.RaisonSociale);
             String raisonSocialeProspect = raisonSocialeProspectTxt.getText().toString();
 
-            String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-            /*String phoneNumberPattern = "/^(\\+33|0033|0)(6|7)[0-9]{8}$/g";*/
+            /* Initialisation des regex pour faire des tests par rapport aux entrés de l'utilisateur*/
 
-            if (nomProspectTxt.length() != 0 && prenomProspectTxt.length() != 0 && siretProspectTxt.length() != 0
+            String regexEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+            String regexPhoneNumber = "(33|0033|0)[1-9][0-9]{8}$";
+            String regexSpace = "(\\s+)$";
+            String regexNomPrenom = "[A-Z][A-Za-z\\é\\è\\ê\\ï\\-]+$";
+            String regexNumbers = "[0-9]";
+            String regexRaisonSociale = "[A-Z][A-Za-z\\é\\è\\ê\\ï\\-]+$";
+
+            String telProspectTest = "";
+            int noteProspectTest = 0;
+            long sirenProspectTest = 0;
+
+            if (nomProspectTxt.length() != 0 && prenomProspectTxt.length() != 0 && sirenProspectTxt.length() != 0
                     && raisonSocialeProspectTxt.length() != 0 && mailProspectTxt.length() != 0) {
-                if (mailProspect.matches(emailPattern)) {
-                    Prospect newProspect = new Prospect(nomProspect, prenomProspect, telProspect, mailProspect,
-                            Integer.parseInt(noteProspect), Long.parseLong(siretProspect), raisonSocialeProspect, false);
+                if (mailProspect.matches(regexEmail) && !mailProspect.matches(regexSpace)) {
+                    if (prenomProspect.matches(regexNomPrenom) && !prenomProspect.matches(regexSpace)) {
+                        if (nomProspect.matches(regexNomPrenom) && !nomProspect.matches(regexSpace)) {
+                            if (sirenProspect.matches(regexNumbers) && !sirenProspect.matches(regexSpace)) {
+                                sirenProspectTest = Long.parseLong(sirenProspect);
+                                if (raisonSocialeProspect.matches(regexRaisonSociale) && !raisonSocialeProspect.matches(regexSpace)) {
+                                    if (telProspect.length() == 0 || telProspect.matches(regexPhoneNumber)) {
+                                        telProspectTest = (telProspect.length() == 0) ? "0" : telProspect;
+                                        if (noteProspect.length() == 0 || (noteProspect.matches(regexNumbers) &&
+                                                Integer.parseInt(noteProspect) <= 20 && Integer.parseInt(noteProspect) >= 1)) {
+                                            noteProspectTest = (noteProspect.length() == 0) ? 0 : Integer.parseInt(noteProspect);
+                                            Prospect newProspect = new Prospect(nomProspect, prenomProspect, telProspectTest, mailProspect,
+                                                    noteProspectTest, sirenProspectTest, raisonSocialeProspect, false);
 
-                    dataBase.getProspectBdd().add(newProspect);
+                                            dataBase.getProspectBdd().add(newProspect);
 
-                    Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
-                    retourMenu.putExtra("employee", lEmployee);
-                    startActivity(retourMenu);
-                }
-                    /*if(telProspect.matches(phoneNumberPattern)){
-                        
-                    }else{
-                        boiteMessage("Le numéro de téléphone n'est pas correct");
-                    }*/
-                else {
+                                            Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
+                                            startActivity(retourMenu);
+                                        } else {
+                                            boiteMessage("Le numéro de téléphone doit être vide ou correct");
+                                        }
+                                    } else {
+                                        boiteMessage("Le numéro de téléphone doit être vide ou correct");
+                                    }
+                                } else {
+                                    boiteMessage("La raison sociale n'est pas valable");
+                                }
+                            } else {
+                                boiteMessage("le siret est incorrect");
+                            }
+                        } else {
+                            boiteMessage("le nom de famille n'est pas accepté");
+                        }
+                    } else {
+                        boiteMessage("Le prénom n'est pas accepté");
+                    }
+                } else {
                     boiteMessage("L'e-mail n'est pas valable");
                 }
             } else {
