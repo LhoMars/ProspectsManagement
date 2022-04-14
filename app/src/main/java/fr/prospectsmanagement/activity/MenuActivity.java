@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
 import fr.prospectsmanagement.activity.template.LoadingDialog;
 import fr.prospectsmanagement.model.Employee;
@@ -42,7 +44,6 @@ public class MenuActivity extends AppCompatActivity {
     private Button btnRechercherVisibility = null;
     private Button btnRechercher = null;
     private Button btnSynchroniser = null;
-    private Button btnClearFiltres = null;
     private EditText nomFiltre = null;
     private EditText prenomFiltre = null;
     private EditText entrepriseFiltre = null;
@@ -50,6 +51,7 @@ public class MenuActivity extends AppCompatActivity {
     RecyclerView recycler_view;
     ShowProspectAdaptater model;
     ViewGroup filtresLayout;
+    ViewGroup infosProspectLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,10 @@ public class MenuActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_menu);
 
+        /* Création des variables pour lier les layouts au menu*/
         RelativeLayout RelativeLayout = findViewById(R.id.menuLayout);
+
+        /* Animation de couleurs en fond de page */
         AnimationDrawable animationDrawable = (AnimationDrawable) RelativeLayout.getBackground();
         animationDrawable.setEnterFadeDuration(1500);
         animationDrawable.setExitFadeDuration(5000);
@@ -78,21 +83,19 @@ public class MenuActivity extends AppCompatActivity {
         btnRechercher = (Button) findViewById(R.id.btnRechercher);
         btnRechercher.setOnClickListener(eventBtnRechercher);
 
-        btnClearFiltres = (Button) findViewById(R.id.btnClearFiltres);
-        btnClearFiltres.setOnClickListener(eventBtnClearFiltres);
-
         btnSynchroniser = (Button) findViewById(R.id.btnSynchroniser);
         btnSynchroniser.setOnClickListener(eventBtnSynchroniser);
 
         /* Lien entre les éléments de l'xml et les variables créées aux début */
         filtresLayout = findViewById(R.id.filtresLayout);
+        infosProspectLayout = findViewById(R.id.infosProspectLayout);
 
         nomFiltre = findViewById(R.id.nomFiltre);
         prenomFiltre = findViewById(R.id.prenomFiltre);
         entrepriseFiltre = findViewById(R.id.entrepriseFiltre);
 
 
-        /* TABLE */
+        /* table des prospects */
         recycler_view = findViewById(R.id.recycler_view);
         setRecyclerView(dataBase.getProspectBdd().getProspects(null,null,null, true));
     }
@@ -141,6 +144,7 @@ public class MenuActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+            infosProspectLayout.setVisibility(View.GONE);
             TransitionManager.beginDelayedTransition(filtresLayout);
             visible = !visible;
             filtresLayout.setVisibility(visible ? View.VISIBLE: View.GONE);
@@ -150,7 +154,6 @@ public class MenuActivity extends AppCompatActivity {
     public View.OnClickListener eventBtnRechercher = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(nomFiltre.getText().toString(),
                     prenomFiltre.getText().toString(),
                     entrepriseFiltre.getText().toString(),
@@ -160,12 +163,40 @@ public class MenuActivity extends AppCompatActivity {
         }
     };
 
-    public View.OnClickListener eventBtnClearFiltres = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+    public void eventBtnClearFiltres(View v) {
 
-        }
+        nomFiltre.setText("");
+        prenomFiltre.setText("");
+        entrepriseFiltre.setText("");
+
+        ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null,null,null, true);
+        setRecyclerView(lesProspects);
     };
+
+    public void eventInfosProspectVisibility(View v){
+        TextView nomInfos = (TextView) findViewById(R.id.nomProspect);
+        TextView prenomInfos = (TextView) findViewById(R.id.prenomTextView);
+        TextView raisonSocialeInfos = (TextView) findViewById(R.id.raisonSocialeTextView);
+        TextView sirenInfos = (TextView) findViewById(R.id.sirenTextView);
+        TextView mailInfos = (TextView) findViewById(R.id.mailTextView);
+        TextView telephoneInfos = (TextView) findViewById(R.id.telephoneTextView);
+        TextView noteInfos = (TextView) findViewById(R.id.noteTextView);
+        int visibleInfosInt = infosProspectLayout.getVisibility();
+        boolean visible;
+
+        if(visibleInfosInt == 8){
+            visible = false;
+        }else{
+            visible = true;
+        }
+
+        nomInfos.setText("testnuméro1");
+
+        filtresLayout.setVisibility(View.GONE);
+        TransitionManager.beginDelayedTransition(infosProspectLayout);
+        visible = !visible;
+        infosProspectLayout.setVisibility(visible ? View.VISIBLE: View.GONE);
+    }
 
     /**
      * Met à jour la base de données de la table prospect

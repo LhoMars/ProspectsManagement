@@ -2,9 +2,12 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="1,2,3">
+    android:stretchColumns="1,2,3"
+    android:id="@+id/item_layout">
 
     <TableRow
+        android:id="@+id/tableRow"
+        android:onClick="eventInfosProspectVisibility"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/tableau_border_titles">
@@ -12,12 +15,14 @@
         <TextView
             android:id="@+id/nom_prospect"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:layout_column="1"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="#125de3"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:background="@drawable/button_style2"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:id="@+id/prenom_prospect"
@@ -27,7 +32,8 @@
             android:layout_weight="1.2"
             android:gravity="center"
             android:textColor="#125de3"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:background="@drawable/button_style2" />
 
         <TextView
             android:id="@+id/entreprise_prospect"
@@ -38,7 +44,6 @@
             android:gravity="center"
             android:textColor="#125de3"
             android:textSize="14sp" />
-
     </TableRow>
 
 </TableLayout>

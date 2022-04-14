@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
-    tools:context=".activity.LoginActivity"
+    tools:context=".activity.MenuActivity"
     android:id="@+id/menuLayout"
     android:background="@drawable/animated_back_menu_regroup">
 
@@ -35,7 +35,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="8dp"
-            >
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView2"
@@ -81,68 +81,319 @@
                 android:textSize="14dp" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnRechercher"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
                     android:background="@drawable/filtres_btn_background"
                     android:padding="5dp"
                     android:text="Lancer la Recherche"
                     android:textColor="#FFFFFF"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginStart="14dp"
                     android:textSize="10sp" />
 
                 <Button
                     android:id="@+id/btnClearFiltres"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="14dp"
+                    android:layout_weight="1"
                     android:background="@drawable/filtres_btn_background"
                     android:padding="5dp"
                     android:text="Effacer les critères"
+                    android:onClick="eventBtnClearFiltres"
                     android:textColor="#FFFFFF"
                     android:textSize="10sp" />
 
             </LinearLayout>
-
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/infosProspectLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@drawable/filtres_background"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Profil"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/groupeNomPrenom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nomTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Nom :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/nomProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="nom"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+
+                <TextView
+                    android:id="@+id/prenomTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Prénom :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+
+                <TextView
+                    android:id="@+id/prenomProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="prénom"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mailTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Email :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/mailProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="email"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeRaisonSociale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/raisonSocialeTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Raison Sociale :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/RaisonSocialeProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="raison sociale"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeSiren"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/sirenTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Siren :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/sirenProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="siren"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeTelephone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/telephoneTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Téléphone :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/telephoneProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="telephone"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/noteTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Note :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/noteProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="note"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:id="@+id/Buttons"
-        android:layout_below="@+id/Filtre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/Filtre"
         android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnAjouter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
             android:layout_weight="1"
+            android:background="@drawable/button_style1"
             android:text="@string/ajouter"
             android:textColor="#125de3"
-            android:textSize="16sp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/button_style1"/>
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btnRechercherVisibility"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_style1"
             android:text="@string/rechercher"
             android:textColor="#125de3"
-            android:textSize="16sp"
-            android:background="@drawable/button_style1"/>
+            android:textSize="16sp" />
 
     </LinearLayout>
 

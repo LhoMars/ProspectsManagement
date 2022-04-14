@@ -72,83 +72,104 @@ public class AjoutProspectActivity extends AppCompatActivity {
             /* Récupération de ce qu'a écrit l'utilisateur dans les EditText
             puis on les transforment en chaine de caractère qu'on stockent dans de nouvelles variables*/
 
+            EditText raisonSocialeProspectTxt = (EditText) findViewById(R.id.RaisonSociale);
+            String raisonSocialeProspect = raisonSocialeProspectTxt.getText().toString();
+
+            EditText sirenProspectTxt = (EditText) findViewById(R.id.Siren);
+            String sirenProspect = sirenProspectTxt.getText().toString();
+
             EditText nomProspectTxt = (EditText) findViewById(R.id.Nom);
             String nomProspect = nomProspectTxt.getText().toString();
 
             EditText prenomProspectTxt = (EditText) findViewById(R.id.Prenom);
             String prenomProspect = prenomProspectTxt.getText().toString();
 
-            EditText telProspectTxt = (EditText) findViewById(R.id.Telephone);
-            String telProspect = telProspectTxt.getText().toString();
-
             EditText mailProspectTxt = (EditText) findViewById(R.id.Email);
             String mailProspect = mailProspectTxt.getText().toString();
+
+            EditText telProspectTxt = (EditText) findViewById(R.id.Telephone);
+            String telProspect = telProspectTxt.getText().toString();
 
             EditText noteProspectTxt = (EditText) findViewById(R.id.Notes);
             String noteProspect = noteProspectTxt.getText().toString();
 
-            EditText sirenProspectTxt = (EditText) findViewById(R.id.Siren);
-            String sirenProspect = sirenProspectTxt.getText().toString();
+            /* Initialisation des Regex pour faire des tests par rapport aux entrées de l'utilisateur*/
 
-            EditText raisonSocialeProspectTxt = (EditText) findViewById(R.id.RaisonSociale);
-            String raisonSocialeProspect = raisonSocialeProspectTxt.getText().toString();
-
-            /* Initialisation des regex pour faire des tests par rapport aux entrés de l'utilisateur*/
-
+            String regexRaisonSociale = "[A-Za-z\\é\\è\\ê\\ï\\-]+$";
+            String regexSiren = "[0-9]{9}|0";
+            String regexNomPrenom = "[A-Za-z\\é\\è\\ê\\ï\\-]+$";
             String regexEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
             String regexPhoneNumber = "(33|0033|0)[1-9][0-9]{8}$";
+            String regexNote = "[0-9]|1[0-9]|20";
             String regexSpace = "(\\s+)$";
-            String regexNomPrenom = "[A-Z][A-Za-z\\é\\è\\ê\\ï\\-]+$";
-            String regexNumbers = "[0-9]";
-            String regexRaisonSociale = "[A-Z][A-Za-z\\é\\è\\ê\\ï\\-]+$";
 
+            long sirenProspectTest = 0;
             String telProspectTest = "";
             int noteProspectTest = 0;
-            long sirenProspectTest = 0;
+            String errorMessage = "";
 
             if (nomProspectTxt.length() != 0 && prenomProspectTxt.length() != 0 && sirenProspectTxt.length() != 0
                     && raisonSocialeProspectTxt.length() != 0 && mailProspectTxt.length() != 0) {
+                Prospect newProspect = new Prospect();
+
+                if (raisonSocialeProspect.matches(regexRaisonSociale) && !raisonSocialeProspect.matches(regexSpace)) {
+                    newProspect.setRaisonSocial(raisonSocialeProspect);
+                }else{
+                    errorMessage += "- Raison Sociale \n";
+                }
+
+                if (sirenProspect.matches(regexSiren) && !sirenProspect.matches(regexSpace)) {
+                    sirenProspectTest = Long.parseLong(sirenProspect);
+                    newProspect.setSiret(sirenProspectTest);
+                }else{
+                    errorMessage += "- Siren \n";
+                }
+
+                if (prenomProspect.matches(regexNomPrenom) && !prenomProspect.matches(regexSpace)) {
+                    newProspect.setPrenom(prenomProspect);
+                }else{
+                    errorMessage += "- Prénom \n";
+                }
+
+                if (nomProspect.matches(regexNomPrenom) && !nomProspect.matches(regexSpace)) {
+                    newProspect.setNom(nomProspect);
+                }else{
+                    errorMessage += "- Nom \n";
+                }
+
                 if (mailProspect.matches(regexEmail) && !mailProspect.matches(regexSpace)) {
-                    if (prenomProspect.matches(regexNomPrenom) && !prenomProspect.matches(regexSpace)) {
-                        if (nomProspect.matches(regexNomPrenom) && !nomProspect.matches(regexSpace)) {
-                            if (sirenProspect.matches(regexNumbers) && !sirenProspect.matches(regexSpace)) {
-                                sirenProspectTest = Long.parseLong(sirenProspect);
-                                if (raisonSocialeProspect.matches(regexRaisonSociale) && !raisonSocialeProspect.matches(regexSpace)) {
-                                    if (telProspect.length() == 0 || telProspect.matches(regexPhoneNumber)) {
-                                        telProspectTest = (telProspect.length() == 0) ? "0" : telProspect;
-                                        if (noteProspect.length() == 0 || (noteProspect.matches(regexNumbers) &&
-                                                Integer.parseInt(noteProspect) <= 20 && Integer.parseInt(noteProspect) >= 1)) {
-                                            noteProspectTest = (noteProspect.length() == 0) ? 0 : Integer.parseInt(noteProspect);
-                                            Prospect newProspect = new Prospect(nomProspect, prenomProspect, telProspectTest, mailProspect,
-                                                    noteProspectTest, sirenProspectTest, raisonSocialeProspect, false);
+                    newProspect.setMail(mailProspect);
+                }else{
+                    errorMessage += "- Mail \n";
+                }
 
-                                            dataBase.getProspectBdd().add(newProspect);
+                if (telProspect.length() == 0 || telProspect.matches(regexPhoneNumber)) {
+                    telProspectTest = (telProspect.length() == 0) ? "0" : telProspect;
+                    newProspect.setTel(telProspectTest);
+                }else{
+                    errorMessage += "- Téléphone \n";
+                }
 
-                                            Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
-                                            startActivity(retourMenu);
-                                        } else {
-                                            boiteMessage("Le numéro de téléphone doit être vide ou correct");
-                                        }
-                                    } else {
-                                        boiteMessage("Le numéro de téléphone doit être vide ou correct");
-                                    }
-                                } else {
-                                    boiteMessage("La raison sociale n'est pas valable");
-                                }
-                            } else {
-                                boiteMessage("le siret est incorrect");
-                            }
-                        } else {
-                            boiteMessage("le nom de famille n'est pas accepté");
-                        }
-                    } else {
-                        boiteMessage("Le prénom n'est pas accepté");
-                    }
-                } else {
-                    boiteMessage("L'e-mail n'est pas valable");
+                if (noteProspect.length() == 0 || (noteProspect.matches(regexNote))) {
+                    noteProspectTest = (noteProspect.length() == 0) ? 0 : Integer.parseInt(noteProspect);
+                    newProspect.setNotes(noteProspectTest);
+                }else{
+                    errorMessage += "- Note \n";
+                }
+
+                newProspect.setIsUpdate(false);
+
+                if(errorMessage.length()==0){
+                    dataBase.getProspectBdd().add(newProspect);
+
+                    Intent retourMenu = new Intent(AjoutProspectActivity.this, MenuActivity.class);
+                    retourMenu.putExtra("employee",lEmployee);
+                    startActivity(retourMenu);
+                }else{
+                    boiteMessage("Sont invalides :\n"+errorMessage);
                 }
             } else {
-                boiteMessage("Un ou plusieurs champs requis sont manquants !\n" +
+                boiteMessage("L'un des champs suivants est vide.\n" +
                         "\n" +
                         "Sont obligatoires : \n" +
                         "La Raison Sociale de l'entreprise\n" +
@@ -158,6 +179,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
                         "Le Mail");
             }
         }
+
     };
 
     public View.OnClickListener eventBtnAnnuler = new View.OnClickListener() {
