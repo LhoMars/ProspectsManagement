@@ -36,7 +36,7 @@ L'utilisateur peut Synchroniser avec le serveur lorsque ce dernier est accessibl
 
 ### Cas d'utilisation
 
-Ce diagramme présente les actuels fonctionnalité pur l'application
+Ce diagramme présente les actuels fonctionnalité sur l'application
 
 ```mermaid
 graph TB
