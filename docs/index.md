@@ -58,8 +58,8 @@ serveurBdd <--> sync
 ```
 
 Lors d'une rencontre avec un prospect, le commercial doit se connecter pour accéder à son application.  
-Ensuite, il pourra enregistrer la personne avec différentes informations que nous verrons dans les applications
-android sinon il a la possibilité d'en rechercher un dans un tableau et finalement il peut synchroniser
+Ensuite, il pourra enregistrer la personne avec différentes informations (nous les verrons dans les pages
+java un peu après), sinon il a la possibilité d'en rechercher un dans un tableau et dernièrement il peut synchroniser
 les données avec un serveur distant (on récupère les prospects du serveur et on lui donne les prospects qu'on
 a ajouté).
 
