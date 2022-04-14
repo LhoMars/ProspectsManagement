@@ -36,13 +36,13 @@ L'utilisateur peut Synchroniser avec le serveur lorsque ce dernier est accessibl
 
 ### Cas d'utilisation
 
-Ce diagramme présente les actuels fonctionnalité sur l'application
+Ce diagramme présente les fonctionnalités disponibles sur l'application
 
 ```mermaid
 graph TB
 rencontre(rencontre un prospect)
 identifie(s'identifie)
-ajoutepr(ajoute un prospect)
+ajoutpr(ajoute un prospect)
 recherchepr(recherche un prospect)
 sync(syncroniser les données)
 serveurBdd[(Serveur distant)]
@@ -51,13 +51,17 @@ Commercial:::user --> rencontre
     classDef user fill:#0acf00;
     
 identifie -- <<include>> --> rencontre
-rencontre -- <<extend>> --> ajoutepr
+rencontre -- <<extend>> --> ajoutpr
 rencontre -- <<extend>> --> recherchepr
 rencontre -- <<extend>> --> sync
 serveurBdd <--> sync
 ```
 
 Lors d'une rencontre avec un prospect, le commercial doit se connecter pour accéder à son application.  
-Ensuite, il pourra enregistrer l'enregistrer et synchroniser ses données avec le serveur.
+Ensuite, il pourra enregistrer la personne avec différentes informations que nous verrons dans les applications
+android sinon il a la possibilité d'en rechercher un dans un tableau et finalement il peut synchroniser
+les données avec un serveur distant (on récupère les prospects du serveur et on lui donne les prospects qu'on
+a ajouté).
 
-Dans le cas où le prospect existerait déjà, le serveur ne le rajoutera pas.
+Dans le cas où le prospect existerait déjà, le serveur ne le rajoutera pas (on vérifie que son nom, prénom ainsi
+que son entreprise ne soit pas les mêmes qu'un autre prospect existant).
