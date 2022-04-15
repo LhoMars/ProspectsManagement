@@ -53,7 +53,6 @@ public class ApiGouv {
         long res = 0;
         try {
             JSONObject reader = new JSONObject(json);
-            //JSONObject etablissement = reader.getJSONObject("etablissement");
             JSONArray etablissements = reader.getJSONArray("etablissement");
             JSONObject etablissement = (JSONObject) etablissements.get(0);
             res = etablissement.getLong("siret");
