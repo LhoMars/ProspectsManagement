@@ -130,35 +130,33 @@ public class MenuActivity extends AppCompatActivity {
 
         /* table des prospects */
         recycler_view = findViewById(R.id.recycler_view);
-        setRecyclerView(dataBase.getProspectBdd().getProspects(null,null,null, true));
-
-
+        setRecyclerView(dataBase.getProspectBdd().getProspects(null, null, null, true));
     }
 
     public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date date = new Date();
             String dateMiseAjour = formatter.format(date);
 
             ApiBdd api = new ApiBdd();
-            api.callWebService("getAllProspects.php?date="+lEmployee.getDateMiseAjour().replace(":","!"));
+            api.callWebService("getAllProspects.php?date=" + lEmployee.getDateMiseAjour().replace(":", "!"));
             JSONArray json = api.getJsonData();
             updateBddProspects(json);
 
             ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null, null, null, false);
 
-            if(lesProspects != null){
+            if (lesProspects != null) {
                 JSONArray jsonProspects = api.createJsonProspects(lesProspects);
-                api.postJsonProspect("insertProspect.php?date="+lEmployee.getDateMiseAjour().replace(":","!"), jsonProspects.toString());
+                api.postJsonProspect("insertProspect.php?date=" + lEmployee.getDateMiseAjour().replace(":", "!"), jsonProspects.toString());
             }
             lEmployee.setDateMiseAjour(dateMiseAjour);
             dataBase.getEmployeeBdd().update(lEmployee);
 
             boiteMessage(api.getResult());
-            setRecyclerView(dataBase.getProspectBdd().getProspects(null,null,null, true));
+            setRecyclerView(dataBase.getProspectBdd().getProspects(null, null, null, true));
         }
     };
 
@@ -179,7 +177,7 @@ public class MenuActivity extends AppCompatActivity {
             infosProspectLayout.setVisibility(View.GONE);
             TransitionManager.beginDelayedTransition(filtresLayout);
             visible = !visible;
-            filtresLayout.setVisibility(visible ? View.VISIBLE: View.GONE);
+            filtresLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
         }
     };
 
@@ -201,35 +199,15 @@ public class MenuActivity extends AppCompatActivity {
         prenomFiltre.setText("");
         entrepriseFiltre.setText("");
 
-        ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null,null,null, true);
+        ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null, null, null, true);
         setRecyclerView(lesProspects);
-    };
+    }
 
-    /*public void eventInfosProspectVisibility(int i){
-        TextView nomInfos = (TextView) findViewById(R.id.nomProspect);
-        TextView prenomInfos = (TextView) findViewById(R.id.prenomTextView);
-        TextView raisonSocialeInfos = (TextView) findViewById(R.id.raisonSocialeTextView);
-        TextView sirenInfos = (TextView) findViewById(R.id.sirenTextView);
-        TextView mailInfos = (TextView) findViewById(R.id.mailTextView);
-        TextView telephoneInfos = (TextView) findViewById(R.id.telephoneTextView);
-        TextView noteInfos = (TextView) findViewById(R.id.noteTextView);
-        int visibleInfosInt = infosProspectLayout.getVisibility();
-        boolean visible;
-
-        if(infosProspectLayout.getVisibility() == View.GONE){
-            visible = false;
-        }else{
-            visible = true;
-        }
-
-        filtresLayout.setVisibility(View.GONE);
-        TransitionManager.beginDelayedTransition(infosProspectLayout);
-        visible = !visible;
-        infosProspectLayout.setVisibility(visible ? View.VISIBLE: View.GONE);
-    }*/
+    ;
 
     /**
      * Met à jour la base de données de la table prospect
+     *
      * @param jsonData JSONArray : tableau de prospect au format json
      */
     private void updateBddProspects(JSONArray jsonData) {
@@ -247,9 +225,9 @@ public class MenuActivity extends AppCompatActivity {
                     p.setRaisonSocial((json.getString("raisonsocial")));
                     p.setIsUpdate(true);
 
-                    if (dataBase.getProspectBdd().getProspects(p.getNom(), p.getPrenom(), p.getRaisonSocial(),true) == null) {
+                    if (dataBase.getProspectBdd().getProspects(p.getNom(), p.getPrenom(), p.getRaisonSocial(), true) == null) {
                         dataBase.getProspectBdd().add(p);
-                    }else{
+                    } else {
                         dataBase.getProspectBdd().update(p);
                     }
                 }
@@ -261,6 +239,7 @@ public class MenuActivity extends AppCompatActivity {
 
     /**
      * Envoi une popup à l'utilisateur
+     *
      * @param msg : le message à afficher
      */
     private void boiteMessage(String msg) {

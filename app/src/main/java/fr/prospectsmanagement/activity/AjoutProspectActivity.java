@@ -196,7 +196,6 @@ public class AjoutProspectActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     public void infosEntrees(View v){
         noteInfos = (TextView) findViewById(R.id.noteInformations);
-
         switch(v.getId()){
             case R.id.RaisonSociale :
                 noteInfos.setText("La Raison sociale est le nom d'une société.\nSa taille maximale est de 50.\nSont autorisés :\n- Les chiffres et les lettres.\n- Les signes '/', '@', '*'.");
