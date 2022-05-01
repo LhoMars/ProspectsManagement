@@ -1,4 +1,8 @@
-# Serveur web à distance
+# Introduction
+
+Les API permettent à des applications de communiquer entre elles et de s'échanger mutuellement des services ou des données.
+
+## Serveur web à distance
 
 Le serveur web permet d'effectuer des requête d'api (GET, POST...) depuis application mobile.
 Il permet de récupérer les prospects et d'insérer les nouveaux en base de données mySql.
@@ -157,4 +161,49 @@ Le format des données json doit respecter le format exemple si dessous :
   "siret": 51353675500012,
   "raisonsocial": "amazon"
 }
+```
+
+## API Siren
+
+Pour rechercher le Siren d'une entreprise par rapport à sa raison social nous devons passer par l'API du gouvernement disponible à l'adresse suivante :
+https://entreprise.data.gouv.fr/api/sirene/v1/full_text/
+
+### Méthodes
+
+Nous avons ici 1 méthode principalement utilisée, la première intitulé `getSirenWithName` qui prend en paramètre une variable "nom", elle permet de se connecter à l'API
+et de faire une rechercher par rapport à la variable donnée qui est la plupart du temps la valeur que l'on met dans la zone de texte
+Raison sociale pendant la création d'un prospect.
+
+```java
+    /**
+     * Récupère le siret d'une entreprise avec son nom
+     *
+     * @param nom String : la dénomination de l'entreprise
+     * @return long : le siret de l'entreprise
+     */
+    public long getSirenWithName(String nom) {
+        try {
+            URL url = new URL(this.url + nom);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String stringBuffer;
+            response = "";
+            while ((stringBuffer = bufferedReader.readLine()) != null) {
+                response = String.format("%s%s", response, stringBuffer);
+            }
+            bufferedReader.close();
+
+            result = (urlConnection.getResponseCode() == 200) ? "Récupération siret réussi" : "Erreur API";
+            urlConnection.disconnect();
+        } catch (NoRouteToHostException e) {
+            result = "Aucune connexion au serveur";
+        } catch (Exception e) {
+            result = "Erreur API";
+            e.printStackTrace();
+        }
+        return siretWithJson(response);
+    }
 ```

@@ -132,6 +132,11 @@ public class MenuActivity extends AppCompatActivity {
         setRecyclerView(dataBase.getProspectBdd().getProspects(null, null, null, true));
     }
 
+    /**
+     * Permet de synchroniser les données du serveur avec l'utilisateur et les prospects qu'il
+     * a possiblement ajouté.
+     */
+
     public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -159,6 +164,10 @@ public class MenuActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Permet d'accéder à la page d'ajout de prospect.
+     */
+
     public View.OnClickListener eventBtnAjouter = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -167,6 +176,10 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(ajoutProspect);
         }
     };
+
+    /**
+     * La méthode passe le bloc de recherche en visible.
+     */
 
     public View.OnClickListener eventBtnRechercherVisibility = new View.OnClickListener() {
         boolean visible;
@@ -180,6 +193,12 @@ public class MenuActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * On recherche les prospects par rapports aux critéres entrés dans les EditText par l'utilisateur
+     * et en passant par des requêtes SQL à l'intérieur de la méthode 'getProspects' provenant de
+     * la classe 'ProspectBDD'.
+     */
+
     public View.OnClickListener eventBtnRechercher = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -191,6 +210,10 @@ public class MenuActivity extends AppCompatActivity {
             setRecyclerView(lesProspects);
         }
     };
+
+    /**
+     * Permet de supprimer les critères ajoutés et de ré-affichés les prospects de base.
+     */
 
     public void eventBtnClearFiltres(View v) {
 
@@ -253,6 +276,10 @@ public class MenuActivity extends AppCompatActivity {
         });
         boite.show();
     }
+
+    /**
+     * Mise en place de l'affichage des prospects.
+     */
 
     private void setRecyclerView(ArrayList<Prospect> lesProspects) {
         recycler_view.setHasFixedSize(true);

@@ -12,9 +12,11 @@ Aperçu depuis Android Studio avant lancement :
 ### Affichage des prospects et leurs détails
 
 #### Affichage
-Pour l'affichage des prospects nous avons besoin du layout `item_layout` et de la classe `ShowProspectAdaptater`.
+On affiche les prospects sur le Menu dans la partie basse en passant par un tableau qui contient un recycler view mais c'est bien plus complexe !
+Pour que cela fonctionne nous avons besoin du layout `item_layout` et de la classe `ShowProspectAdaptater`.
 Le xml `item_layout` contient uniquement une table avec une ligne et 3 colonnes représentés par des TextView, grâce à `ShowProspectAdaptater` 
-nous allons pouvoir générer plusieurs lignes ayant pour design le xml cité juste avant.
+nous allons pouvoir générer plusieurs lignes ayant pour design le xml cité juste avant (le design est simple, on a juste une bordure bottom bleu depuis un
+background drawable).
 
 La classe `ShowProspectAdaptater` est composée de 4 méthodes :
 
@@ -82,7 +84,7 @@ On va vérifier si la taille du tableau prospectList n'est pas null et si il est
 Puis on créer un prospect "model" qui va prendre les informations du prospect dans le tableau qui est à la position prise en paramètre
 pour ensuite stocké son nom, prénom, sa raison sociale dans des holders.
 
-[Nous reviendrons sur le setOnClickListener dans la partie détail]
+(Nous reviendrons sur le setOnClickListener dans la partie détail)
 
 ```java
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -91,7 +93,19 @@ pour ensuite stocké son nom, prénom, sa raison sociale dans des holders.
     }
 ```	
 
-Finalement un onCreateViewHolder avec en paramètre parent et viewType va affiché les prospects sur le menu.
+Finalement un onCreateViewHolder avec en paramètre parent et viewType va retourné le ViewHoler contenant la vue.
+
+Ce qui va permettre en dernier l'affichage est disponible dans la classe `MenuActivity`, une méthode `setRecyclerView` va mettre les prospects
+ avec un model qui est la création de la classe `ShowProspectAdaptater`.
+```java
+    private void setRecyclerView(ArrayList<Prospect> lesProspects) {
+        recycler_view.setHasFixedSize(true);
+        recycler_view.setLayoutManager(new LinearLayoutManager(this));
+        model = new ShowProspectAdaptater(this, lesProspects, interfaceClickable);
+        recycler_view.setAdapter(model);
+    }
+```	
+
 En résultat par exemple avec 3 prospect, nous obtenons ceci :
 
 ![exempleProspects](../assets/exempleProspects.png)
@@ -151,13 +165,13 @@ Nous créons ici une interface clicquable c'est-à-dire que nous utilisons une i
 	}
 ```	
 
-Qui a ici différent TextView correspondant aux informations détaillées des prospects ainsi qu'un booléen "visible" sans valeur.
+Elle a ici différent TextView correspondant aux informations détaillées des prospects ainsi qu'un booléen "visible" sans valeur.
 Dès que l'on va cliquer sur celle-ci, nous allons obtenir la position du prospect dans la liste (tableau) lesProspects pour ajouter ensuite à 
 l'intérieur des TextView les informations d'un prospect.
 Le infosProspectLayout alors va avoir sa visibilité modifié, il va apparaitre ou disparaitre en fonction de si il est ou non présent, nous parlons
 ici aussi d'un `filtresLayout` mais cela fait partie de la recherche de prospect.
 
-Nous avions vu auparavant ce code ci-dessous
+Nous avions vu auparavant ce code ci-dessous dans la classe `ShowProspectAdaptater`.
 
 ```java
 	holder.row_prospect.setOnClickListener(new View.OnClickListener() {
@@ -168,10 +182,136 @@ Nous avions vu auparavant ce code ci-dessous
 	});
 ```
 
-Il met en place le fait que ce soit sur les lignes que nous allons cliquer grâce à l'interfaceClickable.
+Il met en place le fait que ce soit sur les lignes du tableau que nous allons cliquer grâce à l'interface cliquable.
+
+Exemple de clic sur un prospect (le Siren n'est pas correct, le prospect avait été fait avant les règles sur l'ajout d'un prospect) :
+
+![exempleClick](../assets/exempleClick.png)
 
 ### Recherche de prospect
+Hormis la partie `infosProspectLayout` cachée, une autre l'est aussi, c'est `filtresLayout`, elle ressemble à ça :
 
+![filtreLayout](../assets/filtreLayout.png)
+
+Elle va permettre de faire une recherche qui va actualiser la liste des prospects et dont affiché que ce que l'utilisateur veut.
+La première méthode est un événement de bouton, le bouton de la page d'accueil "Rechercher" le provoque.
+
+```java
+    public View.OnClickListener eventBtnRechercherVisibility = new View.OnClickListener() {
+        boolean visible;
+
+        @Override
+        public void onClick(View v) {
+            infosProspectLayout.setVisibility(View.GONE);
+            TransitionManager.beginDelayedTransition(filtresLayout);
+            visible = !visible;
+            filtresLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
+        }
+    };
+```
+
+Il permet de changer la visibilité du `filtresLayout` en visible ou non si l'on reclick dessus.
+
+Ensuite il est possible d'écrire trois critère, le nom, le prénom et la raison sociale.
+On peut écrire quelque chose dans un seul ou même dans les trois et dès que l'on va appuyer sur le bouton `Lancer la Recherche` la méthode suivant va se lancer : 
+
+```java
+    public View.OnClickListener eventBtnRechercher = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(nomFiltre.getText().toString(),
+                    prenomFiltre.getText().toString(),
+                    entrepriseFiltre.getText().toString(),
+                    true);
+
+            setRecyclerView(lesProspects);
+        }
+    };
+```
+Elle récupère une liste de prospect lesProspects qui est le résultat d'un appel d'une méthode de la classe `ProspectBDD`.
+
+```java
+	/**
+     * Récupère un tableau de prospects
+     *
+     * @param nom          String ou null : le nom du prospect
+     * @param prenom       String ou null : le prenom du prospect
+     * @param raisonSocial String ou null : la raison social de l'entreprise
+     * @param isUpdate     boolean : true si on veux tous les prospects correspondant aux autres critères ou false si on souhaite que les prospects non synchroniser avec le serveur
+     * @return ArrayLsit<Prospect> ou null : la liste des prorpects correspondant aux critères ou null s'il n'existe aucun prospect correspondant
+     */
+    public ArrayList<Prospect> getProspects(String nom, String prenom, String raisonSocial, boolean isUpdate) {
+        open();
+
+        String[] params = new String[(nom != null ? 1 : 0) +
+                (prenom != null ? 1 : 0) +
+                (raisonSocial != null ? 1 : 0)];
+        int paramIndex = 0;
+        String where = "";
+        if (nom != null) {
+            where = NOM_COL + " LIKE ?";
+            params[paramIndex++] = nom + "%";
+        }
+        if (prenom != null) {
+            if (!where.equals(""))
+                where = where + " AND ";
+            where = where + PRENOM_COL + " LIKE ?";
+            params[paramIndex++] = prenom + "%";
+        }
+        if (raisonSocial != null) {
+            if (!where.equals(""))
+                where = where + " AND ";
+            where = where + RAISON_SOCIAL_COL + " LIKE ?";
+            params[paramIndex++] = raisonSocial + "%";
+        }
+        if (!isUpdate) {
+            if (!where.equals(""))
+                where = where + " AND ";
+            where = where + IS_UPDATE_COL + " = 0";
+        }
+        Cursor c = getBdd().query(getTableName(), new String[]{NOM_COL, PRENOM_COL, TEL_COL, MAIL_COL, NOTES_COL, SIRET_COL, RAISON_SOCIAL_COL, IS_UPDATE_COL}, where, params, null, null, null);
+
+        if (c == null || c.getCount() == 0) {
+            return null;
+        }
+
+        c.moveToFirst();
+        Prospect leProspect = cursorToProspect(c);
+        ArrayList<Prospect> lesProspects = new ArrayList<>();
+        lesProspects.add(leProspect);
+
+        if (c.getCount() > 1) {
+            for (int i = 1; i < c.getCount(); i++) {
+                c.moveToNext();
+                lesProspects.add(cursorToProspect(c));
+            }
+        }
+
+        c.close();
+        close();
+
+        return lesProspects;
+    }
+```
+
+La méthode va nous permettre de faire des recherches SQL par rapport aux entrées de l'utilisateur.
+Nous nous retrouvons finalement avec le tableau affichant les prospects avec les nouveaux correspondant aux recherches.
+
+Malgré tout si nous voulosn annuler les filtres alors il suffit d'appuyer sur le bouton `Effacer les critères`.
+
+```java
+    public void eventBtnClearFiltres(View v) {
+
+        nomFiltre.setText("");
+        prenomFiltre.setText("");
+        entrepriseFiltre.setText("");
+
+        ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null, null, null, true);
+        setRecyclerView(lesProspects);
+    }
+```
+
+Il remet le contenu des EditText vide et rétabli la liste lesProspects avec les informations de base.
 
 ### Synchronisation avec le serveur externe
 Ce diagramme de séquence représente la récupération des prospects depuis l'api au format json et de l'ajout en base de données local.
