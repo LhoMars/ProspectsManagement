@@ -27,6 +27,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
     private Button btnRechercherEntreprise = null;
     private Button btnEnregistrer = null;
     private TextView noteInfos = null;
+    private TextView preNoteInfos = null;
     private EditText raisonSociale = null;
     private EditText siretText = null;
 
@@ -53,6 +54,9 @@ public class AjoutProspectActivity extends AppCompatActivity {
 
         btnAnnuler = (Button) findViewById(R.id.btnAnnuler);
         btnAnnuler.setOnClickListener(eventBtnAnnuler);
+
+        preNoteInfos = (TextView) findViewById(R.id.preNoteInformations);
+        preNoteInfos.setText("Double cliquez sur une zone de texte pour avoir plus d'information sur ce que vous devez y écrire.");
     }
 
     /**
@@ -74,7 +78,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
     };
 
     /**
-     * Fais des tests par rapport aux entrés de l'utilisateur pour vérifier leur conformité puis
+     * Fais des tests par rapport aux entrées de l'utilisateur pour vérifier leur conformité puis
      * si tout est correct crée le nouveau prospect.
      */
 
@@ -107,7 +111,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
             EditText noteProspectTxt = (EditText) findViewById(R.id.Notes);
             String noteProspect = noteProspectTxt.getText().toString();
 
-            /* Initialisation des Regex pour faire des tests par rapport aux entrés de l'utilisateur */
+            /* Initialisation des Regex pour faire des tests par rapport aux entrées de l'utilisateur */
 
             String regexRaisonSociale = "[A-Za-z0-9\\é\\è\\ê\\ï\\@\\/\\*\\-]+$";
             String regexSiren = "[0-9]{9}|0";
@@ -122,7 +126,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
             int noteProspectTest = 0;
             String errorMessage = "";
 
-            /* Création des tests sur les entrés de l'utilisateur */
+            /* Création des tests sur les entrées de l'utilisateur */
 
             if (nomProspectTxt.length() != 0 && prenomProspectTxt.length() != 0 && sirenProspectTxt.length() != 0
                     && raisonSocialeProspectTxt.length() != 0 && mailProspectTxt.length() != 0) {
@@ -198,6 +202,10 @@ public class AjoutProspectActivity extends AppCompatActivity {
 
     };
 
+    /**
+     * Permet d'annuler l'ajout de prospect et de revenir à la page menu.
+     */
+
     public View.OnClickListener eventBtnAnnuler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -207,10 +215,18 @@ public class AjoutProspectActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Affiche des informations sur ce que l'utilisateur doit écrire en fonction de la zone de texte
+     * sur laquelle il a cliqué.
+     */
+
     @SuppressLint("NonConstantResourceId")
     public void infosEntrees(View v){
+        LinearLayout preInfosAjoutProspect = findViewById(R.id.preInfosAjoutProspect);
+        preInfosAjoutProspect.setVisibility(View.GONE);
         LinearLayout InfosAjoutProspect = findViewById(R.id.InfosAjoutProspect);
         InfosAjoutProspect.setVisibility(View.VISIBLE);
+
         noteInfos = (TextView) findViewById(R.id.noteInformations);
 
         switch(v.getId()){
@@ -236,7 +252,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
                 noteInfos.setText("La Note a une taille maximale de 2.\nElle doit être comprise entre 0 et 20.\nSont autorisés :\n- Les chiffres");
                 break;
         }
-    }
+    };
 
     private void boiteMessage(String msg) {
         AlertDialog.Builder boite = new AlertDialog.Builder(AjoutProspectActivity.this);
