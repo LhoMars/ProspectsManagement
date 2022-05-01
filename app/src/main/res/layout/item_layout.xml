@@ -42,5 +42,4 @@
             android:textColor="#125de3"
             android:textSize="14sp" />
     </TableRow>
-
 </TableLayout>

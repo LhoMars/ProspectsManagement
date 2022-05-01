@@ -47,7 +47,6 @@ public class ShowProspectAdaptater extends RecyclerView.Adapter<ShowProspectAdap
             holder.row_prospect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    holder.row_prospect.setBackgroundColor(Color.rgb(180,180,180));
                     interfaceClickable.setClick(position, prospectList);
                 }
             });
