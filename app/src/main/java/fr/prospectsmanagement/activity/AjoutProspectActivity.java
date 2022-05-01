@@ -1,5 +1,6 @@
 package fr.prospectsmanagement.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +25,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
     private Button btnAnnuler = null;
     private Button btnRechercherEntreprise = null;
     private Button btnEnregistrer = null;
+    private TextView noteInfos = null;
     private EditText raisonSociale = null;
     private EditText siretText = null;
 
@@ -95,7 +97,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
 
             /* Initialisation des Regex pour faire des tests par rapport aux entrées de l'utilisateur*/
 
-            String regexRaisonSociale = "[A-Za-z\\é\\è\\ê\\ï\\-]+$";
+            String regexRaisonSociale = "[A-Za-z0-9\\é\\è\\ê\\ï\\@\\/\\*\\-]+$";
             String regexSiren = "[0-9]{9}|0";
             String regexNomPrenom = "[A-Za-z\\é\\è\\ê\\ï\\-]+$";
             String regexEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -190,6 +192,35 @@ public class AjoutProspectActivity extends AppCompatActivity {
             startActivity(retourMenu);
         }
     };
+
+    @SuppressLint("NonConstantResourceId")
+    public void infosEntrees(View v){
+        noteInfos = (TextView) findViewById(R.id.noteInformations);
+
+        switch(v.getId()){
+            case R.id.RaisonSociale :
+                noteInfos.setText("La Raison sociale est le nom d'une société.\nSa taille maximale est de 50.\nSont autorisés :\n- Les chiffres et les lettres.\n- Les signes '/', '@', '*'.");
+                break;
+            case R.id.Siren :
+                noteInfos.setText("Le Siren est le numéro d'identification d'une entreprise.\nSa taille maximale est de 9.\n\nSont autorisés :\n- Les chiffres.");
+                break;
+            case R.id.Nom :
+                noteInfos.setText("Le Nom a une taille maximale de 35.\n\nSont autorisés :\n- Les lettres.\n- Le signe '-'.");
+                break;
+            case R.id.Prenom :
+                noteInfos.setText("Le Prénom a une taille maximale de 25.\n\nSont autorisés :\n- Les lettres.\n- Le signe '-'.");
+                break;
+            case R.id.Telephone :
+                noteInfos.setText("Le Numéro de téléphone a une taille maximale de 14.\nIl peut commencer par '0033','33','0' et est suivi de 8 chiffres\n\nSont autorisés :\n- Les chiffres.");
+                break;
+            case R.id.Email :
+                noteInfos.setText("L'Adresse e-mail a une taille maximale de 100.\nElle doit suivre l'exemple suivant :\nABC@example.com\n\nSont autorisés :\n-Les chiffres et les lettres.\n- Les signes '.','-','_'");
+                break;
+            case R.id.Notes :
+                noteInfos.setText("La Note a une taille maximale de 2.\nElle doit être comprise entre 0 et 20.\n\nSont autorisés :\n- Les chiffres");
+                break;
+        }
+    }
 
     private void boiteMessage(String msg) {
         AlertDialog.Builder boite = new AlertDialog.Builder(AjoutProspectActivity.this);

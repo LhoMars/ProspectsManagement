@@ -1,10 +1,12 @@
 package fr.prospectsmanagement.activity.template;
 
-
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,12 +19,14 @@ import fr.prospectsmanagement.model.Prospect;
 
 public class ShowProspectAdaptater extends RecyclerView.Adapter<ShowProspectAdaptater.ViewHolder> {
 
-    Context context;
-    List<Prospect>  prospectList;
+    private Context context;
+    private List<Prospect>  prospectList;
+    private onClickInterface interfaceClickable;
 
-    public ShowProspectAdaptater(Context context, List<Prospect> prospectList){
+    public ShowProspectAdaptater(Context context, List<Prospect> prospectList, onClickInterface interfaceClickable){
         this.context = context;
         this.prospectList = prospectList;
+        this.interfaceClickable = interfaceClickable;
     }
 
     @NonNull
@@ -39,6 +43,15 @@ public class ShowProspectAdaptater extends RecyclerView.Adapter<ShowProspectAdap
             holder.nom_prospect.setText(model.getNom());
             holder.prenom_prospect.setText(model.getPrenom());
             holder.entreprise_prospect.setText(model.getRaisonSocial());
+
+            holder.row_prospect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.row_prospect.setBackgroundColor(Color.rgb(180,180,180));
+                    interfaceClickable.setClick(position, prospectList);
+                }
+            });
+
         }else{
             return;
         }
@@ -59,12 +72,14 @@ public class ShowProspectAdaptater extends RecyclerView.Adapter<ShowProspectAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView nom_prospect, prenom_prospect, entreprise_prospect;
+        TableRow row_prospect;
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
             nom_prospect = itemView.findViewById(R.id.nom_prospect);
             prenom_prospect = itemView.findViewById(R.id.prenom_prospect);
             entreprise_prospect = itemView.findViewById(R.id.entreprise_prospect);
+            row_prospect = itemView.findViewById(R.id.tableRowProspect);
         }
     }
 }
