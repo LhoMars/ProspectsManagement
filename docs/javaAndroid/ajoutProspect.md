@@ -4,7 +4,7 @@
 La classe `AjoutProspectActivity` hérite de `AppCompatActivity`. Sont but est de permettre la création d'un nouveau prospect.
 Elle utilise la page layout `activity_addprospect` en tant que FrontEnd.
 
-![AjoutProspect](./assets/ajoutProspect.png)
+![ajoutProspect](././assets/ajoutProspect.png)
 
 ## Méthodes
 
@@ -28,7 +28,7 @@ Le Premier intitulé `eventBtnRechercherEntreprise` est lié au bouton Recherche
 Il permet quand on clique dessus de rechercher grâce à l'API du gouvernement sur les entreprises, le numéro Siren de la raison sociale qu'on a écrit dans
 le EditText au dessus du bouton.
 
-![RechercheSiren](./assets/rechercheSiren.png)
+![rechercheSiren](././assets/rechercheSiren.png)
 
 Pour ce qui est du deuxième, il est intitulé `eventBtnEnregistrer` et est lié au bouton Enregistrer.
 La méthode fais 115 lignes. (en contant les sauts de lignes et les commentaires)
