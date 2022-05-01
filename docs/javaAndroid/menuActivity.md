@@ -1,8 +1,17 @@
 # Menu Activity
 
-Le menu permet d'avoir l'aperçu des prospects, de synchroniser les données avec le serveur.
+## Introduction
+La classe `MenuActivity` permet d'avoir un aperçu des prospects avec une recherche par rapport à ceux-ci, ainsi que leurs informations en détails.
+Elle permet aussi de synchroniser les données avec le serveur et d'accéder à la page d'ajout de prospect.
 
-### La synchronisation avec le serveur externe
+### Affichage des prospects et leurs détails
+
+Pour ce qui est de leurs détails, dès le début de la classe, dans le onCreate, 
+
+### Recherche de prospect
+
+
+### Synchronisation avec le serveur externe
 Ce diagramme de séquence représente la récupération des prospects depuis l'api au format json et de l'ajout en base de données local.
 Et dans un second temps la récupération des prospects en base de données SQLite puis du formatage en json pour l'envoi au serveur.
 

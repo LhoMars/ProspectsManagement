@@ -1,5 +1,5 @@
 # Ajouter un Prospect
-``
+
 ## Introduction
 La classe `AjoutProspectActivity` hérite de `AppCompatActivity`. Sont but est de permettre la création d'un nouveau prospect.
 Elle utilise la page layout `activity_addprospect` en tant que FrontEnd.
@@ -216,4 +216,5 @@ Le rectangle indiquant qu'il doit double cliquer disparait pour laisser apparait
 informations.
 
 Exemple : L'utilisateur appuie sur la raison sociale.
+
 ![testRaisonSociale](../assets/testRaisonSociale.png)

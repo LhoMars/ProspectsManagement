@@ -74,7 +74,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void setClick(int position, List<Prospect> lesProspects) {
                 Prospect prospect = lesProspects.get(position);
-                System.out.println(prospect);
 
                 nomInfos.setText(prospect.getNom());
                 prenomInfos.setText(prospect.getPrenom());
