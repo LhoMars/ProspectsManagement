@@ -23,7 +23,7 @@ public class ApiGouv {
      * @param nom String : la dénomination de l'entreprise
      * @return long : le siret de l'entreprise
      */
-    public long getSiretWithName(String nom) {
+    public long getSirenWithName(String nom) {
         try {
             URL url = new URL(this.url + nom);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

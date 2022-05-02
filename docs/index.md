@@ -1,6 +1,6 @@
 # Prospects Management
 
-## PAGE DE SERVICE
+## Page de service
 
 **^^Mises à jour^^**
 

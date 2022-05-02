@@ -10,13 +10,50 @@
         android:layout_height="match_parent"
         android:background="@drawable/addprospect_background"
         android:orientation="vertical"
-        android:padding="50dp"
+        android:padding="30dp"
         tools:context=".LoginActivity">
+
+        <LinearLayout
+            android:id="@+id/InfosAjoutProspect"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/note_background"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/noteInformations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/preInfosAjoutProspect"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/note_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/preNoteInformations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
             <EditText
@@ -24,19 +61,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
+                android:maxLength="50"
                 android:singleLine="true"
                 android:backgroundTint="@android:color/background_light"
+                android:textColorHint="#fff"
                 android:hint="Raison Sociale"
-                android:maxLength="50"
-                android:textColorHint="#fff" />
+                android:onClick="infosEntrees"/>
 
             <Button
                 android:id="@+id/btnRechercherEntreprise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_style1"
-                android:text="Rechercher"
-                android:textColor="#1495d7" />
+                android:textColor="#1495d7"
+                android:text="Rechercher" />
 
         </LinearLayout>
 
@@ -45,11 +83,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            android:backgroundTint="@android:color/background_light"
-            android:hint="Siren"
+            android:inputType="number"
+            android:maxLength="9"
             android:singleLine="true"
-            android:inputType="phone"
-            android:textColorHint="#fff" />
+            android:backgroundTint="@android:color/background_light"
+            android:textColorHint="#fff"
+            android:hint="Siren"
+            android:onClick="infosEntrees"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,11 +102,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/background_light"
-                android:hint="Nom"
-                android:maxLength="30"
+                android:maxLength="35"
                 android:singleLine="true"
-                android:textColorHint="#fff" />
+                android:backgroundTint="@android:color/background_light"
+                android:textColorHint="#fff"
+                android:hint="Nom"
+                android:onClick="infosEntrees"/>
 
             <Space
                 android:layout_width="10dp"
@@ -78,11 +119,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/background_light"
-                android:hint="Prénom"
                 android:maxLength="25"
                 android:singleLine="true"
-                android:textColorHint="#fff" />
+                android:backgroundTint="@android:color/background_light"
+                android:textColorHint="#fff"
+                android:hint="Prénom"
+                android:onClick="infosEntrees"/>
         </LinearLayout>
 
         <EditText
@@ -90,39 +132,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            android:backgroundTint="@android:color/background_light"
-            android:hint="Téléphone (facultatif)"
+            android:maxLength="14"
             android:singleLine="true"
-            android:textColorHint="#fff" />
+            android:backgroundTint="@android:color/background_light"
+            android:textColorHint="#fff"
+            android:hint="Téléphone (facultatif)"
+            android:onClick="infosEntrees"/>
 
         <EditText
             android:id="@+id/Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            android:backgroundTint="@android:color/background_light"
-            android:hint="Email"
-            android:maxLength="320"
             android:inputType="textEmailAddress"
+            android:maxLength="100"
             android:singleLine="true"
-            android:textColorHint="#fff" />
+            android:backgroundTint="@android:color/background_light"
+            android:textColorHint="#fff"
+            android:hint="Email"
+            android:onClick="infosEntrees"/>
 
         <EditText
             android:id="@+id/Notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="17dp"
-            android:backgroundTint="@android:color/background_light"
-            android:hint="Notes (facultatif)"
-            android:singleLine="true"
+            android:layout_marginBottom="15dp"
             android:maxLength="2"
-            android:textColorHint="#fff" />
+            android:singleLine="true"
+            android:backgroundTint="@android:color/background_light"
+            android:textColorHint="#fff"
+            android:hint="Notes (facultatif)"
+            android:onClick="infosEntrees"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="10dp">
 
             <Button
                 android:id="@+id/btnEnregistrer"
@@ -146,8 +192,6 @@
                 android:background="@drawable/button_style1"
                 android:text="Annuler"
                 android:textColor="#1495d7" />
-
         </LinearLayout>
-
     </LinearLayout>
 </RelativeLayout>

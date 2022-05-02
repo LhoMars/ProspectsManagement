@@ -46,6 +46,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Permet dès que l'on appuie sur le bouton de connexion de tester si le nom et le mot de passe
+     * sont corrects, si c'est bon on passe à la page menu sinon on a un message d'erreur.
+     */
 
     public View.OnClickListener eventBtnLogin = new View.OnClickListener() {
         @Override

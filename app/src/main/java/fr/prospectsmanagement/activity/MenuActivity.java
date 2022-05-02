@@ -17,10 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.AnimationDrawable;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
-import fr.prospectsmanagement.activity.template.LoadingDialog;
+import fr.prospectsmanagement.activity.template.onClickInterface;
 import fr.prospectsmanagement.model.Employee;
 import fr.prospectsmanagement.model.Prospect;
 import fr.prospectsmanagement.R;
@@ -34,12 +33,12 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class MenuActivity extends AppCompatActivity {
     private DaoSQL dataBase;
     private Employee lEmployee;
-    private LoadingDialog loading;
     private Button btnAjouter = null;
     private Button btnRechercherVisibility = null;
     private Button btnRechercher = null;
@@ -47,22 +46,55 @@ public class MenuActivity extends AppCompatActivity {
     private EditText nomFiltre = null;
     private EditText prenomFiltre = null;
     private EditText entrepriseFiltre = null;
-
-    RecyclerView recycler_view;
-    ShowProspectAdaptater model;
-    ViewGroup filtresLayout;
-    ViewGroup infosProspectLayout;
+    private onClickInterface interfaceClickable;
+    private RecyclerView recycler_view;
+    private ShowProspectAdaptater model;
+    private ViewGroup filtresLayout;
+    private ViewGroup infosProspectLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBase = new DaoSQL(this);
-        loading = new LoadingDialog(this);
 
         Intent i = getIntent();
         this.lEmployee = i.getParcelableExtra("employee");
 
         setContentView(R.layout.activity_menu);
+        interfaceClickable = new onClickInterface() {
+            TextView nomInfos = (TextView) findViewById(R.id.nomProspect);
+            TextView prenomInfos = (TextView) findViewById(R.id.prenomProspect);
+            TextView raisonSocialeInfos = (TextView) findViewById(R.id.raisonSocialeProspect);
+            TextView sirenInfos = (TextView) findViewById(R.id.sirenProspect);
+            TextView mailInfos = (TextView) findViewById(R.id.mailProspect);
+            TextView telephoneInfos = (TextView) findViewById(R.id.telephoneProspect);
+            TextView noteInfos = (TextView) findViewById(R.id.noteProspect);
+            boolean visible;
+
+            @Override
+            public void setClick(int position, List<Prospect> lesProspects) {
+                Prospect prospect = lesProspects.get(position);
+
+                nomInfos.setText(prospect.getNom());
+                prenomInfos.setText(prospect.getPrenom());
+                raisonSocialeInfos.setText(prospect.getRaisonSocial());
+                sirenInfos.setText(String.valueOf(prospect.getSiret()));
+                mailInfos.setText(prospect.getMail());
+                telephoneInfos.setText(prospect.getTel());
+                noteInfos.setText(String.valueOf(prospect.getNotes()));
+
+                if(infosProspectLayout.getVisibility() == View.GONE){
+                    visible = false;
+                }else{
+                    visible = true;
+                }
+
+                filtresLayout.setVisibility(View.GONE);
+                TransitionManager.beginDelayedTransition(infosProspectLayout);
+                visible = !visible;
+                infosProspectLayout.setVisibility(visible ? View.VISIBLE: View.GONE);
+            }
+        };
 
         /* Création des variables pour lier les layouts au menu*/
         RelativeLayout RelativeLayout = findViewById(R.id.menuLayout);
@@ -100,11 +132,14 @@ public class MenuActivity extends AppCompatActivity {
         setRecyclerView(dataBase.getProspectBdd().getProspects(null, null, null, true));
     }
 
+    /**
+     * Permet de synchroniser les données du serveur avec l'utilisateur et les prospects qu'il
+     * a possiblement ajouté.
+     */
+
     public View.OnClickListener eventBtnSynchroniser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            loading.startLoadingDialog();
-
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date date = new Date();
@@ -124,11 +159,14 @@ public class MenuActivity extends AppCompatActivity {
             lEmployee.setDateMiseAjour(dateMiseAjour);
             dataBase.getEmployeeBdd().update(lEmployee);
 
-            loading.dismissDialog();
             boiteMessage(api.getResult());
             setRecyclerView(dataBase.getProspectBdd().getProspects(null, null, null, true));
         }
     };
+
+    /**
+     * Permet d'accéder à la page d'ajout de prospect.
+     */
 
     public View.OnClickListener eventBtnAjouter = new View.OnClickListener() {
         @Override
@@ -138,6 +176,10 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(ajoutProspect);
         }
     };
+
+    /**
+     * La méthode passe le bloc de recherche en visible.
+     */
 
     public View.OnClickListener eventBtnRechercherVisibility = new View.OnClickListener() {
         boolean visible;
@@ -151,6 +193,12 @@ public class MenuActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * On recherche les prospects par rapports aux critéres entrés dans les EditText par l'utilisateur
+     * et en passant par des requêtes SQL à l'intérieur de la méthode 'getProspects' provenant de
+     * la classe 'ProspectBDD'.
+     */
+
     public View.OnClickListener eventBtnRechercher = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -163,6 +211,10 @@ public class MenuActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Permet de supprimer les critères ajoutés et de ré-affichés les prospects de base.
+     */
+
     public void eventBtnClearFiltres(View v) {
 
         nomFiltre.setText("");
@@ -174,31 +226,6 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     ;
-
-    public void eventInfosProspectVisibility(View v) {
-        TextView nomInfos = (TextView) findViewById(R.id.nomProspect);
-        TextView prenomInfos = (TextView) findViewById(R.id.prenomTextView);
-        TextView raisonSocialeInfos = (TextView) findViewById(R.id.raisonSocialeTextView);
-        TextView sirenInfos = (TextView) findViewById(R.id.sirenTextView);
-        TextView mailInfos = (TextView) findViewById(R.id.mailTextView);
-        TextView telephoneInfos = (TextView) findViewById(R.id.telephoneTextView);
-        TextView noteInfos = (TextView) findViewById(R.id.noteTextView);
-        int visibleInfosInt = infosProspectLayout.getVisibility();
-        boolean visible;
-
-        if (visibleInfosInt == 8) {
-            visible = false;
-        } else {
-            visible = true;
-        }
-
-        nomInfos.setText("testnuméro1");
-
-        filtresLayout.setVisibility(View.GONE);
-        TransitionManager.beginDelayedTransition(infosProspectLayout);
-        visible = !visible;
-        infosProspectLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
-    }
 
     /**
      * Met à jour la base de données de la table prospect
@@ -250,10 +277,14 @@ public class MenuActivity extends AppCompatActivity {
         boite.show();
     }
 
+    /**
+     * Mise en place de l'affichage des prospects.
+     */
+
     private void setRecyclerView(ArrayList<Prospect> lesProspects) {
         recycler_view.setHasFixedSize(true);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        model = new ShowProspectAdaptater(this, lesProspects);
+        model = new ShowProspectAdaptater(this, lesProspects, interfaceClickable);
         recycler_view.setAdapter(model);
     }
 }

@@ -249,7 +249,7 @@
                     android:textColor="#125de3"/>
 
                 <TextView
-                    android:id="@+id/RaisonSocialeProspect"
+                    android:id="@+id/raisonSocialeProspect"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
