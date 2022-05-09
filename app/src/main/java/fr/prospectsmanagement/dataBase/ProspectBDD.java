@@ -73,7 +73,7 @@ public class ProspectBDD extends ObjectBDD {
      * @param nom          String ou null : le nom du prospect
      * @param prenom       String ou null : le prenom du prospect
      * @param raisonSocial String ou null : la raison social de l'entreprise
-     * @param isUpdate     boolean : true si on veux tous les prospects correspondant aux autres critères ou false si on souhaite que les prospects non synchroniser avec le serveur
+     * @param isUpdate     boolean : true si on veut tous les prospects correspondant aux autres critères ou false si on souhaite que les prospects non synchroniser avec le serveur
      * @return ArrayLsit<Prospect> ou null : la liste des prorpects correspondant aux critères ou null s'il n'existe aucun prospect correspondant
      */
     public ArrayList<Prospect> getProspects(String nom, String prenom, String raisonSocial, boolean isUpdate) {
@@ -129,6 +129,10 @@ public class ProspectBDD extends ObjectBDD {
         return lesProspects;
     }
 
+    /**
+     *  Met à jour un prospect
+     * @param p Prospect : le prospect à mettre à jour
+     */
     public void update(Prospect p) {
         if (getProspects(p.getNom(), p.getPrenom(), p.getRaisonSocial(), true).size() == 1) {
             open();
@@ -145,6 +149,27 @@ public class ProspectBDD extends ObjectBDD {
                     new String[]{p.getNom(), p.getPrenom(), p.getRaisonSocial()});
             close();
         }
+    }
+
+    /**
+     * Supprime un prospect de la table
+     * @param p Prospect : le prospect à supprimer
+     * @return boolean : vrai si le prospect à été correctement supprimé
+     */
+    public boolean delete(Prospect p){
+        boolean res = false;
+        if(p.equals(getProspects(p.getNom(),p.getPrenom(),p.getRaisonSocial(),true).get(0))){
+            open();
+
+            getBdd().delete(getTableName(),
+                    NOM_COL + " = ? AND " +
+                            PRENOM_COL + " = ? AND " +
+                            RAISON_SOCIAL_COL + " = ?",
+                    new String[]{p.getNom(), p.getPrenom(), p.getRaisonSocial()});
+
+            res = getProspects(p.getNom(), p.getPrenom(), p.getRaisonSocial(), true) == null;
+        }
+        return res;
     }
 
     /**
