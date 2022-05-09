@@ -39,18 +39,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="68dp"
             android:layout_marginBottom="26dp"
-            android:hint="Identifiant"
+            android:textSize="22sp"
             android:singleLine="true"
-            android:textSize="22sp" />
+            android:backgroundTint="@android:color/background_light"
+            android:textColorHint="#fff"
+            android:hint="Identifiant" />
 
         <EditText
             android:id="@+id/MotDePasse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="46dp"
-            android:hint="Mot de passe"
             android:inputType="textPassword"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:backgroundTint="@android:color/background_light"
+            android:textColorHint="#fff"
+            android:hint="Mot de passe" />
 
         <Button
             android:id="@+id/btnLogin"

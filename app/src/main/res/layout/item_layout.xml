@@ -5,41 +5,41 @@
     android:stretchColumns="1,2,3"
     android:id="@+id/item_layout">
 
-    <TableRow
-        android:id="@+id/tableRowProspect"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/tableau_border_titles">
+        <TableRow
+            android:id="@+id/tableRowProspect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/tableau_border_titles">
 
-        <TextView
-            android:id="@+id/nom_prospect"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_column="1"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="#125de3"
-            android:textSize="14sp"
-            android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/nom_prospect"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#125de3"
+                android:textSize="14sp"
+                android:layout_marginBottom="10dp"/>
 
-        <TextView
-            android:id="@+id/prenom_prospect"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_weight="1.2"
-            android:gravity="center"
-            android:textColor="#125de3"
-            android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/prenom_prospect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1.2"
+                android:gravity="center"
+                android:textColor="#125de3"
+                android:textSize="14sp"/>
 
-        <TextView
-            android:id="@+id/entreprise_prospect"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_weight="1.4"
-            android:gravity="center"
-            android:textColor="#125de3"
-            android:textSize="14sp" />
-    </TableRow>
+            <TextView
+                android:id="@+id/entreprise_prospect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1.4"
+                android:gravity="center"
+                android:textColor="#125de3"
+                android:textSize="14sp" />
+        </TableRow>
 </TableLayout>

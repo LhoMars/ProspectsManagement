@@ -83,16 +83,9 @@ public class MenuActivity extends AppCompatActivity {
                 telephoneInfos.setText(prospect.getTel());
                 noteInfos.setText(String.valueOf(prospect.getNotes()));
 
-                if(infosProspectLayout.getVisibility() == View.GONE){
-                    visible = false;
-                }else{
-                    visible = true;
-                }
-
                 filtresLayout.setVisibility(View.GONE);
                 TransitionManager.beginDelayedTransition(infosProspectLayout);
-                visible = !visible;
-                infosProspectLayout.setVisibility(visible ? View.VISIBLE: View.GONE);
+                infosProspectLayout.setVisibility(View.VISIBLE);
             }
         };
 
@@ -188,8 +181,11 @@ public class MenuActivity extends AppCompatActivity {
         public void onClick(View v) {
             infosProspectLayout.setVisibility(View.GONE);
             TransitionManager.beginDelayedTransition(filtresLayout);
+            filtresLayout.setVisibility(View.VISIBLE);
+            /*infosProspectLayout.setVisibility(View.GONE);
+            TransitionManager.beginDelayedTransition(filtresLayout);
             visible = !visible;
-            filtresLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
+            filtresLayout.setVisibility(visible ? View.VISIBLE : View.GONE);*/
         }
     };
 

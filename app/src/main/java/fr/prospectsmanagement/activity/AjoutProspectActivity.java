@@ -2,10 +2,12 @@ package fr.prospectsmanagement.activity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -229,6 +231,8 @@ public class AjoutProspectActivity extends AppCompatActivity {
 
         noteInfos = (TextView) findViewById(R.id.noteInformations);
 
+        closeKeyBoard();
+
         switch(v.getId()){
             case R.id.RaisonSociale :
                 noteInfos.setText("La Raison sociale est le nom d'une société.\nSa taille maximale est de 50.\nSont autorisés :\n- Les chiffres et les lettres.\n- Les signes '/', '@', '*'.");
@@ -246,13 +250,22 @@ public class AjoutProspectActivity extends AppCompatActivity {
                 noteInfos.setText("Le Numéro de téléphone a une taille maximale de 14.\nIl peut commencer par '0033','33','0' et est suivi de 8 chiffres\nSont autorisés :\n- Les chiffres.");
                 break;
             case R.id.Email :
-                noteInfos.setText("L'Adresse e-mail a une taille maximale de 100.\nElle doit suivre l'exemple suivant : ABC@example.com\nSont autorisés :\n- Les chiffres et les lettres.\n- Les signes '.','-','_'");
+                noteInfos.setText("L'Adresse e-mail a une taille maximale de 100.\nElle doit suivre l'exemple suivant : ABC@example.com\nSont autorisés :\n- Les chiffres et les lettres.\n- Les signes '.', '-', '_'");
                 break;
             case R.id.Notes :
                 noteInfos.setText("La Note a une taille maximale de 2.\nElle doit être comprise entre 0 et 20.\nSont autorisés :\n- Les chiffres");
                 break;
         }
     };
+
+    private void closeKeyBoard(){
+        View view = this.getCurrentFocus();
+        if (view != null){
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 
     private void boiteMessage(String msg) {
         AlertDialog.Builder boite = new AlertDialog.Builder(AjoutProspectActivity.this);

@@ -5,193 +5,206 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/addprospect_background"
-        android:orientation="vertical"
-        android:padding="30dp"
-        tools:context=".LoginActivity">
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+            android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/InfosAjoutProspect"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/note_background"
+            android:layout_height="match_parent"
+            android:background="@drawable/addprospect_background"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:padding="30dp"
+            tools:context=".LoginActivity">
 
-            <TextView
-                android:id="@+id/noteInformations"
+            <LinearLayout
+                android:id="@+id/InfosAjoutProspect"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/note_background"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/noteInformations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/preInfosAjoutProspect"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/note_background"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/preNoteInformations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/RaisonSociale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:backgroundTint="@android:color/background_light"
+                    android:textColorHint="#fff"
+                    android:hint="Raison Sociale"
+                    android:onClick="infosEntrees"
+                    android:nextFocusDown="@+id/Siren"/>
 
-        <LinearLayout
-            android:id="@+id/preInfosAjoutProspect"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/note_background"
-            android:orientation="vertical">
+                <Button
+                    android:id="@+id/btnRechercherEntreprise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_style1"
+                    android:textColor="#1495d7"
+                    android:text="Rechercher" />
 
-            <TextView
-                android:id="@+id/preNoteInformations"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="vertical">
+            </LinearLayout>
 
             <EditText
-                android:id="@+id/RaisonSociale"
+                android:id="@+id/Siren"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:maxLength="50"
+                android:layout_marginBottom="18dp"
+                android:inputType="number"
+                android:maxLength="9"
                 android:singleLine="true"
                 android:backgroundTint="@android:color/background_light"
                 android:textColorHint="#fff"
-                android:hint="Raison Sociale"
-                android:onClick="infosEntrees"/>
+                android:hint="Siren"
+                android:onClick="infosEntrees"
+                android:nextFocusDown="@+id/Nom"/>
 
-            <Button
-                android:id="@+id/btnRechercherEntreprise"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_style1"
-                android:textColor="#1495d7"
-                android:text="Rechercher" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="18dp">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/Nom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLength="35"
+                    android:singleLine="true"
+                    android:backgroundTint="@android:color/background_light"
+                    android:textColorHint="#fff"
+                    android:hint="Nom"
+                    android:onClick="infosEntrees"
+                    android:nextFocusRight="@+id/Prenom"/>
 
-        <EditText
-            android:id="@+id/Siren"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
-            android:inputType="number"
-            android:maxLength="9"
-            android:singleLine="true"
-            android:backgroundTint="@android:color/background_light"
-            android:textColorHint="#fff"
-            android:hint="Siren"
-            android:onClick="infosEntrees"/>
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="18dp">
+                <EditText
+                    android:id="@+id/Prenom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLength="25"
+                    android:singleLine="true"
+                    android:backgroundTint="@android:color/background_light"
+                    android:textColorHint="#fff"
+                    android:hint="Prénom"
+                    android:onClick="infosEntrees"
+                    android:nextFocusDown="@+id/Telephone"/>
+            </LinearLayout>
 
             <EditText
-                android:id="@+id/Nom"
+                android:id="@+id/Telephone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLength="35"
+                android:layout_marginBottom="18dp"
+                android:maxLength="14"
                 android:singleLine="true"
                 android:backgroundTint="@android:color/background_light"
                 android:textColorHint="#fff"
-                android:hint="Nom"
-                android:onClick="infosEntrees"/>
-
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
+                android:hint="Téléphone (facultatif)"
+                android:onClick="infosEntrees"
+                android:nextFocusDown="@+id/Email"/>
 
             <EditText
-                android:id="@+id/Prenom"
+                android:id="@+id/Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLength="25"
+                android:layout_marginBottom="18dp"
+                android:inputType="textEmailAddress"
+                android:maxLength="100"
                 android:singleLine="true"
                 android:backgroundTint="@android:color/background_light"
                 android:textColorHint="#fff"
-                android:hint="Prénom"
-                android:onClick="infosEntrees"/>
-        </LinearLayout>
+                android:hint="Email"
+                android:onClick="infosEntrees"
+                android:nextFocusDown="@+id/Notes"/>
 
-        <EditText
-            android:id="@+id/Telephone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
-            android:maxLength="14"
-            android:singleLine="true"
-            android:backgroundTint="@android:color/background_light"
-            android:textColorHint="#fff"
-            android:hint="Téléphone (facultatif)"
-            android:onClick="infosEntrees"/>
-
-        <EditText
-            android:id="@+id/Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
-            android:inputType="textEmailAddress"
-            android:maxLength="100"
-            android:singleLine="true"
-            android:backgroundTint="@android:color/background_light"
-            android:textColorHint="#fff"
-            android:hint="Email"
-            android:onClick="infosEntrees"/>
-
-        <EditText
-            android:id="@+id/Notes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:maxLength="2"
-            android:singleLine="true"
-            android:backgroundTint="@android:color/background_light"
-            android:textColorHint="#fff"
-            android:hint="Notes (facultatif)"
-            android:onClick="infosEntrees"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/btnEnregistrer"
+            <EditText
+                android:id="@+id/Notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_style1"
-                android:text="Enregistrer"
-                android:textColor="#1495d7" />
+                android:layout_marginBottom="15dp"
+                android:maxLength="2"
+                android:singleLine="true"
+                android:backgroundTint="@android:color/background_light"
+                android:textColorHint="#fff"
+                android:hint="Notes (facultatif)"
+                android:onClick="infosEntrees" />
 
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
-
-            <Button
-                android:id="@+id/btnAnnuler"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_style1"
-                android:text="Annuler"
-                android:textColor="#1495d7" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/btnEnregistrer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_style1"
+                    android:text="Enregistrer"
+                    android:textColor="#1495d7" />
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
+
+                <Button
+                    android:id="@+id/btnAnnuler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_style1"
+                    android:text="Annuler"
+                    android:textColor="#1495d7" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
