@@ -231,8 +231,6 @@ public class AjoutProspectActivity extends AppCompatActivity {
 
         noteInfos = (TextView) findViewById(R.id.noteInformations);
 
-        closeKeyBoard();
-
         switch(v.getId()){
             case R.id.RaisonSociale :
                 noteInfos.setText("La Raison sociale est le nom d'une société.\nSa taille maximale est de 50.\nSont autorisés :\n- Les chiffres et les lettres.\n- Les signes '/', '@', '*'.");
@@ -257,7 +255,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
                 break;
         }
     };
-
+/*
     private void closeKeyBoard(){
         View view = this.getCurrentFocus();
         if (view != null){
@@ -266,7 +264,7 @@ public class AjoutProspectActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
+*/
     private void boiteMessage(String msg) {
         AlertDialog.Builder boite = new AlertDialog.Builder(AjoutProspectActivity.this);
         boite.setTitle("Information");
