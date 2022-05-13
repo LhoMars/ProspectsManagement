@@ -9,7 +9,7 @@
             android:id="@+id/tableRowProspect"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/tableau_border_titles">
+            android:background="@drawable/borders_Tableau_Titles">
 
             <TextView
                 android:id="@+id/nom_prospect"

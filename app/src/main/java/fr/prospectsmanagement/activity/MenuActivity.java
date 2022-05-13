@@ -182,10 +182,6 @@ public class MenuActivity extends AppCompatActivity {
             infosProspectLayout.setVisibility(View.GONE);
             TransitionManager.beginDelayedTransition(filtresLayout);
             filtresLayout.setVisibility(View.VISIBLE);
-            /*infosProspectLayout.setVisibility(View.GONE);
-            TransitionManager.beginDelayedTransition(filtresLayout);
-            visible = !visible;
-            filtresLayout.setVisibility(visible ? View.VISIBLE : View.GONE);*/
         }
     };
 
