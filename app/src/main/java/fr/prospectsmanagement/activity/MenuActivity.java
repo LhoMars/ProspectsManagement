@@ -160,7 +160,6 @@ public class MenuActivity extends AppCompatActivity {
     /**
      * Permet d'accéder à la page d'ajout de prospect.
      */
-
     public View.OnClickListener eventBtnAjouter = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
