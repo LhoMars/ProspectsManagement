@@ -11,3 +11,7 @@ h1, h2{
 	background-color: #656565;
 	border-bottom: .05rem solid var(--md-primary-fg-color);
 }
+
+.md-footer-meta{
+	display: none;
+}
