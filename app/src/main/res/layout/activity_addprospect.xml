@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-            android:fillViewport="true">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,13 +27,18 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <TextView
-                    android:id="@+id/noteInformations"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:fillViewport="true">
+                    <TextView
+                        android:id="@+id/noteInformations"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+                </ScrollView>
 
             </LinearLayout>
 
@@ -67,21 +71,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:maxLength="50"
-                    android:singleLine="true"
                     android:backgroundTint="@android:color/background_light"
-                    android:textColorHint="#fff"
                     android:hint="Raison Sociale"
+                    android:maxLength="50"
+                    android:nextFocusDown="@+id/Siren"
                     android:onClick="infosEntrees"
-                    android:nextFocusDown="@+id/Siren"/>
+                    android:singleLine="true"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/btnRechercherEntreprise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_style1"
-                    android:textColor="#1495d7"
-                    android:text="Rechercher" />
+                    android:text="Rechercher"
+                    android:textColor="#1495d7" />
 
             </LinearLayout>
 
@@ -90,14 +95,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="18dp"
+                android:backgroundTint="@android:color/background_light"
+                android:hint="Siren"
                 android:inputType="number"
                 android:maxLength="9"
-                android:singleLine="true"
-                android:backgroundTint="@android:color/background_light"
-                android:textColorHint="#fff"
-                android:hint="Siren"
+                android:nextFocusDown="@+id/Nom"
                 android:onClick="infosEntrees"
-                android:nextFocusDown="@+id/Nom"/>
+                android:singleLine="true"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,13 +116,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:maxLength="35"
-                    android:singleLine="true"
                     android:backgroundTint="@android:color/background_light"
-                    android:textColorHint="#fff"
                     android:hint="Nom"
+                    android:maxLength="35"
+                    android:nextFocusRight="@+id/Prenom"
                     android:onClick="infosEntrees"
-                    android:nextFocusRight="@+id/Prenom"/>
+                    android:singleLine="true"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white" />
 
                 <Space
                     android:layout_width="10dp"
@@ -128,13 +135,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:maxLength="25"
-                    android:singleLine="true"
                     android:backgroundTint="@android:color/background_light"
-                    android:textColorHint="#fff"
                     android:hint="Prénom"
+                    android:maxLength="25"
+                    android:nextFocusDown="@+id/Telephone"
                     android:onClick="infosEntrees"
-                    android:nextFocusDown="@+id/Telephone"/>
+                    android:singleLine="true"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <EditText
@@ -142,39 +150,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="18dp"
-                android:maxLength="14"
-                android:singleLine="true"
                 android:backgroundTint="@android:color/background_light"
-                android:textColorHint="#fff"
                 android:hint="Téléphone (facultatif)"
+                android:maxLength="14"
+                android:nextFocusDown="@+id/Email"
                 android:onClick="infosEntrees"
-                android:nextFocusDown="@+id/Email"/>
+                android:singleLine="true"
+                android:textColorHint="#fff"
+                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="18dp"
+                android:backgroundTint="@android:color/background_light"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:maxLength="100"
-                android:singleLine="true"
-                android:backgroundTint="@android:color/background_light"
-                android:textColorHint="#fff"
-                android:hint="Email"
+                android:nextFocusDown="@+id/Notes"
                 android:onClick="infosEntrees"
-                android:nextFocusDown="@+id/Notes"/>
+                android:singleLine="true"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white" />
 
             <EditText
                 android:id="@+id/Notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:maxLength="2"
-                android:singleLine="true"
                 android:backgroundTint="@android:color/background_light"
-                android:textColorHint="#fff"
                 android:hint="Notes (facultatif)"
-                android:onClick="infosEntrees" />
+                android:maxLength="2"
+                android:onClick="infosEntrees"
+                android:singleLine="true"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"

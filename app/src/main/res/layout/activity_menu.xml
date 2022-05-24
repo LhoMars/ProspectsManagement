@@ -59,7 +59,8 @@
                 android:backgroundTint="@android:color/background_light"
                 android:hint="Nom"
                 android:singleLine="true"
-                android:textColorHint="#fff"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 android:textSize="14dp" />
 
             <EditText
@@ -70,7 +71,8 @@
                 android:backgroundTint="@android:color/background_light"
                 android:hint="Prénom"
                 android:singleLine="true"
-                android:textColorHint="#fff"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 android:textSize="14dp" />
 
             <EditText
@@ -81,7 +83,8 @@
                 android:backgroundTint="@android:color/background_light"
                 android:hint="Entreprise"
                 android:singleLine="true"
-                android:textColorHint="#fff"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 android:textSize="14dp" />
 
             <LinearLayout
@@ -99,7 +102,8 @@
                     android:background="@drawable/background_btn_filtres"
                     android:padding="5dp"
                     android:text="Lancer la Recherche"
-                    android:textColor="#FFFFFF"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
                     android:textSize="10sp" />
 
                 <Button

@@ -81,7 +81,12 @@ public class MenuActivity extends AppCompatActivity {
                 raisonSocialeInfos.setText(prospect.getRaisonSocial());
                 sirenInfos.setText(String.valueOf(prospect.getSiret()));
                 mailInfos.setText(prospect.getMail());
-                telephoneInfos.setText(prospect.getTel());
+                System.out.println(prospect.getTel());
+                if(prospect.getTel()=="0"){
+                    telephoneInfos.setText("Non renseigné");
+                }else{
+                    telephoneInfos.setText(prospect.getTel());
+                }
                 noteInfos.setText(String.valueOf(prospect.getNotes()));
 
                 filtresLayout.setVisibility(View.GONE);

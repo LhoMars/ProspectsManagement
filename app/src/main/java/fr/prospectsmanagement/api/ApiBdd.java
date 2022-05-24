@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * pour effectuer des requêtes au serveur API
  */
 public class ApiBdd {
-    final String url = "http://172.31.1.70/apiAndroidProspects/";
+    final String url = "http://172.31.1.60/apiAndroidProspects/";
     String result;
     String response;
 
