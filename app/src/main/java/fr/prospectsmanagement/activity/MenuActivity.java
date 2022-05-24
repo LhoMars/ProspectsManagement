@@ -43,6 +43,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button btnRechercherVisibility = null;
     private Button btnRechercher = null;
     private Button btnSynchroniser = null;
+    private Button btnDelete = null;
     private EditText nomFiltre = null;
     private EditText prenomFiltre = null;
     private EditText entrepriseFiltre = null;
@@ -84,8 +85,12 @@ public class MenuActivity extends AppCompatActivity {
                 noteInfos.setText(String.valueOf(prospect.getNotes()));
 
                 filtresLayout.setVisibility(View.GONE);
+
                 TransitionManager.beginDelayedTransition(infosProspectLayout);
                 infosProspectLayout.setVisibility(View.VISIBLE);
+                btnDelete.setVisibility(View.VISIBLE);
+
+                setMargins(btnAjouter,0,0,0,0);
             }
         };
 
@@ -110,6 +115,9 @@ public class MenuActivity extends AppCompatActivity {
 
         btnSynchroniser = (Button) findViewById(R.id.btnSynchroniser);
         btnSynchroniser.setOnClickListener(eventBtnSynchroniser);
+
+        btnDelete = (Button) findViewById(R.id.btnSupprimerProspect);
+        btnDelete.setOnClickListener(eventBtnSupprimerProspect);
 
         /* Lien entre les éléments de l'xml et les variables créées aux début */
         filtresLayout = findViewById(R.id.filtresLayout);
@@ -180,6 +188,9 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             infosProspectLayout.setVisibility(View.GONE);
+            btnDelete.setVisibility(View.GONE);
+            setMargins(btnAjouter,0,0,40,0);
+
             TransitionManager.beginDelayedTransition(filtresLayout);
             filtresLayout.setVisibility(View.VISIBLE);
         }
@@ -204,6 +215,31 @@ public class MenuActivity extends AppCompatActivity {
     };
 
     /**
+     *
+     */
+
+    public View.OnClickListener eventBtnSupprimerProspect = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            //dataBase.getProspectBdd().delete();
+        }
+    };
+
+
+    /**
+     * Méthode permettant de mettre des marges aux éléments des layouts en passant par Java.
+     */
+
+    private void setMargins (View view, int left, int top, int right, int bottom) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            p.setMargins(left, top, right, bottom);
+            view.requestLayout();
+        }
+    }
+
+    /**
      * Permet de supprimer les critères ajoutés et de ré-affichés les prospects de base.
      */
 
@@ -215,9 +251,7 @@ public class MenuActivity extends AppCompatActivity {
 
         ArrayList<Prospect> lesProspects = dataBase.getProspectBdd().getProspects(null, null, null, true);
         setRecyclerView(lesProspects);
-    }
-
-    ;
+    };
 
     /**
      * Met à jour la base de données de la table prospect
@@ -252,6 +286,17 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     /**
+     * Mise en place de l'affichage des prospects.
+     */
+
+    private void setRecyclerView(ArrayList<Prospect> lesProspects) {
+        recycler_view.setHasFixedSize(true);
+        recycler_view.setLayoutManager(new LinearLayoutManager(this));
+        model = new ShowProspectAdaptater(this, lesProspects, interfaceClickable);
+        recycler_view.setAdapter(model);
+    }
+
+    /**
      * Envoi une popup à l'utilisateur
      *
      * @param msg : le message à afficher
@@ -267,16 +312,5 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
         boite.show();
-    }
-
-    /**
-     * Mise en place de l'affichage des prospects.
-     */
-
-    private void setRecyclerView(ArrayList<Prospect> lesProspects) {
-        recycler_view.setHasFixedSize(true);
-        recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        model = new ShowProspectAdaptater(this, lesProspects, interfaceClickable);
-        recycler_view.setAdapter(model);
     }
 }

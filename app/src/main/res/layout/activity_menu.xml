@@ -26,6 +26,10 @@
             android:textColor="#125de3"
             android:textSize="13sp" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <LinearLayout
             android:id="@+id/filtresLayout"
             android:layout_width="match_parent"
@@ -105,9 +109,9 @@
                     android:layout_marginEnd="14dp"
                     android:layout_weight="1"
                     android:background="@drawable/background_btn_filtres"
+                    android:onClick="eventBtnClearFiltres"
                     android:padding="5dp"
                     android:text="Effacer les critères"
-                    android:onClick="eventBtnClearFiltres"
                     android:textColor="#FFFFFF"
                     android:textSize="10sp" />
 
@@ -122,13 +126,15 @@
             android:background="@drawable/background_filtres"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/profil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="8"
                 android:text="Profil"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -154,8 +160,8 @@
                     android:background="@drawable/button_style1"
                     android:gravity="center"
                     android:text="Nom :"
-                    android:textSize="14sp"
-                    android:textColor="#125de3"/>
+                    android:textColor="#125de3"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/nomProspect"
@@ -164,8 +170,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="nom"
-                    android:textSize="14sp"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/prenomTextView"
@@ -175,8 +181,8 @@
                     android:background="@drawable/button_style1"
                     android:gravity="center"
                     android:text="Prénom :"
-                    android:textSize="14sp"
-                    android:textColor="#125de3"/>
+                    android:textColor="#125de3"
+                    android:textSize="14sp" />
 
 
                 <TextView
@@ -187,8 +193,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="prénom"
-                    android:textSize="14sp"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -210,8 +216,8 @@
                     android:background="@drawable/button_style1"
                     android:gravity="center"
                     android:text="Email :"
-                    android:textSize="14sp"
-                    android:textColor="#125de3"/>
+                    android:textColor="#125de3"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/mailProspect"
@@ -221,8 +227,8 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="email"
-                    android:textSize="14sp"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -244,8 +250,8 @@
                     android:background="@drawable/button_style1"
                     android:gravity="center"
                     android:text="Raison Sociale :"
-                    android:textSize="14sp"
-                    android:textColor="#125de3"/>
+                    android:textColor="#125de3"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/raisonSocialeProspect"
@@ -255,8 +261,8 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="raison sociale"
-                    android:textSize="14sp"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -278,8 +284,8 @@
                     android:background="@drawable/button_style1"
                     android:gravity="center"
                     android:text="Siren :"
-                    android:textSize="14sp"
-                    android:textColor="#125de3"/>
+                    android:textColor="#125de3"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/sirenProspect"
@@ -289,8 +295,8 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="siren"
-                    android:textSize="14sp"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -312,8 +318,8 @@
                     android:background="@drawable/button_style1"
                     android:gravity="center"
                     android:text="Téléphone :"
-                    android:textSize="14sp"
-                    android:textColor="#125de3"/>
+                    android:textColor="#125de3"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/telephoneProspect"
@@ -323,8 +329,8 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="telephone"
-                    android:textSize="14sp"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -346,8 +352,8 @@
                     android:background="@drawable/button_style1"
                     android:gravity="center"
                     android:text="Note :"
-                    android:textSize="14sp"
-                    android:textColor="#125de3"/>
+                    android:textColor="#125de3"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/noteProspect"
@@ -357,19 +363,9 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="note"
-                    android:textSize="14sp"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
             </LinearLayout>
-            <Button
-                android:id="@+id/btnSupprimerProspect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/button_style1"
-                android:padding="8dp"
-                android:text="Supprimer"
-                android:textColor="#125de3"
-                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -389,22 +385,36 @@
             android:id="@+id/btnAjouter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_weight="1"
+            android:layout_marginRight="40dp"
+            android:layout_weight="3"
             android:background="@drawable/button_style1"
             android:text="@string/ajouter"
             android:textColor="#125de3"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnSupprimerProspect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_delete"
+            android:text="X"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnRechercherVisibility"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:background="@drawable/button_style1"
             android:text="@string/rechercher"
             android:textColor="#125de3"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
