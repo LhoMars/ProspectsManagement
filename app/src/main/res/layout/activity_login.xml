@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_login"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="50dp"
+        tools:context=".activity.LoginActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:letterSpacing="0.07"
+            android:text="Prospects"
+            android:textColor="@color/white"
+            android:textSize="35dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:letterSpacing="0.07"
+            android:text="Management"
+            android:textColor="@color/white"
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/Identifiant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:layout_marginBottom="26dp"
+            android:textSize="22sp"
+            android:singleLine="true"
+            android:backgroundTint="@android:color/background_light"
+            android:textColorHint="#fff"
+            android:hint="Identifiant" />
+
+        <EditText
+            android:id="@+id/MotDePasse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="46dp"
+            android:inputType="textPassword"
+            android:textSize="22sp"
+            android:backgroundTint="@android:color/background_light"
+            android:textColorHint="#fff"
+            android:hint="Mot de passe" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="26dp"
+            android:background="@drawable/button_style1"
+            android:text="Connexion"
+            android:textColor="#1495d7"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</RelativeLayout>

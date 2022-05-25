@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    tools:context=".activity.MenuActivity"
+    android:id="@+id/menuLayout"
+    android:background="@drawable/animated_back_menu_regroup">
+
+    <LinearLayout
+        android:id="@+id/Filtre"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnSynchroniser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_style1"
+            android:padding="8dp"
+            android:text="Synchroniser"
+            android:textColor="#125de3"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:id="@+id/filtresLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="13dp"
+            android:background="@drawable/background_filtres"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Filtres"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/nomFiltre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@android:color/background_light"
+                android:hint="Nom"
+                android:singleLine="true"
+                android:textColorHint="#fff"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/prenomFiltre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@android:color/background_light"
+                android:hint="Prénom"
+                android:singleLine="true"
+                android:textColorHint="#fff"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/entrepriseFiltre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@android:color/background_light"
+                android:hint="Entreprise"
+                android:singleLine="true"
+                android:textColorHint="#fff"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnRechercher"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_btn_filtres"
+                    android:padding="5dp"
+                    android:text="Lancer la Recherche"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/btnClearFiltres"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="14dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_btn_filtres"
+                    android:padding="5dp"
+                    android:text="Effacer les critères"
+                    android:onClick="eventBtnClearFiltres"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/infosProspectLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@drawable/background_filtres"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="Profil"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/groupeNomPrenom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nomTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Nom :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/nomProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="nom"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+
+                <TextView
+                    android:id="@+id/prenomTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Prénom :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+
+                <TextView
+                    android:id="@+id/prenomProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="prénom"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mailTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Email :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/mailProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="email"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeRaisonSociale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/raisonSocialeTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Raison Sociale :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/raisonSocialeProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="raison sociale"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeSiren"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/sirenTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Siren :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/sirenProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="siren"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeTelephone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/telephoneTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Téléphone :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/telephoneProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="telephone"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupeNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Filtre"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/noteTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_style1"
+                    android:gravity="center"
+                    android:text="Note :"
+                    android:textSize="14sp"
+                    android:textColor="#125de3"/>
+
+                <TextView
+                    android:id="@+id/noteProspect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="note"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnSupprimerProspect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_style1"
+                android:padding="8dp"
+                android:text="Supprimer"
+                android:textColor="#125de3"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Filtre"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAjouter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_style1"
+            android:text="@string/ajouter"
+            android:textColor="#125de3"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnRechercherVisibility"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_style1"
+            android:text="@string/rechercher"
+            android:textColor="#125de3"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@+id/Buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/background_table">
+
+        <!--<io.alterac.blurkit.BlurLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >-->
+
+        <TableLayout
+            android:id="@+id/tableLayoutProspects"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="15dp"
+            android:paddingTop="20dp"
+            android:paddingRight="15dp"
+            android:stretchColumns="1,2,3">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/borders_table_titles">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/nom"
+                    android:textColor="#125de3"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1.2"
+                    android:gravity="center"
+                    android:text="@string/prenom"
+                    android:textColor="#125de3"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1.4"
+                    android:gravity="center"
+                    android:text="@string/entreprise"
+                    android:textColor="#125de3"
+                    android:textSize="17sp" />
+
+            </TableRow>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
+
+        </TableLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

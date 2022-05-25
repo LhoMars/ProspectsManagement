@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Prospects management</string>
+    <string name="app_name">Prosps Manage</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="rechercher">Rechercher</string>
+    <string name="nom">NOM</string>
+    <string name="prenom">PRENOM</string>
+    <string name="entreprise">ENTREPRISE</string>
 </resources>

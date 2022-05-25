@@ -5,10 +5,14 @@ repo_url: https://github.com/LhoMars/ProspectsManagement
 edit_uri: 'edit/main/docs/'
 
 nav:
-    - Home: index.md
-    - List Pages:
-        - pages/index.md
-    - Help Page: help.md
+    - Accueil: index.md
+    - Application Android :
+        - javaAndroid/index.md
+        - javaAndroid/menuActivity.md
+        - javaAndroid/ajoutProspect.md
+        - javaAndroid/DaoSQL.md
+    - API :
+        - API/index.md
 
 theme:
     name: material
