@@ -1,0 +1,962 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="description">
+      
+      
+        <meta name="author" content="Marcel Lhote">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
+    
+    
+      
+        <title>Menu Activity - Prospects Management</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.c382b1dc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+      
+    
+    
+
+<script src="../../assets/pymdownx-extras/material-extra-theme-7c147bb7.js" type="text/javascript"></script>
+<script src="../../assets/pymdownx-extras/material-extra-3rdparty-69a692a6.js" type="text/javascript"></script>
+
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../style/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-02e418c270.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="dracula" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#menu-activity" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+
+<header class="md-header" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="En-tête"
+  >
+    <a
+      href="../.."
+      title="Prospects Management"
+      class="md-header__button md-logo"
+      aria-label="Prospects Management"
+    >
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Prospects Management
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Menu Activity
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon">
+          <a
+            href="javascript:toggleScheme();"
+            title="Light mode"
+            class="light-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+          </a>
+          <a
+            href="javascript:toggleScheme();"
+            title="Dark mode"
+            class="dark-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+          </a>
+          <a
+            href="javascript:toggleScheme();"
+            title="System preference"
+            class="system-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07 19.07 3.5m-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13.51 1.67m-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87.4 1.31M19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35-2.53-2.2m4.33-2.7 1.15-2.77 2.2 2.54-3.35.23m1.15-4.96-1.14-2.78 3.34.24-2.2 2.54M9.63 18.93l2.77 1.15-2.53 2.19-.24-3.34Z"/></svg>
+          </a>
+           <a
+            href="javascript:toggleScheme();"
+            title="Unknown scheme"
+            class="unknown-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10Z"/></svg>
+          </a>
+      </div>
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Effacer" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/LhoMars/ProspectsManagement" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Prospects Management" class="md-nav__button md-logo" aria-label="Prospects Management" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Prospects Management
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/LhoMars/ProspectsManagement" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Accueil
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Application Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Application Android" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Application Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Connexion du commercial
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Menu Activity
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Menu Activity
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#affichage-des-prospects-et-leurs-details" class="md-nav__link">
+    Affichage des prospects et leurs détails
+  </a>
+  
+    <nav class="md-nav" aria-label="Affichage des prospects et leurs détails">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#affichage" class="md-nav__link">
+    Affichage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#details" class="md-nav__link">
+    Détails
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recherche-de-prospect" class="md-nav__link">
+    Recherche de prospect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synchronisation-avec-le-serveur-externe" class="md-nav__link">
+    Synchronisation avec le serveur externe
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ajoutProspect/" class="md-nav__link">
+        Ajouter un Prospect
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DaoSQL/" class="md-nav__link">
+        DAO SQL
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+  <a href="https://github.com/LhoMars/ProspectsManagement/edit/main/docs/javaAndroid/menuActivity.md" title="Editer cette page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="menu-activity">Menu Activity</h1>
+<h2 id="introduction">Introduction</h2>
+<p>La classe <code>MenuActivity</code> permet d'avoir un aperçu des prospects avec une recherche par rapport à ceux-ci, ainsi que leurs informations en détails.
+Elle permet aussi de synchroniser les données avec le serveur et d'accéder à la page d'ajout de prospect.
+Le FrontEnd, layout principal qui lui est lié est intitulé <code>activity_menu</code>.</p>
+<p>Aperçu depuis Android Studio avant lancement :</p>
+<p><img alt="menuAndroidStudio" src="../../assets/menuAndroidStudio.png" /></p>
+<h3 id="affichage-des-prospects-et-leurs-details">Affichage des prospects et leurs détails</h3>
+<h4 id="affichage">Affichage</h4>
+<p>On affiche les prospects sur le Menu dans la partie basse en passant par un tableau qui contient un recycler view mais c'est bien plus complexe !
+Pour que cela fonctionne nous avons besoin du layout <code>item_layout</code> et de la classe <code>ShowProspectAdaptater</code>.
+Le xml <code>item_layout</code> contient uniquement une table avec une ligne et 3 colonnes représentés par des TextView, grâce à <code>ShowProspectAdaptater</code> 
+nous allons pouvoir générer plusieurs lignes ayant pour design le xml cité juste avant (le design est simple, on a juste une bordure bottom bleu depuis un
+background drawable).</p>
+<p>La classe <code>ShowProspectAdaptater</code> est composée de 4 méthodes :</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ViewHolder</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">RecyclerView</span><span class="p">.</span><span class="na">ViewHolder</span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextView</span><span class="w"> </span><span class="n">nom_prospect</span><span class="p">,</span><span class="w"> </span><span class="n">prenom_prospect</span><span class="p">,</span><span class="w"> </span><span class="n">entreprise_prospect</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">TableRow</span><span class="w"> </span><span class="n">row_prospect</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="nf">ViewHolder</span><span class="p">(</span><span class="nd">@NonNull</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="n">itemView</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="kd">super</span><span class="p">(</span><span class="n">itemView</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">nom_prospect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">nom_prospect</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">prenom_prospect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">prenom_prospect</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">entreprise_prospect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">entreprise_prospect</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">row_prospect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">tableRowProspect</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>La première permet de mettre en place un ViewHolder qui hérite de <code>RecyclerView.ViewHolder</code>, on y appel ici les id des colonnes ainsi que de la ligne disponible
+dans le xml <code>item_layout</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getItemCount</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">prospectList</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prospectList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">){</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">prospectList</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>La seconde va rechercher la taille de la liste de prospect c'est-à-dire combien de prospect sont existants, si le tableau prospectList est null alors
+on va récupérer la valeur 0, si on en a moins ou 5 on en récupére la taille de la liste et sinon dans le cas où on en a plus de 5, on récupére 5.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onBindViewHolder</span><span class="p">(</span><span class="nd">@NonNull</span><span class="w"> </span><span class="n">ShowProspectAdaptater</span><span class="p">.</span><span class="na">ViewHolder</span><span class="w"> </span><span class="n">holder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prospectList</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">prospectList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">Prospect</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prospectList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">position</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">holder</span><span class="p">.</span><span class="na">nom_prospect</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">getNom</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">holder</span><span class="p">.</span><span class="na">prenom_prospect</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">getPrenom</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">holder</span><span class="p">.</span><span class="na">entreprise_prospect</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">getRaisonSocial</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">holder</span><span class="p">.</span><span class="na">row_prospect</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nd">@Override</span><span class="w"></span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClick</span><span class="p">(</span><span class="n">View</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">holder</span><span class="p">.</span><span class="na">row_prospect</span><span class="p">.</span><span class="na">setBackgroundColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">rgb</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">));</span><span class="w"></span>
+<span class="w">                    </span><span class="n">interfaceClickable</span><span class="p">.</span><span class="na">setClick</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">prospectList</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">});</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>La troisième quant à elle prend en paramètre deux choses, le ViewHolder créer auparavant ainsi qu'une position.
+On va vérifier si la taille du tableau prospectList n'est pas null et si il est supérieur à 0 sinon on ne retourne rien.
+Puis on créer un prospect "model" qui va prendre les informations du prospect dans le tableau qui est à la position prise en paramètre
+pour ensuite stocké son nom, prénom, sa raison sociale dans des holders.</p>
+<p>(Nous reviendrons sur le setOnClickListener dans la partie détail)</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ViewHolder</span><span class="w"> </span><span class="nf">onCreateViewHolder</span><span class="p">(</span><span class="nd">@NonNull</span><span class="w"> </span><span class="n">ViewGroup</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">viewType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">View</span><span class="w"> </span><span class="n">view</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="na">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">item_layout</span><span class="p">,</span><span class="n">parent</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ViewHolder</span><span class="p">(</span><span class="n">view</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Finalement un onCreateViewHolder avec en paramètre parent et viewType va retourné le ViewHoler contenant la vue.</p>
+<p>Ce qui va permettre en dernier l'affichage est disponible dans la classe <code>MenuActivity</code>, une méthode <code>setRecyclerView</code> va mettre les prospects
+ avec un model qui est la création de la classe <code>ShowProspectAdaptater</code>.
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setRecyclerView</span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Prospect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lesProspects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">recycler_view</span><span class="p">.</span><span class="na">setHasFixedSize</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">recycler_view</span><span class="p">.</span><span class="na">setLayoutManager</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">LinearLayoutManager</span><span class="p">(</span><span class="k">this</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ShowProspectAdaptater</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">lesProspects</span><span class="p">,</span><span class="w"> </span><span class="n">interfaceClickable</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">recycler_view</span><span class="p">.</span><span class="na">setAdapter</span><span class="p">(</span><span class="n">model</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div></p>
+<p>En résultat par exemple avec 3 prospect, nous obtenons ceci :</p>
+<p><img alt="exempleProspects" src="../../assets/exempleProspects.png" /></p>
+<h4 id="details">Détails</h4>
+<p>Pour ce qui est de leurs détails, dans le xml correspondant à la page menu : <code>activity_menu</code> nous voyons au début de la page un grand carré bleu faisant la page vide, 
+mais en faite il y a à cette place un LinearLayout caché grâce à la ligne <code>android:visibility="gone"</code> celui-ci a l'id : infosProspectLayout.
+Il contient ceci :</p>
+<p><img alt="tableauDetails" src="../../assets/tableauDetails.png" /></p>
+<p>Dès le début de la classe <code>MenuActivity</code>, dans le onCreate, nous avons une interface clicquable.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">interfaceClickable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">onClickInterface</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextView</span><span class="w"> </span><span class="n">nomInfos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TextView</span><span class="p">)</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">nomProspect</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextView</span><span class="w"> </span><span class="n">prenomInfos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TextView</span><span class="p">)</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">prenomProspect</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextView</span><span class="w"> </span><span class="n">raisonSocialeInfos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TextView</span><span class="p">)</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">raisonSocialeProspect</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextView</span><span class="w"> </span><span class="n">sirenInfos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TextView</span><span class="p">)</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">sirenProspect</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextView</span><span class="w"> </span><span class="n">mailInfos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TextView</span><span class="p">)</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">mailProspect</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextView</span><span class="w"> </span><span class="n">telephoneInfos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TextView</span><span class="p">)</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">telephoneProspect</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextView</span><span class="w"> </span><span class="n">noteInfos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TextView</span><span class="p">)</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">noteProspect</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">visible</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="nd">@Override</span><span class="w"></span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setClick</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Prospect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lesProspects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Prospect</span><span class="w"> </span><span class="n">prospect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lesProspects</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">position</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">nomInfos</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">prospect</span><span class="p">.</span><span class="na">getNom</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">prenomInfos</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">prospect</span><span class="p">.</span><span class="na">getPrenom</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">raisonSocialeInfos</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">prospect</span><span class="p">.</span><span class="na">getRaisonSocial</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">sirenInfos</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">prospect</span><span class="p">.</span><span class="na">getSiret</span><span class="p">()));</span><span class="w"></span>
+<span class="w">            </span><span class="n">mailInfos</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">prospect</span><span class="p">.</span><span class="na">getMail</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">telephoneInfos</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">prospect</span><span class="p">.</span><span class="na">getTel</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">noteInfos</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">prospect</span><span class="p">.</span><span class="na">getNotes</span><span class="p">()));</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">infosProspectLayout</span><span class="p">.</span><span class="na">getVisibility</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">GONE</span><span class="p">){</span><span class="w"></span>
+<span class="w">                </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">filtresLayout</span><span class="p">.</span><span class="na">setVisibility</span><span class="p">(</span><span class="n">View</span><span class="p">.</span><span class="na">GONE</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">TransitionManager</span><span class="p">.</span><span class="na">beginDelayedTransition</span><span class="p">(</span><span class="n">infosProspectLayout</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">visible</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">infosProspectLayout</span><span class="p">.</span><span class="na">setVisibility</span><span class="p">(</span><span class="n">visible</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">VISIBLE</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">GONE</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<p>Nous créons ici une interface clicquable c'est-à-dire que nous utilisons une interface nommé <code>onClickInterface</code> contenant uniquement ceci :</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">onClickInterface</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">setClick</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Prospect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lesProspects</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Elle a ici différent TextView correspondant aux informations détaillées des prospects ainsi qu'un booléen "visible" sans valeur.
+Dès que l'on va cliquer sur celle-ci, nous allons obtenir la position du prospect dans la liste (tableau) lesProspects pour ajouter ensuite à 
+l'intérieur des TextView les informations d'un prospect.
+Le infosProspectLayout alors va avoir sa visibilité modifié, il va apparaitre ou disparaitre en fonction de si il est ou non présent, nous parlons
+ici aussi d'un <code>filtresLayout</code> mais cela fait partie de la recherche de prospect.</p>
+<p>Nous avions vu auparavant ce code ci-dessous dans la classe <code>ShowProspectAdaptater</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">holder</span><span class="p">.</span><span class="na">row_prospect</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClick</span><span class="p">(</span><span class="n">View</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">interfaceClickable</span><span class="p">.</span><span class="na">setClick</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">prospectList</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+</code></pre></div>
+<p>Il met en place le fait que ce soit sur les lignes du tableau que nous allons cliquer grâce à l'interface cliquable.</p>
+<p>Exemple de clic sur un prospect (le Siren n'est pas correct, le prospect avait été fait avant les règles sur l'ajout d'un prospect) :</p>
+<p><img alt="exempleClick" src="../../assets/exempleClick.png" /></p>
+<h3 id="recherche-de-prospect">Recherche de prospect</h3>
+<p>Hormis la partie <code>infosProspectLayout</code> cachée, une autre l'est aussi, c'est <code>filtresLayout</code>, elle ressemble à ça :</p>
+<p><img alt="filtreLayout" src="../../assets/filtreLayout.png" /></p>
+<p>Elle va permettre de faire une recherche qui va actualiser la liste des prospects et dont affiché que ce que l'utilisateur veut.
+La première méthode est un événement de bouton, le bouton de la page d'accueil "Rechercher" le provoque.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="w"> </span><span class="n">eventBtnRechercherVisibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">visible</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="nd">@Override</span><span class="w"></span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClick</span><span class="p">(</span><span class="n">View</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">infosProspectLayout</span><span class="p">.</span><span class="na">setVisibility</span><span class="p">(</span><span class="n">View</span><span class="p">.</span><span class="na">GONE</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">TransitionManager</span><span class="p">.</span><span class="na">beginDelayedTransition</span><span class="p">(</span><span class="n">filtresLayout</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">visible</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">filtresLayout</span><span class="p">.</span><span class="na">setVisibility</span><span class="p">(</span><span class="n">visible</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">VISIBLE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">GONE</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<p>Il permet de changer la visibilité du <code>filtresLayout</code> en visible ou non si l'on reclick dessus.</p>
+<p>Ensuite il est possible d'écrire trois critère, le nom, le prénom et la raison sociale.
+On peut écrire quelque chose dans un seul ou même dans les trois et dès que l'on va appuyer sur le bouton <code>Lancer la Recherche</code> la méthode suivant va se lancer : </p>
+<p><div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="w"> </span><span class="n">eventBtnRechercher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nd">@Override</span><span class="w"></span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClick</span><span class="p">(</span><span class="n">View</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Prospect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lesProspects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataBase</span><span class="p">.</span><span class="na">getProspectBdd</span><span class="p">().</span><span class="na">getProspects</span><span class="p">(</span><span class="n">nomFiltre</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">toString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                    </span><span class="n">prenomFiltre</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">toString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                    </span><span class="n">entrepriseFiltre</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">toString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                    </span><span class="kc">true</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">setRecyclerView</span><span class="p">(</span><span class="n">lesProspects</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+</code></pre></div>
+Elle récupère une liste de prospect lesProspects qui est le résultat d'un appel d'une méthode de la classe <code>ProspectBDD</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Récupère un tableau de prospects</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param nom          String ou null : le nom du prospect</span>
+<span class="cm">     * @param prenom       String ou null : le prenom du prospect</span>
+<span class="cm">     * @param raisonSocial String ou null : la raison social de l&#39;entreprise</span>
+<span class="cm">     * @param isUpdate     boolean : true si on veux tous les prospects correspondant aux autres critères ou false si on souhaite que les prospects non synchroniser avec le serveur</span>
+<span class="cm">     * @return ArrayLsit&lt;Prospect&gt; ou null : la liste des prorpects correspondant aux critères ou null s&#39;il n&#39;existe aucun prospect correspondant</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Prospect</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getProspects</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">prenom</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">raisonSocial</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isUpdate</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">open</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="o">[</span><span class="p">(</span><span class="n">nom</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="p">(</span><span class="n">prenom</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="p">(</span><span class="n">raisonSocial</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">paramIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nom</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NOM_COL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; LIKE ?&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">params</span><span class="o">[</span><span class="n">paramIndex</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prenom</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">where</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">                </span><span class="n">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; AND &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PRENOM_COL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; LIKE ?&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">params</span><span class="o">[</span><span class="n">paramIndex</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prenom</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">raisonSocial</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">where</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">                </span><span class="n">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; AND &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RAISON_SOCIAL_COL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; LIKE ?&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">params</span><span class="o">[</span><span class="n">paramIndex</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raisonSocial</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isUpdate</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">where</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">                </span><span class="n">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; AND &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">IS_UPDATE_COL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; = 0&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">Cursor</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getBdd</span><span class="p">().</span><span class="na">query</span><span class="p">(</span><span class="n">getTableName</span><span class="p">(),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="p">{</span><span class="n">NOM_COL</span><span class="p">,</span><span class="w"> </span><span class="n">PRENOM_COL</span><span class="p">,</span><span class="w"> </span><span class="n">TEL_COL</span><span class="p">,</span><span class="w"> </span><span class="n">MAIL_COL</span><span class="p">,</span><span class="w"> </span><span class="n">NOTES_COL</span><span class="p">,</span><span class="w"> </span><span class="n">SIRET_COL</span><span class="p">,</span><span class="w"> </span><span class="n">RAISON_SOCIAL_COL</span><span class="p">,</span><span class="w"> </span><span class="n">IS_UPDATE_COL</span><span class="p">},</span><span class="w"> </span><span class="n">where</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">getCount</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">c</span><span class="p">.</span><span class="na">moveToFirst</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">Prospect</span><span class="w"> </span><span class="n">leProspect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cursorToProspect</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Prospect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lesProspects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">lesProspects</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">leProspect</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="na">getCount</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">getCount</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">c</span><span class="p">.</span><span class="na">moveToNext</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="n">lesProspects</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">cursorToProspect</span><span class="p">(</span><span class="n">c</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">c</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">close</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">lesProspects</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>La méthode va nous permettre de faire des recherches SQL par rapport aux entrées de l'utilisateur.
+Nous nous retrouvons finalement avec le tableau affichant les prospects avec les nouveaux correspondant aux recherches.</p>
+<p>Malgré tout si nous voulosn annuler les filtres alors il suffit d'appuyer sur le bouton <code>Effacer les critères</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">eventBtnClearFiltres</span><span class="p">(</span><span class="n">View</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">nomFiltre</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">prenomFiltre</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">entrepriseFiltre</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Prospect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lesProspects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataBase</span><span class="p">.</span><span class="na">getProspectBdd</span><span class="p">().</span><span class="na">getProspects</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">setRecyclerView</span><span class="p">(</span><span class="n">lesProspects</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Il remet le contenu des EditText vide et rétabli la liste lesProspects avec les informations de base.</p>
+<h3 id="synchronisation-avec-le-serveur-externe">Synchronisation avec le serveur externe</h3>
+<p>Ce diagramme de séquence représente la récupération des prospects depuis l'api au format json et de l'ajout en base de données local.
+Et dans un second temps la récupération des prospects en base de données SQLite puis du formatage en json pour l'envoi au serveur.</p>
+<pre class="mermaid"><code>sequenceDiagram
+actor Commercial
+
+  Commercial -&gt;&gt;+ Activity Menu: bouton synchroniser  
+  Activity Menu -&gt;&gt;+ APIBdd: callWebService(getAllProspects)  
+  APIBdd --&gt;&gt;- Activity Menu: JSONArray json
+  loop updateBddProspects(json)
+      Activity Menu -)+ Prospect: create with json data
+      Prospect --&gt;&gt;- Activity Menu: object
+      Activity Menu -&gt;&gt;+ DAO: add Prospect
+      DAO --&gt;&gt;- Activity Menu: resultat insertion
+  end
+  Activity Menu -&gt;&gt;+ DAO: getProspect
+  DAO --&gt;&gt;- Activity Menu: ArrayList&lt;Prospect&gt;
+  Activity Menu -&gt;&gt;+ APIBdd: createJsonProspects(lesProspects)
+  APIBdd --&gt;&gt;- Activity Menu: JSONArray jsonProspects
+  Activity Menu -&gt;&gt; APIBdd: postJsonProspect("InsertProspect", jsonProspects)  
+  Activity Menu --&gt;&gt;- Commercial: boiteMessage(resultApi)</code></pre>
+<p>L'évènement du bouton est déclaré dans <code>eventBtnSynchroniser</code>.<br />
+La date de mise à jour permet de récupérer les prospects créer à une date ultérieure à celle de la mise à jour et donc limiter le nombres d'informations transmis en bande passante.<br />
+Pour le POST : application envoie seulement les prospects pour lesquelles la valeur <code>isupdate</code> de la colonne est à false, il s'agit d'une valeur boolean pour savoir s'il le prospect est déjà synchronisé avec le serveur externe.  </p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="w"> </span><span class="n">eventBtnSynchroniser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nd">@Override</span><span class="w"></span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClick</span><span class="p">(</span><span class="n">View</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">loading</span><span class="p">.</span><span class="na">startLoadingDialog</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">SimpleDateFormat</span><span class="w"> </span><span class="n">formatter</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s">&quot;yyyy-MM-dd HH:mm:ss&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">formatter</span><span class="p">.</span><span class="na">setTimeZone</span><span class="p">(</span><span class="n">TimeZone</span><span class="p">.</span><span class="na">getTimeZone</span><span class="p">(</span><span class="s">&quot;UTC&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">Date</span><span class="w"> </span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Date</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">dateMiseAjour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">formatter</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="n">date</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">ApiBdd</span><span class="w"> </span><span class="n">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ApiBdd</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">api</span><span class="p">.</span><span class="na">callWebService</span><span class="p">(</span><span class="s">&quot;getAllProspects.php?date=&quot;</span><span class="o">+</span><span class="n">lEmployee</span><span class="p">.</span><span class="na">getDateMiseAjour</span><span class="p">().</span><span class="na">replace</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">,</span><span class="s">&quot;!&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">JSONArray</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">getJsonData</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">updateBddProspects</span><span class="p">(</span><span class="n">json</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Prospect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lesProspects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataBase</span><span class="p">.</span><span class="na">getProspectBdd</span><span class="p">().</span><span class="na">getProspects</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="c1">//getAllProspects();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">lesProspects</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">JSONArray</span><span class="w"> </span><span class="n">jsonProspects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">createJsonProspects</span><span class="p">(</span><span class="n">lesProspects</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">api</span><span class="p">.</span><span class="na">postJsonProspect</span><span class="p">(</span><span class="s">&quot;insertProspect.php?date=&quot;</span><span class="o">+</span><span class="n">lEmployee</span><span class="p">.</span><span class="na">getDateMiseAjour</span><span class="p">().</span><span class="na">replace</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">,</span><span class="s">&quot;!&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">jsonProspects</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">lEmployee</span><span class="p">.</span><span class="na">setDateMiseAjour</span><span class="p">(</span><span class="n">dateMiseAjour</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">dataBase</span><span class="p">.</span><span class="na">getEmployeeBdd</span><span class="p">().</span><span class="na">update</span><span class="p">(</span><span class="n">lEmployee</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">loading</span><span class="p">.</span><span class="na">dismissDialog</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">boiteMessage</span><span class="p">(</span><span class="n">api</span><span class="p">.</span><span class="na">getResult</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">setRecyclerView</span><span class="p">(</span><span class="n">dataBase</span><span class="p">.</span><span class="na">getProspectBdd</span><span class="p">().</span><span class="na">getProspects</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<p>Pour obtenir le bon format des données en json et mettre à jour le fichier SQLite la méthode <code>updateBddProspects</code> décompose l'objet et insert en bdd les prospects.<br />
+Pour créer le format de données à envoyer on utilise la méthode <code>createJsonProspects(ArrayList&lt;Prospect&gt; lesProspects)</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm">     * Formate une liste de prospect en json</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param lesProspects ArrayList : la liste de prospects</span>
+<span class="cm">     * @return JsonArray : les prospects au format json</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">JSONArray</span><span class="w"> </span><span class="nf">createJsonProspects</span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Prospect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lesProspects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//Creating a JSONObject object</span><span class="w"></span>
+<span class="w">        </span><span class="n">JSONArray</span><span class="w"> </span><span class="n">jsonArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JSONArray</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Prospect</span><span class="w"> </span><span class="n">prospect</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">lesProspects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">JSONObject</span><span class="w"> </span><span class="n">jsonObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JSONObject</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="c1">//Inserting key-value pairs into the json object</span><span class="w"></span>
+<span class="w">                </span><span class="n">jsonObject</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;default&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">jsonObject</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;nom&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">prospect</span><span class="p">.</span><span class="na">getNom</span><span class="p">());</span><span class="w"></span>
+<span class="w">                </span><span class="n">jsonObject</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;prenom&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">prospect</span><span class="p">.</span><span class="na">getPrenom</span><span class="p">());</span><span class="w"></span>
+<span class="w">                </span><span class="n">jsonObject</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;mail&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">prospect</span><span class="p">.</span><span class="na">getMail</span><span class="p">());</span><span class="w"></span>
+<span class="w">                </span><span class="n">jsonObject</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;tel&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">prospect</span><span class="p">.</span><span class="na">getTel</span><span class="p">());</span><span class="w"></span>
+<span class="w">                </span><span class="n">jsonObject</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;note&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">prospect</span><span class="p">.</span><span class="na">getNotes</span><span class="p">());</span><span class="w"></span>
+<span class="w">                </span><span class="n">jsonObject</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;siret&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">prospect</span><span class="p">.</span><span class="na">getSiret</span><span class="p">());</span><span class="w"></span>
+<span class="w">                </span><span class="n">jsonObject</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;raisonsocial&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">prospect</span><span class="p">.</span><span class="na">getRaisonSocial</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">jsonArray</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">jsonObject</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">jsonArray</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Le bouton <code>Ajouter</code> change l'activité vers <code>AjoutProspectActivity</code></p>
+
+              
+  
+
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Retour en haut de la page
+          </a>
+        
+      </main>
+      
+        
+
+<footer class="md-footer">
+  
+    <nav
+      class="md-footer__inner md-grid"
+      aria-label="Pied de page"
+    >
+      
+        <a
+          href="../"
+          class="md-footer__link md-footer__link--prev"
+          rel="prev"
+        >
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              Connexion du commercial
+            </div>
+          </div>
+        </a>
+      
+      
+        <a
+          href="../ajoutProspect/"
+          class="md-footer__link md-footer__link--next"
+          rel="next"
+        >
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              Ajouter un Prospect
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        with emoji by
+        <a href="https://github.com/twitter/twemoji" target="_blank" rel="noopener">
+          Twemoji
+        </a>
+      </div>
+      <div class="md-social">
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "toc.integrate", "content.code.annotate", "header.autohide"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.config.lang": "fr", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Rechercher", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version.title": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a6c66575.min.js"></script>
+      
+        <script src="../../assets/pymdownx-extras/extra-loader-9e2c67b9.js"></script>
+      
+    
+  </body>
+</html>
